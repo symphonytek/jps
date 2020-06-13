@@ -1,0 +1,15 @@
+Version Information
+
+Version 1.0.1.1
+
+Modifications made :
+1. In Defaulter list additional fees(if any) included.
+2. Search option included in fee collection form.
+3. Class upgradation.
+4. Students to whom TC is issued, deleted from the class list and total student list.
+5. In Class master total terminal fees are calculated.
+6. Phone no included in class list report menu 
+
+
+
+

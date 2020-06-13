@@ -1,0 +1,26 @@
+BDE Migration Wizard log
+
+Created at: 10/04/2008 6:26:32 PM
+
+Initializing unit list
+
+Creating backup folder
+
+Allocating temporary folder
+
+Processing file: C:\proj\tgrsms\exmdataU.pas
+
+26 change(s)
+
+Processing file: C:\proj\tgrsms\exmdataU.DFM
+
+24 change(s)
+
+Replacing original files with changed versions
+
+Backup file: C:\proj\tgrsms\RBackup\RExpert.reu
+
+Removing temporary folder
+
+Replace procedure was performed sucessfully.
+

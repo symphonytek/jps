@@ -1,0 +1,69 @@
+unit frmBounceU;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  Vcl.Grids, Vcl.DBGrids;
+
+type
+  TfrmBounce = class(TForm)
+    edtChqno: TLabeledEdit;
+    btnSearch: TBitBtn;
+    DBGrid1: TDBGrid;
+    btnBounce: TBitBtn;
+    procedure btnSearchClick(Sender: TObject);
+    procedure btnBounceClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmBounce: TfrmBounce;
+
+implementation
+
+{$R *.dfm}
+
+uses MyDataU;
+
+procedure TfrmBounce.btnBounceClick(Sender: TObject);
+var cancAble:boolean;
+begin
+cancAble:=true;
+with mydata do
+begin
+qryChqSearch.First;
+while not qryChqSearch.Eof do
+  begin
+  if (qryChqSearchLastfee.Value=false) then cancAble:=false;
+  qryChqSearch.Next;
+  end;
+if not cancAble then showmessage('Auto cancellation not possible. Cancel Manually .')
+else
+  if  messagedlg('Want to cancel all fees ?', mtconfirmation, [mbOK,mbcancel], 0)= mrok then
+  begin
+  tbfee.Open;
+  qryChqSearch.First;
+  while not qryChqSearch.Eof do
+    begin
+      if tbfee.Locate('Mr_NO',qryChqSearchMR_NO.Value,[]) then tbfeeadhoc.Value:=2;
+      qryChqSearch.Next;
+    end;
+  tbfee.close;
+  end;
+end;
+
+end;
+
+procedure TfrmBounce.btnSearchClick(Sender: TObject);
+begin
+mydata.qryChqSearch.Close;
+mydata.qryChqSearch.Params[0].Value:=edtChqno.Text;
+mydata.qryChqSearch.Open;
+end;
+
+end.

@@ -1,0 +1,63 @@
+unit frmRepMastU;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  Grids, DBGrids, StdCtrls, Mask, DBCtrls, Buttons, ExtCtrls, cxGraphics,
+  cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit,
+  cxCheckBox, cxDBEdit, AdvMemo, AdvmSQLS, DBAdvMemo;
+
+type
+  TfrmRepMast = class(TForm)
+    Label1: TLabel;
+    DBEdit1: TDBEdit;
+    Label2: TLabel;
+    DBEdit2: TDBEdit;
+    Label15: TLabel;
+    DBNavigator1: TDBNavigator;
+    btnSave: TBitBtn;
+    btnNew: TBitBtn;
+    AdvMemoSource1: TAdvMemoSource;
+    DBAdvMemo1: TDBAdvMemo;
+    AdvSQLMemoStyler1: TAdvSQLMemoStyler;
+    procedure btnNewClick(Sender: TObject);
+    procedure btnSaveClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRepMast: TfrmRepMast;
+
+implementation
+
+uses MyDataU;
+
+{$R *.DFM}
+
+procedure TfrmRepMast.btnNewClick(Sender: TObject);
+begin
+MyData.CatgrMast.insert;
+end;
+
+procedure TfrmRepMast.btnSaveClick(Sender: TObject);
+begin
+MyData.CatgrMast.Post;
+end;
+
+procedure TfrmRepMast.FormActivate(Sender: TObject);
+begin
+MyData.tbRepMast.open;
+end;
+
+procedure TfrmRepMast.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+MyData.tbRepMast.close;
+end;
+
+end.

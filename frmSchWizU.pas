@@ -1,0 +1,170 @@
+unit frmSchWizU;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  StdCtrls, ExtCtrls, ComCtrls,DB,Variants;
+
+type
+  TfrmSchWiz = class(TForm)
+    Shape1: TShape;
+    Image1: TImage;
+    Label1: TLabel;
+    lblQuest: TLabel;
+    Edit1: TEdit;
+    UpDown1: TUpDown;
+    Bevel1: TBevel;
+    btnBack: TButton;
+    btnNext: TButton;
+    btnCancel: TButton;
+    Bevel2: TBevel;
+    PBar1: TProgressBar;
+    L2: TLabel;
+    L3: TLabel;
+    procedure FormCreate(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure btnNextClick(Sender: TObject);
+    procedure btnCancelClick(Sender: TObject);
+    procedure btnBackClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+const msgstr:array[1..6] of string=(
+'Number of working  days  in week ?',
+'How many teachers are available  ?',
+'Number of periods available ?',
+'Total number of classes  ?',
+'','');
+ulimit:integer=4;llimit:integer=1;
+
+var
+  frmSchWiz: TfrmSchWiz;
+  i:integer;
+  mdata:array[1..4] of integer;
+  edtTxt:array[1..4] of String;
+  tchrArr,subArr:array of integer;
+
+implementation
+
+uses MyDataU, frmTTableU;
+
+{$R *.DFM}
+
+procedure TfrmSchWiz.FormCreate(Sender: TObject);
+begin
+i:=1;
+end;
+
+procedure TfrmSchWiz.FormActivate(Sender: TObject);
+var cnt:Integer;//str:String;
+begin  //  str:='';
+edtTxt[1]:=mydata.mfile.ReadString('General','No of days','');
+edtTxt[2]:=mydata.mfile.ReadString('General','No of teachers','');
+edtTxt[3]:=mydata.mfile.ReadString('General','No of Periods','');
+edtTxt[4]:=mydata.mfile.ReadString('General','No of class','');
+i:=1;edit1.Text:=edtTxt[i];lblQuest.caption:=msgstr[1];L2.Visible:=False;
+L3.Visible:=False;PBar1.Visible:=False;PBar1.Position:=0;edit1.SetFocus;
+with mydata do
+begin tbTeacher.IndexFieldNames:='TID';
+tbttable.Open;tbTeacher.Open;tbSubDet.Open;tbClassDet.Open;tbSubMast.Open;
+SetLength(tchrArr, tbTeacher.RecordCount+1);cnt:=1;tbTeacher.First;
+while not tbTeacher.Eof do
+ begin tchrArr[cnt]:=tbTeacherTID.asinteger;inc(cnt);tbTeacher.Next;end;
+SetLength(subArr, tbSubMast.RecordCount+1);cnt:=1;tbSubMast.First;    //mydata.tbschdata.Open;
+while not tbSubMast.Eof do
+ begin subArr[cnt]:=tbSubMastSID.Value;inc(cnt);tbSubMast.Next;end;   //str:=str+' '+inttostr(subArr[cnt]);
+end; //showmessage(str);
+end;
+
+procedure TfrmSchWiz.btnNextClick(Sender: TObject);
+var a,b,c,tchcode,Subcode,cl,sId,rcCnt,rcCnt1:integer;
+begin
+tchcode:=1;sId:=1;rcCnt:=mydata.tbSubMast.RecordCount;rcCnt1:=0;
+if btnNext.caption='&Finish' then
+        if MessageDlg('Wizard successfully completed, Do you want to Exit', mtInformation,
+        [mbYes,mbNo], 0)=mrYes then
+        begin btnNext.Caption:='&Next >';btnNext.enabled:=false;
+        mydata.mfile.WriteString('General','Time Table','not copied');
+        close;
+        end;
+mdata[i]:=strtoint(edit1.text);edtTxt[i]:=edit1.Text;
+if i=ulimit then
+begin
+with mydata do
+begin
+mfile.WriteInteger('General','No of days',mdata[1]);
+mfile.WriteInteger('General','No of class',mdata[4]);
+mfile.WriteInteger('General','No of Periods',mdata[3]);
+mfile.WriteInteger('General','No of teachers',mdata[2]);
+tbttable.Filtered:=false;//showmessage('days'+inttostr(mdata[1])+'class'+inttostr(mdata[4])+'Periods'+inttostr(mdata[3])+'teachers'+inttostr(mdata[2]));
+tbttable.first;//tchcode:=0;
+tbttable.Active:=False;tbttable.EmptyTable;tbttable.Active:=True;
+L2.Visible:=True;L3.Visible:=True;PBar1.Visible:=True;PBar1.Enabled:=True;
+for a:=1 to mdata[4] do
+  for b:=1 to mdata[1] do
+    for c:=1 to mdata[3] do
+       begin  inc(rcCnt1);PBar1.Enabled:=True;
+       PBar1.Position:=trunc(100*rcCnt1/(mdata[1]*mdata[3]*mdata[4]));
+       L3.Caption:=inttostr(PBar1.Position)+'% complete';L3.Update;
+       tbttable.Append;
+       tbttableDay.Value:=b;
+       tbttablePeriod.Value:=c;
+       tbttableCCode.value:=a;                              //tchcode:=tchcd;inc(tchcd);
+       if tchcode>mdata[2] then tchcode:=1;                 //tchcode mod mdata[2];
+       tbttableTeacher.value:=tchrArr[tchcode];inc(tchcode);
+       if sId>rcCnt then sId:=1;                            //tchcode mod mdata[2];
+       tbttableSID.value:=subArr[sId];inc(sId);
+       tbttable.post;
+       end;
+  end; //WITH MYDATA DO
+end
+else
+begin
+inc(i);edit1.SetFocus;
+lblQuest.caption:=msgstr[i];edit1.Text:=edtTxt[i];
+if i=ulimit then btnNext.Caption:='&Finish'
+else btnNext.Caption:='&Next >';
+if i>llimit then btnBack.Enabled:=true;
+end;
+//--------------------------------------------------
+                  //mydata.tbTeacher.First; { for a:=1 to mdata[4] do            //mdata[4] is no of classes  for b:=1 to mdata[3] do            //mdata[3] is no of periods  begin      tchcode:=a+b-1;      if tchcode>mdata[2] then tchcode:=tchcode mod mdata[2];      //showmessage('tchcode '+inttostr(tchcode));      mydata.tbSubDet.first;       // if mydata.tbSubDet.Locate('TID',tchcode,[]) then
+                //begin          //showmessage('tid located in subdet');         //subcode:=mydata.tbClassDetCID.Value;          //showmessage('sub slno '+mydata.tbSubDetSlno.asstring);          mydata.tbClassDet.first;            //  if mydata.tbClassDet.Locate('Slno;CID',vararrayof([mydata.tbSubDetSlno.Value,a]),[]) then              if mydata.tbClassDet.Locate('CID',a,[]) then              begin
+                //showmessage('Slno is '+mydata.tbsubdetslno.asstring+'cid located in classdet'+mydata.tbClassDetCID.AsString);                {mydata.tbttable.insert;                mydata.tbttableDay.Value:=1;                mydata.tbttablePeriod.Value:=b;                mydata.tbttableCCode.value:=a;                mydata.tbttableTeacher.value:=tchcode;
+                //                mydata.tbttableSubject.Value:=mydata.tbSubDetSubDesc.Value ;                mydata.tbttable.post;              end;//        end;       // showmessage('outside classdet');                  //showmessage('the period is '+inttostr(b));  end;endelsebegininc(i);lblQuest.caption:=msgstr[i];if i=ulimit then btnNext.Caption:='&Finish'else btnNext.Caption:='&Next >';if i>llimit then btnBack.Enabled:=true;end;}
+end;
+
+procedure TfrmSchWiz.btnCancelClick(Sender: TObject);
+begin
+
+if MessageDlg('Are you sure you want to Exit the wizard', mtInformation,
+      [mbYes,mbNo], 0)=mrYes then
+      begin
+      mydata.tbttable.close;
+      close;
+      end;
+end;
+
+procedure TfrmSchWiz.btnBackClick(Sender: TObject);
+begin
+dec(i);
+lblQuest.caption:=msgstr[i];edit1.Text:=edtTxt[i];edit1.SetFocus;
+if i=llimit then btnBack.enabled:=false;
+if i=ulimit then btnNext.Caption:='&Finish'
+else btnNext.Caption:='&Next >';
+end;
+
+procedure TfrmSchWiz.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+with mydata do
+begin
+tbttable.close;tbTeacher.close;tbSubDet.close;tbClassDet.close;
+tbSubMast.close;tbTeacher.IndexFieldNames:='Descr';
+end;                                 //mydata.tbschdata.close;
+end;
+
+end.

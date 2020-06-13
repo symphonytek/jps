@@ -1,0 +1,129 @@
+unit userU;
+interface
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  StdCtrls, Buttons, Mask, DBCtrls, Db, DBTables, ExtCtrls;
+type
+  Tuserfrm = class(TForm)
+    Label2: TLabel;
+    Label3: TLabel;
+    BitBtn1: TBitBtn;
+    BitBtn3: TBitBtn;
+    Edit1: TEdit;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Button1: TButton;
+    Bevel1: TBevel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    BitBtn2: TBitBtn;
+    Edit3: TEdit;
+    procedure Edit1Change(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Edit3Enter(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+var
+  userfrm: Tuserfrm;
+implementation
+uses mainfrmu,myfuncu, MyDataU;
+{$R *.DFM}
+
+procedure Tuserfrm.Edit1Change(Sender: TObject);
+begin
+mydata.usertb1.locate('uid',edit1.text,[]);
+edit1.text:=mydata.usertb1uname.Value;
+end;
+
+procedure Tuserfrm.BitBtn1Click(Sender: TObject);
+begin
+//showmessage(encryptpass(usertbpasswd.value));
+if (mydata.usertb1.locate('uid',edit1.text,[])) and (mydata.usertb1passwd.value = encryptpass(edit3.text)) then
+begin
+   if mydata.usertb1stat.Value = 1 then
+     begin
+     mainfrm.administrativetools1.Enabled:=true;
+     mainfrm.Transaction1.Enabled:=true;
+     mainfrm.Sheetpreperation1.Enabled:=true;
+     end
+     else
+     begin
+     mainfrm.Sheetpreperation1.Enabled:=false;
+     mainfrm.administrativetools1.Enabled:=false;
+     mainfrm.Transaction1.Enabled:=false;
+     end;
+   mainfrm.tag:=mydata.usertb1uno.value;
+   mainfrm.Statusbar1.panels[1].Text:=mydata.usertb1uid.value;
+   hide;
+   mainfrm.show;
+end
+else
+  raise exception.create('Invalid User...Try again');
+end;
+
+procedure Tuserfrm.FormActivate(Sender: TObject);
+begin
+mydata.usertb1.open;
+clientheight:=138; bitbtn3.hint:='Change Password';
+end;
+
+procedure Tuserfrm.BitBtn2Click(Sender: TObject);
+begin
+close;
+end;
+
+procedure Tuserfrm.BitBtn3Click(Sender: TObject);
+begin
+if (mydata.usertb1.locate('uid',edit1.text,[])) and (mydata.usertb1passwd.value = encryptpass(edit3.text)) then
+begin
+  if clientheight=138
+  then
+        begin
+        clientHeight:=271;bitbtn3.hint:='Login Form';end
+  else
+        begin
+        clientheight:=138; bitbtn3.hint:='Change Password';
+  end;
+end
+else
+   raise exception.create('Invalid current password...Can''t change it.');
+end;
+
+procedure Tuserfrm.Button1Click(Sender: TObject);
+begin
+if edit4.text = edit5.text then
+begin
+  mydata.usertb1.Edit;
+  //showmessage(encryptpass(edit5.text));
+  mydata.usertb1passwd.Value := encryptpass(edit5.text);
+  mydata.usertb1.post;
+  edit3.text:=edit5.text;
+  showmessage('Password successfully changed.');
+  {label4.Visible :=false;
+  label5.visible:=false;
+  edit4.visible:=false;
+  edit5.visible:=false;
+  bevel1.Visible:=false;
+  button1.Visible :=false;}
+  clientheight:=138; bitbtn3.hint:='Change Password';
+end
+else
+begin
+   edit4.text:='';
+   edit5.text:='';
+   raise exception.create('Passwords are not matching...Type again.');
+end;
+end;
+procedure Tuserfrm.Edit3Enter(Sender: TObject);
+begin
+edit3.selectall;
+end;
+end.

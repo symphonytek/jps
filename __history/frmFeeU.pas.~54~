@@ -1,0 +1,485 @@
+unit frmFeeU;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  ExtCtrls,DBCtrls, StdCtrls, Mask, Grids, DBGrids, Buttons,variants,inifiles,
+  DB, DBTables, MemDS, DBAccess, MyAccess;
+
+type
+  TIntSet = set of 0..250;
+
+type
+  TfrmFee = class(TForm)
+    Label1: TLabel;
+    DBEdit1: TDBEdit;
+    Label2: TLabel;
+    DBEdit2: TDBEdit;
+    Label3: TLabel;
+    DBEdit3: TDBEdit;
+    DBCheckBox1: TDBCheckBox;
+    Label8: TLabel;
+    DBEdit8: TDBEdit;
+    DBNavigator1: TDBNavigator;
+    Label9: TLabel;
+    DBLookupComboBox1: TDBLookupComboBox;
+    Label11: TLabel;
+    Label4: TLabel;
+    DBGrid1: TDBGrid;
+    btnAuto: TBitBtn;
+    DBText1: TDBText;
+    Label10: TLabel;
+    DBText2: TDBText;
+    DBText3: TDBText;
+    Label12: TLabel;
+    DBEdit4: TDBEdit;
+    Label13: TLabel;
+    DBEdit5: TDBEdit;
+    Label5: TLabel;
+    btnSave: TBitBtn;
+    btnNew: TBitBtn;
+    btnPreview: TBitBtn;
+    btnPrint: TBitBtn;
+    GroupBox1: TGroupBox;
+    Label6: TLabel;
+    Label7: TLabel;
+    DBEdit6: TDBEdit;
+    DBLookupComboBox2: TDBLookupComboBox;
+    DBLookupComboBox3: TDBLookupComboBox;
+    DBEdit7: TDBEdit;
+    Label14: TLabel;
+    Label15: TLabel;
+    btnInfo: TSpeedButton;
+    Label18: TLabel;
+    DBLookupComboBox4: TDBLookupComboBox;
+    RdGp2: TDBRadioGroup;
+    CBx1: TComboBox;
+    edtSearch: TEdit;
+    btnSearch: TBitBtn;
+    Query1: TMyQuery;
+    Query1studid: TFloatField;
+    Query1name: TStringField;
+    Query1MR_NO: TStringField;
+    DBCheckBox2: TDBCheckBox;
+    btnChqdetails: TSpeedButton;
+    lblChq: TLabel;
+    chkHead: TCheckBox;
+    DBText4: TDBText;
+    procedure btnAutoClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnNewClick(Sender: TObject);
+    procedure btnSaveClick(Sender: TObject);
+    procedure DBCheckBox1Click(Sender: TObject);
+    procedure btnPreviewClick(Sender: TObject);
+    procedure btnInfoClick(Sender: TObject);
+    procedure btnSearchClick(Sender: TObject);
+    procedure edtSearchChange(Sender: TObject);
+    procedure DBCheckBox2Click(Sender: TObject);
+    procedure DBEdit6Exit(Sender: TObject);
+    procedure btnChqdetailsClick(Sender: TObject);
+    procedure btnPrintClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+const mstr:array[1..12] of string=('JAN','FEB','MAR','APR',
+                                   'MAY','JUN','JUL','AUG',
+                                   'SEP','OCT','NOV','DEC');
+      sstr:array[1..12] of string=('APR','MAY','JUN','JUL',
+                                   'AUG','SEP','OCT','NOV',
+                                   'DEC','JAN','FEB','MAR');
+var
+  frmFee: TfrmFee;
+  saddr,sname:string;
+
+
+implementation
+
+uses mydataU, frmPreviewU, genperfU, myfuncU,dateutils,frxClass;
+
+{$R *.DFM}
+
+procedure TfrmFee.btnAutoClick(Sender: TObject);
+var
+acno:real;
+code,clcode,ind:integer;
+yr,month,day:Word;
+clxi:TintSet;
+amt,adfee,cdep:double;
+acname:string;
+begin
+clxi:=[14,15,18];
+if Mydata.tbfeeStudID.IsNull then
+  raise exception.Create('Student ID not selected');
+mydata.tbFeeDetail.DisableControls;
+try
+  mydata.myconn.StartTransaction;
+  mydata.qryFee.Close;
+  mydata.QryFee.Filtered:=False;
+  if mydata.StudMast.Locate('StudId',Mydata.tbfeeStudID.Value,[])then
+  if mydata.StudMastNOTERMS.Value<>-1 then
+    begin
+    if mydata.StudMastNOTERMS.value>0 then
+      mydata.QryFee.Filter:='AC_MODE=''T'''
+    else
+      mydata.QryFee.Filter:='AC_MODE<>''I''';
+    mydata.QryFee.Filtered:=True;
+    end;
+  //showmessage(mydata.qryFee.Filter);
+  mydata.QryFee.open;
+  mydata.QryFee.First;
+  code:=mydata.tbfeeFEE_PROF_CODE.asinteger;
+  clcode:=mydata.tbfeestd.AsInteger;
+  adfee:=0;cdep:=0;
+  if (clcode in clxi) then
+  begin
+  if mydata.tbJps_fee.Locate('yr',YearOf(mydata.studmastDOA.Value),[]) then
+    begin
+    adfee:=mydata.tbJps_feeadep.Value;
+    cdep:=mydata.tbJps_feecdep.Value;
+    end;
+  end;
+
+  while not mydata.tbFeeDetail.eof do mydata.tbFeeDetail.Delete;
+  while not mydata.QryFee.eof do
+    begin
+    //Showmessage(floattostr(mydata.QryFeeAc_NO.value));
+    acno:=mydata.QryFeeAc_NO.value;
+    acname:=LowerCase(mydata.qryFeeAC_NAME.Value);
+    if mydata.tbFeeMatrix.locate('Ac_NO;FEE_PROF_CODE',varArrayOf([acno,code]),[loPartialKey]) then
+    begin
+      //showmessage('Found');
+      mydata.tbFeeDetail.insert;
+      mydata.tbFeeDetailAc_NO.value:=acno;
+      if mydata.qryFeeac_mode.Value='T' then
+        amt:=mydata.tbFeeMatrixFee.value*mydata.tbfeenoterm.Value
+      else
+        amt:=mydata.tbFeeMatrixFee.value;
+      if (pos('admission',acname)>0) then amt:=amt-adfee;
+      if (pos('caution',acname)>0) then amt:=amt-cdep;
+      mydata.tbFeeDetailAc_amt.value:=amt;
+      mydata.tbFeeDetail.post;
+      end;
+    mydata.qryFee.next;
+    end;
+//if mydata.StudMast.Locate('StudId',mydata.tbfeeStudID.Value,[])then
+
+  if mydata.StudMastByBus.Value =true then
+        // 12 is the code for Bus fee
+    if mydata.tbFeeMatrix.locate('Ac_NO;FEE_PROF_CODE',varArrayOf([12,code]),[loPartialKey])
+    then begin
+      mydata.tbFeeDetail.insert;
+      mydata.tbFeeDetailAc_NO.value:=12;
+      mydata.tbFeeDetailAc_amt.value:=mydata.tbFeeMatrixFee.value*mydata.tbfeenoterm.Value;
+      mydata.tbFeeDetail.post;
+      end;
+    DecodeDate(mydata.tbfeeMR_DATE.Value,yr,month,day);
+    if day>25 then
+         // 13 is the code for Late Payment fee
+    if mydata.tbFeeMatrix.locate('Ac_NO;FEE_PROF_CODE',varArrayOf([13,code]),[loPartialKey])
+    then begin
+      mydata.tbFeeDetail.insert;
+      mydata.tbFeeDetailAc_NO.value:=13;
+      mydata.tbFeeDetailAc_amt.value:=mydata.tbFeeMatrixFee.value*mydata.tbfeenoterm.Value;
+      mydata.tbFeeDetail.post;
+      end;
+  //---Fine calculation---
+  mydata.qryCustom.close;
+  mydata.qryCustom.SQL.Text:='select get_fine('+Mydata.tbfeeStudID.asstring+','+mydata.tbfeenoterm.asstring+')';
+  mydata.qryCustom.Open;
+  if (mydata.qryCustom.Fields[0].value>0) then
+  begin
+      mydata.tbFeeDetail.insert;
+      mydata.tbFeeDetailAc_NO.value:=mydata.late_feecode;
+      mydata.tbFeeDetailAc_amt.value:=mydata.qryCustom.Fields[0].value;
+      mydata.tbFeeDetail.post;
+  end;
+  if mydata.tbfee.State = dsinsert then
+  if not (mydata.bal_fee>0) then mydata.tbfeeChq_amt.Value:=mydata.tbfeeTot_amt.Value;
+  mydata.qryCustom.close;
+  mydata.qryCustom.SQL.Text:='select ac_no,amount from adhocfee where studid='+Mydata.tbfeeStudID.asstring+' and paid=0';
+  mydata.qryCustom.Open;
+  setlength(mydata.adhocfee_arr,0);ind:=0;
+  while not mydata.qryCustom.Eof do
+  begin
+      mydata.tbFeeDetail.insert;
+      mydata.tbFeeDetailAc_NO.value:=mydata.qryCustom.Fields[0].value;
+      mydata.tbFeeDetailAc_amt.value:=mydata.qryCustom.Fields[1].value;
+      mydata.tbFeeDetail.post;
+      setlength(mydata.adhocfee_arr,ind+1);
+      mydata.adhocfee_arr[ind].ac_no:=mydata.qryCustom.Fields[0].value;
+      mydata.adhocfee_arr[ind].amt:=mydata.qryCustom.Fields[1].value;
+      ind:=ind+1;
+    mydata.qryCustom.Next;
+  end;
+
+  //--End of fine calculation--
+  mydata.myconn.commit;
+  except on E:Exception do
+    begin
+    showmessage(e.Message);
+    mydata.myconn.Rollback;
+    end;
+  end;//for try block
+mydata.tbFeeDetail.EnableControls;
+end;
+
+
+
+
+procedure TfrmFee.FormActivate(Sender: TObject);
+begin
+with mydata do
+begin
+//ClMast.open;
+actlstds:=tbFee;
+//StudMast.Filter:='Catcode=1';
+studmast.FilterSQL:='NSO=0';
+Studmast.open;
+//StudMast.Filtered:=true;
+tbBmast.open;
+tbBrmast.open;
+tbFee.open;
+tbFeeDetail.open;
+tbAcMaster.open;
+tbFeeMatrix.open;
+RdBtnValT.Open;
+tbjps_fee.open;
+end;
+RdGp2.ItemIndex:=0;
+RdGp2.Value:='MR_NO';
+dbedit2.Text :=datetostr(date);
+end;
+
+
+procedure TfrmFee.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+edtSearch.Text:='';
+Query1.Close;
+with mydata do
+begin
+//ClMast.close;
+StudMast.close;
+studmast.FilterSQL:='';
+//StudMast.Filtered:=false;
+tbBmast.close;
+tbBrmast.close;
+tbFee.close;
+tbFeeDetail.close;
+tbAcMaster.close;
+tbFeeMatrix.close;
+RdBtnValT.close;
+tbjps_fee.close;
+actlstds:=dummyT;
+end;
+end;
+
+procedure TfrmFee.btnNewClick(Sender: TObject);
+begin
+mydata.tbfee.Insert;
+end;
+
+procedure TfrmFee.btnSaveClick(Sender: TObject);
+begin
+mydata.tbfee.post;
+end;
+
+procedure TfrmFee.DBCheckBox1Click(Sender: TObject);
+begin
+GroupBox1.visible:=not DBCheckBox1.Checked;
+end;
+
+procedure TfrmFee.DBCheckBox2Click(Sender: TObject);
+begin
+if dbcheckBox2.Checked then
+   begin
+       btnAuto.Enabled:=false;
+       DBCheckBox1.Checked:=true;
+       //mydata.tbAcMaster.FilterSQL:='AC_MANDATORY=0';
+   end
+   else
+   begin
+            btnAuto.Enabled:=true;
+       DBCheckBox1.Checked:=false;
+       mydata.tbAcMaster.FilterSQL:='';
+   end;
+end;
+
+procedure TfrmFee.DBEdit6Exit(Sender: TObject);
+var strsql:string;
+begin
+mydata.qryCustom.Close;
+strsql:='select ifnull(sum(fee_amt),0.0) from fee where chq_no='''+dbedit6.Text+''' and drawn_on='+mydata.tbfeeDRAWN_ON.asstring;
+mydata.qryCustom.SQL.Text:=strsql;
+mydata.qryCustom.Open;
+lblChq.Caption:=format('Chq no.: %s Bank : %s Total amount : %s',
+[dbedit6.Text,dblookupcombobox2.Text,mydata.qryCustom.Fields[0].asstring]);
+end;
+
+procedure TfrmFee.btnPreviewClick(Sender: TObject);
+var sl:integer;
+tmpstr,chqstr:string;
+begin
+sl:=0;
+with frmPreview.Memo1 do
+        begin
+        Clear;
+        if not chkhead.Checked then
+        begin
+        Lines.Add(chr(14)+padc(genperf.edtOrgnm.text,32));
+        Lines.Add(chr(14)+padc(genperf.mmPageHeader.text,32));
+        end else
+        begin
+        Lines.Add('');
+        Lines.Add('');
+        end;
+        Lines.Add('Date :'+padl(mydata.tbfeeMR_DATE.AsString,80));
+        tmpstr:=sstr[mydata.tbfeeTERM.value];
+        if mydata.tbfeeNOTERM.value>1 then
+        tmpstr:=sstr[mydata.tbfeeTERM.asinteger-mydata.tbfeeNOTERM.asinteger+1]+'-'+tmpstr;
+        Lines.Add(format('Rec No.: %s for the month of %s',
+        [mydata.tbfeeDetailMR_NO.value,tmpstr]));
+        Lines.Add('');
+        Lines.Add(format('%7s %15s %15s %15s',['Stud Id','Stud Name','Standard','Section']));
+        Lines.Add(format('%5s %15s %15s %15s',[mydata.tbFeestudId.Asstring,mydata.tbFeeStudName.AsString,mydata.tbFeecldesc.AsString,mydata.tbFeesec.AsString]));
+                 Lines.Add(repchar('-',60));
+                 Lines.Add(format('%9s %-25s %15s',['Sl No.','Description','Amount']));
+                 Lines.Add(repchar('-',60));
+                 mydata.tbfeeDetail.first;
+                 while not mydata.tbfeeDetail.Eof do
+                 begin
+                 inc(sl);
+                 Lines.Add(format('%9d %-25s %15.2f',[sl,mydata.tbFeeDetailAC_NAME.ASString,
+                 mydata.tbfeeDetailAC_AMTPAID.Value]));
+                 mydata.tbfeeDetail.Next;
+                 end;
+                 Lines.Add(repchar('-',60)); chqstr:='';
+                if (not mydata.tbfeeCASH.Value) then
+                  chqstr:='Cheque no. : '+mydata.tbfeeCHQ_NO.Value+'/'+mydata.tbfeebdesc.Value;
+
+                Lines.add('Total Amount :'+DBedit5.Text+'  '+chqstr);
+                Lines.add(numtoword(mydata.tbfeeFEE_AMT.value));
+
+                Lines.add('');
+                Lines.Add(chr(14)+padc(genperf.mmPAgeFooter.text,32));
+
+        end;
+        if sender=btnPreview then
+        frmPreview.ShowModal
+        else frmPreview.btnPrintClick(self);
+end;
+
+procedure TfrmFee.btnPrintClick(Sender: TObject);
+var
+tmpstr,info:string;
+begin
+mydata.frxReport1.LoadFromFile('frxFeeRec.fr3');
+tmpstr:=sstr[mydata.tbfeeTERM.value];
+        if mydata.tbfeeNOTERM.value>1 then
+        tmpstr:=sstr[mydata.tbfeeTERM.asinteger-mydata.tbfeeNOTERM.asinteger+1]+'-'+tmpstr;
+        info:=format('Payment for the month of %s',[tmpstr]);
+(mydata.frxReport1.findobject('hdmemo') as TfrxMemoview).Text:=info;
+mydata.frxReport1.ShowReport();
+end;
+
+procedure TfrmFee.btnChqdetailsClick(Sender: TObject);
+var
+tmpstr:string;
+amt:real;
+begin
+amt:=0;
+frmpreview.Memo1.Lines.Clear;
+frmpreview.Memo1.Lines.add(
+        format('%10s %30s %12s %12s',
+        ['AdmNo','Name','Fee','Chq.Amt']));
+frmpreview.Memo1.Lines.add(repchar('-',52));
+with mydata do
+begin
+qryChqdet.Params[0].Value:=tbfeeCHQ_NO.Value;
+qryChqdet.Params[1].Value:=tbfeeDRAWN_ON.Value;
+qryChqdet.Open;
+while not qryChqdet.Eof do
+        begin
+        frmpreview.Memo1.Lines.add(
+        format('%10s %30S %12.2f %12.2f',
+        [mydata.qryChqdetadmno.Value,qryChqdetName.value,
+        mydata.qryChqdetfee_amt.Value,mydata.qryChqdetchq_amt.Value ]));
+        amt:=amt+mydata.qryChqdetfee_amt.Value;
+        qrychqdet.Next;
+        end;
+qrychqdet.close
+end;
+frmpreview.Memo1.Lines.add(repchar('-',52));
+frmpreview.Memo1.Lines.Add(format('Total amount: %15.2f',[amt]));
+frmpreview.ShowModal;
+end;
+
+procedure TfrmFee.btnInfoClick(Sender: TObject);
+var
+tmpstr:string;
+begin
+frmpreview.Memo1.Lines.Clear;
+frmpreview.Memo1.Lines.add(
+        format('%7s %12s %13s %10s %10s %25s %20s %4s',
+        ['Month','RecNo','Date','Amount','Chq No','Bank','Branch','Canc']));
+frmpreview.Memo1.Lines.add(repchar('-',52));
+with mydata do
+begin
+qrStudHist.Params[0].Value:=tbfeeStudID.value;
+qrStudHist.open;
+qrStudHist.first;
+
+while not qrstudhist.Eof do
+        begin
+        tmpstr:=sstr[qrstudhistTerm.asinteger];
+        if qrstudhistnoterm.value>1 then
+        tmpstr:=sstr[mydata.qrstudhistTERM.asinteger-mydata.qrstudhistNOTERM.asinteger+1]+'-'+tmpstr;
+        frmpreview.Memo1.Lines.add(
+        format('%7s %12s %13s %10.2f %10s %25s %20s %4s',
+        [tmpstr,qrstudhistMR_NO.AsString,
+        qrstudhistMR_DATE.asstring,
+        qrstudhistTamt.value,mydata.qrStudHistCHQ_NO.Value,
+        mydata.qrStudHistbank.Value,
+        mydata.qrStudHistbranch.Value,mydata.qrStudHistcanc.value ]));
+        qrstudhist.Next;
+        end;
+qrStudHist.close
+end;
+frmpreview.ShowModal;
+end;
+
+procedure TfrmFee.btnSearchClick(Sender: TObject);
+begin
+if not Query1.Active then
+begin
+ Query1.Open; Query1.First;
+end;
+if edtSearch.Text<>'' then
+begin
+ if not Query1.IsEmpty then
+ begin
+  if not Query1.Eof then
+  begin MyData.tbfee.Locate('MR_NO',Query1MR_NO.Value,[]);Query1.Next;end
+  else
+  begin  Showmessage('No more matches');edtSearch.Text:='';Query1.Close;end;
+ end
+ else
+ begin  Showmessage('Not found');edtSearch.Text:='';Query1.Close;end;
+end
+else  Showmessage('Enter search string!');
+end;
+
+procedure TfrmFee.edtSearchChange(Sender: TObject);
+begin
+ Query1.Close; Query1.SQL[5]:=rdgp2.Value;
+ if CBx1.Text='=' then
+  Query1.Params[0].AsString:=UpperCase(edtSearch.Text)
+ else
+  Query1.Params[0].AsString:='%'+UpperCase(edtSearch.Text)+'%';
+end;
+
+end.

@@ -1,0 +1,40 @@
+unit frmAdmitCardU;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls;
+
+type
+  TfrmAdmitCard = class(TForm)
+    dtpExdate: TDateTimePicker;
+    Label1: TLabel;
+    dtpExTime: TDateTimePicker;
+    dtpReptime: TDateTimePicker;
+    Label2: TLabel;
+    Label6: TLabel;
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmAdmitCard: TfrmAdmitCard;
+
+implementation
+
+{$R *.dfm}
+
+uses MyDataU;
+
+procedure TfrmAdmitCard.FormActivate(Sender: TObject);
+begin
+dtpExdate.Date:=mydata.mfile.ReadDate('AdmitCard','ExamDate','');
+dtpExTime.Time:=mydata.mfile.ReadTime('AdmitCard','ExamTime','');
+dtpReptime.Time:=mydata.mfile.ReadTime('AdmitCard','RepTime','');
+end;
+
+end.

@@ -1,0 +1,134 @@
+unit userU;
+interface
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  StdCtrls, Buttons, Mask, DBCtrls, Db, DBTables, ExtCtrls;
+type
+  Tuserfrm = class(TForm)
+    Label2: TLabel;
+    Label3: TLabel;
+    btnLogin: TBitBtn;
+    btnChangePass: TBitBtn;
+    edtLogin: TEdit;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Button1: TButton;
+    Bevel1: TBevel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    btnCancel: TBitBtn;
+    edtPassword: TEdit;
+    procedure Edit1Change(Sender: TObject);
+    procedure btnLoginClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure btnCancelClick(Sender: TObject);
+    procedure btnChangePassClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure edtPasswordEnter(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+var
+  userfrm: Tuserfrm;
+implementation
+uses mainfrmu,myfuncu, MyDataU;
+{$R *.DFM}
+
+procedure Tuserfrm.Edit1Change(Sender: TObject);
+begin
+mydata.usertb1.locate('uid',edtLogin.text,[]);
+edtLogin.text:=mydata.usertb1uname.Value;
+end;
+
+procedure Tuserfrm.btnLoginClick(Sender: TObject);
+begin
+//showmessage(encryptpass(usertbpasswd.value));
+mydata.qryCustom.SQL.Text:='select * from usertb where uid='''+edtLogin.Text+
+''' and passwd=md5('''+edtPassword.Text+''')';
+//if (mydata.Query1) then
+mydata.qryCustom.Open;
+showmessage(inttostr(mydata.qryCustom.RecordCount));
+if (mydata.usertb1.locate('uid',edtLogin.text,[])) and (mydata.usertb1passwd.value = encryptpass(edtPassword.text)) then
+begin
+   if mydata.usertb1stat.Value = 1 then
+     begin
+     mainfrm.administrativetools1.Enabled:=true;
+     mainfrm.Transaction1.Enabled:=true;
+     mainfrm.Sheetpreperation1.Enabled:=true;
+     end
+     else
+     begin
+     mainfrm.Sheetpreperation1.Enabled:=false;
+     mainfrm.administrativetools1.Enabled:=false;
+     mainfrm.Transaction1.Enabled:=false;
+     end;
+   mainfrm.tag:=mydata.usertb1uno.value;
+   mainfrm.Statusbar1.panels[1].Text:=mydata.usertb1uid.value;
+   hide;
+   mainfrm.show;
+end
+else
+  raise exception.create('Invalid User...Try again');
+end;
+
+procedure Tuserfrm.FormActivate(Sender: TObject);
+begin
+mydata.usertb1.open;
+clientheight:=138; btnChangePass.hint:='Change Password';
+end;
+
+procedure Tuserfrm.btnCancelClick(Sender: TObject);
+begin
+close;
+end;
+
+procedure Tuserfrm.btnChangePassClick(Sender: TObject);
+begin
+if (mydata.usertb1.locate('uid',edtLogin.text,[])) and (mydata.usertb1passwd.value = encryptpass(edtPassword.text)) then
+begin
+  if clientheight=138
+  then
+        begin
+        clientHeight:=271;btnChangePass.hint:='Login Form';end
+  else
+        begin
+        clientheight:=138; btnChangePass.hint:='Change Password';
+  end;
+end
+else
+   raise exception.create('Invalid current password...Can''t change it.');
+end;
+
+procedure Tuserfrm.Button1Click(Sender: TObject);
+begin
+if edit4.text = edit5.text then
+begin
+  mydata.usertb1.Edit;
+  //showmessage(encryptpass(edit5.text));
+  mydata.usertb1passwd.Value := encryptpass(edit5.text);
+  mydata.usertb1.post;
+  edtPassword.text:=edit5.text;
+  showmessage('Password successfully changed.');
+  {label4.Visible :=false;
+  label5.visible:=false;
+  edit4.visible:=false;
+  edit5.visible:=false;
+  bevel1.Visible:=false;
+  button1.Visible :=false;}
+  clientheight:=138; btnChangePass.hint:='Change Password';
+end
+else
+begin
+   edit4.text:='';
+   edit5.text:='';
+   raise exception.create('Passwords are not matching...Type again.');
+end;
+end;
+procedure Tuserfrm.edtPasswordEnter(Sender: TObject);
+begin
+edtLogin.selectall;
+end;
+end.

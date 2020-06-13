@@ -1,0 +1,4874 @@
+object MyData: TMyData
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
+  Left = 46
+  Top = 105
+  Height = 622
+  Width = 953
+  object MySess: TSession
+    SessionName = 'MySession'
+    Left = 16
+    Top = 8
+  end
+  object MyDB: TDatabase
+    DatabaseName = 'mydb'
+    DriverName = 'STANDARD'
+    LoginPrompt = False
+    Params.Strings = (
+      'PATH=.\data\'
+      'ENABLE BCD=FALSE'
+      'DEFAULT DRIVER=PARADOX')
+    SessionName = 'MySession'
+    Left = 72
+    Top = 8
+  end
+  object StudMast_: TTable
+    AfterOpen = StudMast_AfterEdit
+    AfterInsert = StudMast_AfterInsert
+    AfterEdit = StudMast_AfterEdit
+    BeforePost = StudMast_BeforePost
+    AfterPost = StudMast_AfterEdit
+    AfterCancel = StudMast_AfterEdit
+    AfterDelete = StudMast_AfterEdit
+    OnCalcFields = StudMast_CalcFields
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'StudID'
+        DataType = ftFloat
+      end
+      item
+        Name = 'AdmNo'
+        DataType = ftString
+        Size = 10
+      end
+      item
+        Name = 'Name'
+        DataType = ftString
+        Size = 40
+      end
+      item
+        Name = 'ClCode'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'RollNo'
+        DataType = ftFloat
+      end
+      item
+        Name = 'Section'
+        DataType = ftString
+        Size = 2
+      end
+      item
+        Name = 'DOB'
+        DataType = ftDate
+      end
+      item
+        Name = 'Sex'
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'GName'
+        DataType = ftString
+        Size = 40
+      end
+      item
+        Name = 'Fname'
+        DataType = ftString
+        Size = 40
+      end
+      item
+        Name = 'Mname'
+        DataType = ftString
+        Size = 40
+      end
+      item
+        Name = 'LAddr'
+        DataType = ftMemo
+        Size = 20
+      end
+      item
+        Name = 'PAddr'
+        DataType = ftMemo
+        Size = 20
+      end
+      item
+        Name = 'CatCode'
+        DataType = ftFloat
+      end
+      item
+        Name = 'DOA'
+        DataType = ftDate
+      end
+      item
+        Name = 'Age'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'Photo'
+        DataType = ftGraphic
+      end
+      item
+        Name = 'NOTERMS'
+        DataType = ftFloat
+      end
+      item
+        Name = 'Phone'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'Eml'
+        DataType = ftString
+        Size = 35
+      end
+      item
+        Name = 'M_Phone'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'Religion'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'Cast'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'NofSB'
+        DataType = ftString
+        Size = 30
+      end
+      item
+        Name = 'F_occp'
+        DataType = ftString
+        Size = 40
+      end
+      item
+        Name = 'F_qual'
+        DataType = ftString
+        Size = 40
+      end
+      item
+        Name = 'M_qual'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'M_occp'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'SchLast'
+        DataType = ftString
+        Size = 30
+      end
+      item
+        Name = 'BloodGroup'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'House'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'Mtounge'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'ByBus'
+        DataType = ftBoolean
+      end
+      item
+        Name = 'Remark'
+        DataType = ftMemo
+        Size = 20
+      end
+      item
+        Name = 'UpGrdYr'
+        DataType = ftString
+        Size = 2
+      end
+      item
+        Name = 'Adm_Cl'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Path'
+        DataType = ftString
+        Size = 30
+      end>
+    IndexDefs = <
+      item
+        Name = 'StudMastIndex1'
+        Fields = 'StudID'
+        Options = [ixPrimary, ixUnique]
+      end>
+    StoreDefs = True
+    TableName = 'StudMast.db'
+    Left = 72
+    Top = 200
+    object StudMast_StudID: TFloatField
+      FieldName = 'StudID'
+      DisplayFormat = '####/##'
+      EditFormat = '####/##'
+    end
+    object StudMast_Name: TStringField
+      FieldName = 'Name'
+      Size = 40
+    end
+    object StudMast_RollNo: TFloatField
+      FieldName = 'RollNo'
+    end
+    object StudMast_Section: TStringField
+      FieldName = 'Section'
+      Size = 2
+    end
+    object StudMast_DOB: TDateField
+      FieldName = 'DOB'
+      OnValidate = StudMast_DOBValidate
+    end
+    object StudMast_Sex: TStringField
+      FieldName = 'Sex'
+      Size = 1
+    end
+    object StudMast_GName: TStringField
+      FieldName = 'GName'
+      Size = 40
+    end
+    object StudMast_Fname: TStringField
+      FieldName = 'Fname'
+      Size = 40
+    end
+    object StudMast_LAddr: TMemoField
+      FieldName = 'LAddr'
+      BlobType = ftMemo
+      Size = 20
+    end
+    object StudMast_PAddr: TMemoField
+      FieldName = 'PAddr'
+      BlobType = ftMemo
+      Size = 20
+    end
+    object StudMast_CatCode: TFloatField
+      FieldName = 'CatCode'
+    end
+    object StudMast_DOA: TDateField
+      FieldName = 'DOA'
+    end
+    object StudMast_Age: TStringField
+      FieldName = 'Age'
+    end
+    object StudMast_Photo: TGraphicField
+      FieldName = 'Photo'
+      BlobType = ftGraphic
+    end
+    object StudMast_stCLDESC: TStringField
+      FieldKind = fkLookup
+      FieldName = 'stCLDESC'
+      LookupDataSet = CLMast_
+      LookupKeyFields = 'ClCode'
+      LookupResultField = 'Desc'
+      KeyFields = 'ClCode'
+      Lookup = True
+    end
+    object StudMast_stMfee: TCurrencyField
+      FieldKind = fkLookup
+      FieldName = 'stMfee'
+      LookupDataSet = CLMast_
+      LookupKeyFields = 'ClCode'
+      LookupResultField = 'Mfee'
+      KeyFields = 'ClCode'
+      Lookup = True
+    end
+    object StudMast_catDesc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'catDesc'
+      LookupDataSet = CatgrMast_
+      LookupKeyFields = 'CatCode'
+      LookupResultField = 'Desc'
+      KeyFields = 'CatCode'
+      Lookup = True
+    end
+    object StudMast_Phone: TStringField
+      DisplayWidth = 20
+      FieldName = 'Phone'
+    end
+    object StudMast_Eml: TStringField
+      DisplayWidth = 35
+      FieldName = 'Eml'
+      Size = 35
+    end
+    object StudMast_ClCode: TSmallintField
+      FieldName = 'ClCode'
+    end
+    object StudMast_NOTERMS: TFloatField
+      FieldName = 'NOTERMS'
+    end
+    object StudMast_M_Phone: TStringField
+      FieldName = 'M_Phone'
+    end
+    object StudMast_Adm_Cl: TSmallintField
+      FieldName = 'Adm_Cl'
+    end
+    object StudMast_Religion: TStringField
+      FieldName = 'Religion'
+      Size = 15
+    end
+    object StudMast_Cast: TStringField
+      FieldName = 'Cast'
+      Size = 15
+    end
+    object StudMast_NofSB: TStringField
+      FieldName = 'NofSB'
+      Size = 30
+    end
+    object StudMast_F_occp: TStringField
+      FieldName = 'F_occp'
+    end
+    object StudMast_F_qual: TStringField
+      FieldName = 'F_qual'
+    end
+    object StudMast_M_qual: TStringField
+      FieldName = 'M_qual'
+    end
+    object StudMast_M_occp: TStringField
+      FieldName = 'M_occp'
+    end
+    object StudMast_SchLast: TStringField
+      FieldName = 'SchLast'
+      Size = 30
+    end
+    object StudMast_BloodGroup: TStringField
+      FieldName = 'BloodGroup'
+      Size = 15
+    end
+    object StudMast_Mname: TStringField
+      FieldName = 'Mname'
+      Size = 40
+    end
+    object StudMast_cage: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'cage'
+      Calculated = True
+    end
+    object StudMast_clCaption: TStringField
+      FieldKind = fkLookup
+      FieldName = 'clCaption'
+      LookupDataSet = CLMast_
+      LookupKeyFields = 'ClCode'
+      LookupResultField = 'Clcaption'
+      KeyFields = 'ClCode'
+      Lookup = True
+    end
+    object StudMast_House: TStringField
+      FieldName = 'House'
+      Size = 25
+    end
+    object StudMast_Mtounge: TStringField
+      FieldName = 'Mtounge'
+      Size = 15
+    end
+    object StudMast_Remark: TMemoField
+      FieldName = 'Remark'
+      BlobType = ftMemo
+      Size = 20
+    end
+    object StudMast_ByBus: TBooleanField
+      FieldName = 'ByBus'
+    end
+    object StudMast_Amd_cl_desc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Amd_cl_desc'
+      LookupDataSet = CLMast_
+      LookupKeyFields = 'ClCode'
+      LookupResultField = 'Desc'
+      KeyFields = 'Adm_Cl'
+      Lookup = True
+    end
+    object StudMast_UpGrdyr: TStringField
+      FieldName = 'UpGrdyr'
+      Size = 2
+    end
+    object StudMast_AdmNo: TStringField
+      FieldName = 'AdmNo'
+      Size = 10
+    end
+    object StudMast_Path: TStringField
+      FieldName = 'Path'
+      Size = 30
+    end
+  end
+  object StudMastS_: TDataSource
+    DataSet = StudMast_
+    Left = 16
+    Top = 200
+  end
+  object ItemMast: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    TableName = 'ItemMast.db'
+    Left = 184
+    Top = 8
+    object ItemMastICode: TAutoIncField
+      FieldName = 'ICode'
+      ReadOnly = True
+    end
+    object ItemMastIdesc: TStringField
+      FieldName = 'Idesc'
+      Size = 35
+    end
+    object ItemMastCharge: TCurrencyField
+      FieldName = 'Charge'
+    end
+  end
+  object ItemMastS: TDataSource
+    DataSet = ItemMast
+    Left = 128
+    Top = 8
+  end
+  object EmpMast: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'EmpNo'
+        DataType = ftFloat
+      end
+      item
+        Name = 'Name'
+        DataType = ftString
+        Size = 40
+      end
+      item
+        Name = 'Address'
+        DataType = ftMemo
+        Size = 20
+      end
+      item
+        Name = 'Dcode'
+        DataType = ftFloat
+      end
+      item
+        Name = 'DsgCode'
+        DataType = ftFloat
+      end
+      item
+        Name = 'Photo'
+        DataType = ftGraphic
+      end
+      item
+        Name = 'DOB'
+        DataType = ftDate
+      end
+      item
+        Name = 'DOJ'
+        DataType = ftDate
+      end
+      item
+        Name = 'Oinfo'
+        DataType = ftMemo
+        Size = 20
+      end
+      item
+        Name = 'Phone'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'Sex'
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'Basic'
+        DataType = ftCurrency
+      end
+      item
+        Name = 'AccNo'
+        DataType = ftString
+        Size = 6
+      end
+      item
+        Name = 'PayScale'
+        DataType = ftString
+        Size = 30
+      end
+      item
+        Name = 'LastPaid'
+        DataType = ftFloat
+      end
+      item
+        Name = 'Cont'
+        DataType = ftBoolean
+      end>
+    IndexDefs = <
+      item
+        Name = 'EmpMastIndex1'
+        Fields = 'EmpNo'
+        Options = [ixPrimary, ixUnique]
+      end>
+    StoreDefs = True
+    TableName = 'EmpMast.db'
+    Left = 184
+    Top = 56
+    object EmpMastEmpNo: TFloatField
+      FieldName = 'EmpNo'
+    end
+    object EmpMastName: TStringField
+      FieldName = 'Name'
+      Size = 40
+    end
+    object EmpMastAddress: TMemoField
+      FieldName = 'Address'
+      BlobType = ftMemo
+      Size = 20
+    end
+    object EmpMastDPDesc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'DPDesc'
+      LookupDataSet = DepMast
+      LookupKeyFields = 'DCode'
+      LookupResultField = 'Desc'
+      KeyFields = 'Dcode'
+      Lookup = True
+    end
+    object EmpMastDSGDesc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'DSGDesc'
+      LookupDataSet = DsgMast
+      LookupKeyFields = 'Dcode'
+      LookupResultField = 'Desc'
+      KeyFields = 'DsgCode'
+      Lookup = True
+    end
+    object EmpMastPhoto: TGraphicField
+      FieldName = 'Photo'
+      BlobType = ftGraphic
+    end
+    object EmpMastDOB: TDateField
+      FieldName = 'DOB'
+    end
+    object EmpMastDOJ: TDateField
+      FieldName = 'DOJ'
+    end
+    object EmpMastOinfo: TMemoField
+      FieldName = 'Oinfo'
+      BlobType = ftMemo
+      Size = 20
+    end
+    object EmpMastDsgCode: TFloatField
+      FieldName = 'DsgCode'
+    end
+    object EmpMastDcode: TFloatField
+      FieldName = 'Dcode'
+    end
+    object EmpMastPhone: TStringField
+      FieldName = 'Phone'
+      Size = 10
+    end
+    object EmpMastSex: TStringField
+      FieldName = 'Sex'
+      Size = 1
+    end
+    object EmpMastBasic: TCurrencyField
+      FieldName = 'Basic'
+    end
+    object EmpMastLastPaid: TFloatField
+      FieldName = 'LastPaid'
+    end
+    object EmpMastCont: TBooleanField
+      FieldName = 'Cont'
+    end
+    object EmpMastAccNo: TStringField
+      FieldName = 'AccNo'
+      Size = 6
+    end
+    object EmpMastPayScale: TStringField
+      FieldName = 'PayScale'
+      Size = 30
+    end
+    object EmpMastPFAcNo: TStringField
+      FieldName = 'PFAcNo'
+    end
+  end
+  object EmpMastS: TDataSource
+    DataSet = EmpMast
+    Left = 128
+    Top = 56
+  end
+  object DsgMast: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    TableName = 'DsgMast.db'
+    Left = 72
+    Top = 104
+    object DsgMastDcode: TFloatField
+      FieldName = 'Dcode'
+    end
+    object DsgMastDesc: TStringField
+      FieldName = 'Desc'
+      Size = 25
+    end
+  end
+  object DsgMastS: TDataSource
+    DataSet = DsgMast
+    Left = 16
+    Top = 104
+  end
+  object DepMast: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    TableName = 'DepMast.db'
+    Left = 184
+    Top = 152
+    object DepMastDCode: TFloatField
+      FieldName = 'DCode'
+    end
+    object DepMastDesc: TStringField
+      FieldName = 'Desc'
+    end
+  end
+  object DepMastS: TDataSource
+    DataSet = DepMast
+    Left = 128
+    Top = 152
+  end
+  object CLMastS_: TDataSource
+    DataSet = CLMast_
+    Left = 240
+    Top = 296
+  end
+  object CatgrMast_: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    TableName = 'CatgrMast.db'
+    Left = 72
+    Top = 56
+    object CatgrMast_CatCode: TSmallintField
+      FieldName = 'CatCode'
+    end
+    object CatgrMast_Desc: TStringField
+      FieldName = 'Desc'
+    end
+  end
+  object CatgrMastS_: TDataSource
+    DataSet = CatgrMast_
+    Left = 16
+    Top = 56
+  end
+  object tbfeeDetail: TTable
+    AfterPost = tbfeeDetailAfterPost
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    IndexFieldNames = 'MR_NO'
+    MasterFields = 'MR_NO'
+    MasterSource = tbfeeS
+    TableName = 'FEE_DETAIL.DB'
+    Left = 184
+    Top = 200
+    object tbfeeDetailMR_NO: TFloatField
+      FieldName = 'MR_NO'
+    end
+    object tbfeeDetailAC_NO: TFloatField
+      FieldName = 'AC_NO'
+    end
+    object tbfeeDetailAC_AMT: TCurrencyField
+      FieldName = 'AC_AMT'
+    end
+    object tbfeeDetailAC_NAME: TStringField
+      FieldKind = fkLookup
+      FieldName = 'AC_NAME'
+      LookupDataSet = tbAcMaster
+      LookupKeyFields = 'AC_NO'
+      LookupResultField = 'AC_NAME'
+      KeyFields = 'AC_NO'
+      Lookup = True
+    end
+  end
+  object tbfeeDetailS: TDataSource
+    DataSet = tbfeeDetail
+    Left = 128
+    Top = 200
+  end
+  object tbfee: TTable
+    AfterOpen = tbfeeAfterEdit
+    AfterInsert = tbfeeAfterInsert
+    AfterEdit = tbfeeAfterEdit
+    BeforePost = tbfeeBeforePost
+    AfterPost = tbfeeAfterEdit
+    BeforeCancel = tbfeeBeforeCancel
+    AfterCancel = tbfeeAfterEdit
+    BeforeDelete = tbfeeBeforeDelete
+    AfterDelete = tbfeeAfterEdit
+    OnCalcFields = tbfeeCalcFields
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'MR_NO'
+        DataType = ftFloat
+      end
+      item
+        Name = 'MR_DATE'
+        DataType = ftDate
+      end
+      item
+        Name = 'BillNo'
+        DataType = ftFloat
+      end
+      item
+        Name = 'StudID'
+        DataType = ftFloat
+      end
+      item
+        Name = 'NOTERM'
+        DataType = ftFloat
+      end
+      item
+        Name = 'FEE_AMT'
+        DataType = ftCurrency
+      end
+      item
+        Name = 'CASH'
+        DataType = ftBoolean
+      end
+      item
+        Name = 'CHQ_NO'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'DRAWN_ON'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'CHQ_AMT'
+        DataType = ftCurrency
+      end
+      item
+        Name = 'Branch'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'LATE_FEE'
+        DataType = ftCurrency
+      end
+      item
+        Name = 'TERM'
+        DataType = ftSmallint
+      end>
+    IndexDefs = <
+      item
+        Name = 'tbfeeIndex1'
+        Fields = 'MR_NO'
+        Options = [ixPrimary, ixUnique]
+      end>
+    StoreDefs = True
+    TableName = 'FEE.db'
+    Left = 296
+    Top = 200
+    object tbfeeMR_NO: TFloatField
+      FieldName = 'MR_NO'
+    end
+    object tbfeeMR_DATE: TDateField
+      FieldName = 'MR_DATE'
+    end
+    object tbfeeNOTERM: TFloatField
+      FieldName = 'NOTERM'
+    end
+    object tbfeeFEE_AMT: TCurrencyField
+      FieldName = 'FEE_AMT'
+    end
+    object tbfeeCASH: TBooleanField
+      FieldName = 'CASH'
+    end
+    object tbfeeCHQ_NO: TStringField
+      FieldName = 'CHQ_NO'
+      OnChange = tbfeeCHQ_NOChange
+    end
+    object tbfeeLATE_FEE: TCurrencyField
+      FieldName = 'LATE_FEE'
+    end
+    object tbfeeStudID: TFloatField
+      FieldName = 'StudID'
+    end
+    object tbfeestudname: TStringField
+      FieldKind = fkLookup
+      FieldName = 'studname'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'StudID'
+      LookupResultField = 'Name'
+      KeyFields = 'StudID'
+      Lookup = True
+    end
+    object tbfeesec: TStringField
+      FieldKind = fkLookup
+      FieldName = 'sec'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'StudID'
+      LookupResultField = 'Section'
+      KeyFields = 'StudID'
+      Lookup = True
+    end
+    object tbfeetot_terms: TIntegerField
+      FieldKind = fkLookup
+      FieldName = 'tot_terms'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'StudID'
+      LookupResultField = 'NOTERMS'
+      KeyFields = 'StudID'
+      Lookup = True
+    end
+    object tbfeetot_amt: TCurrencyField
+      FieldKind = fkCalculated
+      FieldName = 'tot_amt'
+      Calculated = True
+    end
+    object tbfeestd: TFloatField
+      FieldKind = fkLookup
+      FieldName = 'std'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'StudID'
+      LookupResultField = 'ClCode'
+      KeyFields = 'StudID'
+      Lookup = True
+    end
+    object tbfeeclDesc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'clDesc'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'StudID'
+      LookupResultField = 'stCLDESC'
+      KeyFields = 'StudID'
+      Lookup = True
+    end
+    object tbfeeDRAWN_ON: TSmallintField
+      FieldName = 'DRAWN_ON'
+    end
+    object tbfeeCHQ_AMT: TCurrencyField
+      FieldName = 'CHQ_AMT'
+    end
+    object tbfeeBranch: TSmallintField
+      FieldName = 'Branch'
+    end
+    object tbfeebdesc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'bdesc'
+      LookupDataSet = tbBmast
+      LookupKeyFields = 'Bcode'
+      LookupResultField = 'Desc'
+      KeyFields = 'DRAWN_ON'
+      Lookup = True
+    end
+    object tbfeebrdesc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'brdesc'
+      LookupDataSet = tbBrmast
+      LookupKeyFields = 'Bcode'
+      LookupResultField = 'Desc'
+      KeyFields = 'Branch'
+      Lookup = True
+    end
+    object tbfeeBillNo: TFloatField
+      FieldName = 'BillNo'
+    end
+    object tbfeeTERM: TSmallintField
+      FieldName = 'TERM'
+    end
+    object tbfeeAdmNo: TStringField
+      FieldKind = fkLookup
+      FieldName = 'AdmNo'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'StudID'
+      LookupResultField = 'AdmNo'
+      KeyFields = 'StudID'
+      Size = 10
+      Lookup = True
+    end
+  end
+  object tbfeeS: TDataSource
+    DataSet = tbfee
+    Left = 240
+    Top = 200
+  end
+  object tbfeeMatrix: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'AC_NO'
+        Attributes = [faRequired]
+        DataType = ftFloat
+      end
+      item
+        Name = 'STD'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'FEE'
+        Attributes = [faRequired]
+        DataType = ftCurrency
+      end>
+    IndexDefs = <
+      item
+        Name = 'tbfeeMatrixIndex1'
+        Fields = 'AC_NO;STD'
+        Options = [ixPrimary, ixUnique]
+      end
+      item
+        Name = 'secind'
+        Fields = 'STD'
+        Options = [ixCaseInsensitive]
+      end>
+    StoreDefs = True
+    TableName = 'FEE_MATRIX.DB'
+    Left = 184
+    Top = 248
+    object tbfeeMatrixAC_NO: TFloatField
+      FieldName = 'AC_NO'
+      Required = True
+    end
+    object tbfeeMatrixFEE: TCurrencyField
+      FieldName = 'FEE'
+      Required = True
+    end
+    object tbfeeMatrixSTD: TSmallintField
+      FieldName = 'STD'
+    end
+  end
+  object tbfeeMatrixS: TDataSource
+    DataSet = tbfeeMatrix
+    Left = 128
+    Top = 248
+  end
+  object qryachead: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      'SELECT Ac_master.AC_NAME, SUM( Fee_detail.AC_AMT ) sum_amt'
+      'FROM "AC_MASTER.DB" Ac_master'
+      '   INNER JOIN "FEE_DETAIL.DB" Fee_detail'
+      '   ON  (Fee_detail.AC_NO = Ac_master.AC_NO)  '
+      '   INNER JOIN "FEE.db" Fee'
+      '   ON  (Fee.MR_NO = Fee_detail.MR_NO)  '
+      'where Fee.mr_date between :dt1 and :dt2'
+      'GROUP BY Ac_master.AC_NAME')
+    Left = 553
+    Top = 16
+    ParamData = <
+      item
+        DataType = ftDate
+        Name = 'dt1'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftDate
+        Name = 'dt2'
+        ParamType = ptUnknown
+      end>
+    object qryacheadAC_NAME: TStringField
+      FieldName = 'AC_NAME'
+    end
+    object qryacheadsum_amt: TCurrencyField
+      FieldName = 'sum_amt'
+    end
+  end
+  object qryFee: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      'SELECT AC_NO, AC_NAME, AC_MODE'
+      'FROM "AC_MASTER.DB" Ac_master'
+      'WHERE  AC_MANDATORY = TRUE ')
+    Left = 553
+    Top = 64
+    object qryFeeAC_NO: TFloatField
+      FieldName = 'AC_NO'
+      Origin = 'DBMS_FEE."AC_MASTER.DB".AC_NO'
+    end
+    object qryFeeAC_NAME: TStringField
+      FieldName = 'AC_NAME'
+      Origin = 'DBMS_FEE."AC_MASTER.DB".AC_NAME'
+    end
+    object qryFeeAC_MODE: TStringField
+      FieldName = 'AC_MODE'
+      Origin = 'DBMS_FEE."AC_MASTER.DB".AC_MODE'
+      Size = 1
+    end
+  end
+  object tbAcMaster: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    TableName = 'AC_MASTER.DB'
+    Left = 296
+    Top = 152
+    object tbAcMasterAC_NO: TFloatField
+      FieldName = 'AC_NO'
+    end
+    object tbAcMasterAC_NAME: TStringField
+      FieldName = 'AC_NAME'
+    end
+    object tbAcMasterAC_MODE: TStringField
+      FieldName = 'AC_MODE'
+      Size = 1
+    end
+    object tbAcMasterAC_MANDATORY: TBooleanField
+      FieldName = 'AC_MANDATORY'
+    end
+    object tbAcMasterAC_CODE: TStringField
+      FieldName = 'AC_CODE'
+      Size = 9
+    end
+  end
+  object tbAcMasterS: TDataSource
+    DataSet = tbAcMaster
+    Left = 240
+    Top = 152
+  end
+  object CLMast1: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    TableName = 'CLMast.db'
+    Left = 184
+    Top = 296
+    object CLMast1ClCode: TSmallintField
+      FieldName = 'ClCode'
+    end
+    object CLMast1Clcaption: TStringField
+      FieldName = 'Clcaption'
+      Size = 10
+    end
+    object CLMast1Desc: TStringField
+      FieldName = 'Desc'
+      Size = 15
+    end
+    object CLMast1Mfee: TCurrencyField
+      FieldName = 'Mfee'
+    end
+    object CLMast1UPClass: TSmallintField
+      FieldName = 'UPClass'
+    end
+    object CLMast1Adfee: TCurrencyField
+      FieldName = 'Adfee'
+    end
+    object CLMast1cldesc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'cldesc'
+      LookupDataSet = CLMast_
+      LookupKeyFields = 'CLCode'
+      LookupResultField = 'Clcaption'
+      KeyFields = 'UPClass'
+      Lookup = True
+    end
+  end
+  object CLMast1S: TDataSource
+    DataSet = CLMast1
+    Left = 128
+    Top = 296
+  end
+  object tbfeematrix1: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    IndexName = 'secind'
+    MasterFields = 'ClCode'
+    MasterSource = CLMast1S
+    TableName = 'FEE_MATRIX.DB'
+    Left = 296
+    Top = 352
+    object tbfeematrix1AC_NO: TFloatField
+      FieldName = 'AC_NO'
+      Required = True
+    end
+    object tbfeematrix1STD: TSmallintField
+      FieldName = 'STD'
+    end
+    object tbfeematrix1FEE: TCurrencyField
+      FieldName = 'FEE'
+      Required = True
+    end
+    object tbfeematrix1AcDesc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'AcDesc'
+      LookupDataSet = tbAcMaster
+      LookupKeyFields = 'AC_NO'
+      LookupResultField = 'AC_NAME'
+      KeyFields = 'AC_NO'
+      Lookup = True
+    end
+  end
+  object dsttable: TDataSource
+    DataSet = tbttable
+    Left = 240
+    Top = 8
+  end
+  object tbTeacher: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'TID'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Desc'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'Sub1'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'Sub2'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'Abs'
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'AbName'
+        DataType = ftString
+        Size = 5
+      end>
+    IndexDefs = <
+      item
+        Name = 'tbTeacherIndex1'
+        Fields = 'TID'
+        Options = [ixPrimary, ixUnique]
+      end
+      item
+        Name = 'tchind'
+        Fields = 'Desc'
+        Options = [ixCaseInsensitive]
+      end>
+    IndexName = 'tchind'
+    StoreDefs = True
+    TableName = 'teacher.db'
+    Left = 296
+    Top = 248
+    object tbTeacherTID: TSmallintField
+      FieldName = 'TID'
+    end
+    object tbTeacherDesc: TStringField
+      FieldName = 'Desc'
+    end
+    object tbTeacherSub1: TStringField
+      FieldName = 'Sub1'
+    end
+    object tbTeacherSub2: TStringField
+      FieldName = 'Sub2'
+    end
+    object tbTeacherAbs: TStringField
+      FieldName = 'Abs'
+      Size = 1
+    end
+    object tbTeacherAbName: TStringField
+      FieldName = 'AbName'
+      Size = 5
+    end
+  end
+  object dsTeacher: TDataSource
+    DataSet = tbTeacher
+    Left = 240
+    Top = 248
+  end
+  object Dsmarkmast: TDataSource
+    DataSet = TbMarkMast
+    Left = 240
+    Top = 56
+  end
+  object Tbmarkdet: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'SrlNo'
+        Attributes = [faReadonly]
+        DataType = ftAutoInc
+      end
+      item
+        Name = 'StudId'
+        DataType = ftFloat
+      end
+      item
+        Name = 'Term'
+        DataType = ftString
+        Size = 2
+      end
+      item
+        Name = 'Totmark'
+        DataType = ftFloat
+      end>
+    IndexDefs = <
+      item
+        Name = 'TbmarkdetIndex1'
+        Fields = 'SrlNo'
+        Options = [ixPrimary, ixUnique]
+      end
+      item
+        Name = 'sidx'
+        Fields = 'SrlNo'
+        Options = [ixCaseInsensitive]
+      end>
+    IndexName = 'sidx'
+    MasterFields = 'Studid'
+    MasterSource = Dsmarkmast
+    StoreDefs = True
+    TableName = 'markdet.db'
+    Left = 184
+    Top = 104
+    object TbmarkdetStudId: TFloatField
+      FieldName = 'StudId'
+    end
+    object TbmarkdetTerm: TStringField
+      FieldName = 'Term'
+      Size = 2
+    end
+    object TbmarkdetSrlNo: TAutoIncField
+      FieldName = 'SrlNo'
+      ReadOnly = True
+    end
+    object TbmarkdetTotmark: TFloatField
+      FieldName = 'Totmark'
+    end
+  end
+  object Dsmarkdet: TDataSource
+    DataSet = Tbmarkdet
+    Left = 128
+    Top = 104
+  end
+  object DsSubjMast: TDataSource
+    DataSet = TbSubjMast
+    Left = 128
+    Top = 352
+  end
+  object TbSubjMast: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    TableName = 'subjmast.db'
+    Left = 184
+    Top = 352
+    object TbSubjMastSubjcode: TStringField
+      FieldName = 'Subjcode'
+      Size = 3
+    end
+    object TbSubjMastSubjname: TStringField
+      FieldName = 'Subjname'
+      Size = 15
+    end
+    object TbSubjMastSubjtot: TFloatField
+      FieldName = 'Subjtot'
+    end
+    object TbSubjMastSubjname1: TStringField
+      FieldName = 'Subjname1'
+      Size = 15
+    end
+  end
+  object dsMarksubdet: TDataSource
+    DataSet = tbMarksubdet
+    Left = 16
+    Top = 352
+  end
+  object tbMarksubdet: TTable
+    AfterPost = tbMarksubdetAfterPost
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'SrlNo'
+        Attributes = [faReadonly]
+        DataType = ftAutoInc
+      end
+      item
+        Name = 'Rno'
+        DataType = ftFloat
+      end
+      item
+        Name = 'Term'
+        DataType = ftString
+        Size = 2
+      end
+      item
+        Name = 'Subjcd'
+        DataType = ftString
+        Size = 3
+      end
+      item
+        Name = 'Markobt'
+        DataType = ftFloat
+      end>
+    IndexDefs = <
+      item
+        Name = 'tbMarksubdetIndex1'
+        Fields = 'SrlNo'
+        Options = [ixPrimary, ixUnique]
+      end
+      item
+        Name = 'ridx'
+        Fields = 'Rno'
+        Options = [ixCaseInsensitive]
+      end>
+    IndexName = 'ridx'
+    MasterFields = 'SrlNo'
+    MasterSource = Dsmarkdet
+    StoreDefs = True
+    TableName = 'marksubdet.db'
+    Left = 72
+    Top = 352
+    object tbMarksubdetSrlNo: TAutoIncField
+      FieldName = 'SrlNo'
+      ReadOnly = True
+    end
+    object tbMarksubdetRno: TFloatField
+      FieldName = 'Rno'
+    end
+    object tbMarksubdetTerm: TStringField
+      FieldName = 'Term'
+      Size = 2
+    end
+    object tbMarksubdetSubjcd: TStringField
+      FieldName = 'Subjcd'
+      Size = 3
+    end
+    object tbMarksubdetMarkobt: TFloatField
+      FieldName = 'Markobt'
+    end
+    object tbMarksubdetSubjName: TStringField
+      FieldKind = fkLookup
+      FieldName = 'SubjName'
+      LookupDataSet = TbSubjMast
+      LookupKeyFields = 'Subjcode'
+      LookupResultField = 'Subjname'
+      KeyFields = 'Subjcd'
+      Lookup = True
+    end
+    object tbMarksubdetSubjtot: TIntegerField
+      FieldKind = fkLookup
+      FieldName = 'Subjtot'
+      LookupDataSet = TbSubjMast
+      LookupKeyFields = 'Subjcode'
+      LookupResultField = 'Subjtot'
+      KeyFields = 'Subjcd'
+      Lookup = True
+    end
+  end
+  object QrMark: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      
+        'SELECT Studmast.StudID, Studmast.ClCode, Markdet.Term, Markdet.T' +
+        'otmark, Studmast.Name'
+      'FROM "markmast.DB" Markmast'
+      '   INNER JOIN "StudMast.DB" Studmast'
+      '   ON  (Studmast.StudID = Markmast.Studid)  '
+      '   INNER JOIN "markdet.DB" Markdet'
+      '   ON  (Markmast.Studid = Markdet.StudId)  '
+      'WHERE   (Studmast.ClCode =:class)  '
+      '   AND  (Markdet.Term = :trm)  ')
+    Left = 553
+    Top = 160
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'class'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftString
+        Name = 'trm'
+        ParamType = ptUnknown
+      end>
+    object QrMarkStudID: TFloatField
+      FieldName = 'StudID'
+    end
+    object QrMarkClCode: TStringField
+      FieldName = 'ClCode'
+      Size = 5
+    end
+    object QrMarkTerm: TStringField
+      FieldName = 'Term'
+      Size = 2
+    end
+    object QrMarkTotmark: TFloatField
+      FieldName = 'Totmark'
+    end
+    object QrMarkName: TStringField
+      FieldName = 'Name'
+      Size = 40
+    end
+  end
+  object TbMarkMast: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'Studid'
+        DataType = ftFloat
+      end
+      item
+        Name = 'Cl'
+        DataType = ftString
+        Size = 5
+      end>
+    IndexDefs = <
+      item
+        Name = 'tbmarkmastIndex1'
+        Fields = 'Studid'
+        Options = [ixPrimary, ixUnique]
+      end>
+    StoreDefs = True
+    TableName = 'markmast.db'
+    Left = 296
+    Top = 56
+    object TbMarkMastStudid: TFloatField
+      FieldName = 'Studid'
+    end
+    object TbMarkMastStudname: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Studname'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'StudID'
+      LookupResultField = 'Name'
+      KeyFields = 'Studid'
+      Lookup = True
+    end
+  end
+  object QrTerm: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      'SELECT DISTINCT Term'
+      'FROM "markdet.DB" Markdet')
+    Left = 609
+    Top = 64
+    object QrTermTerm: TStringField
+      FieldName = 'Term'
+      Origin = 'SCHDATA."markdet.DB".Term'
+      Size = 2
+    end
+  end
+  object TbRank: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'SrlNo'
+        Attributes = [faReadonly]
+        DataType = ftAutoInc
+      end
+      item
+        Name = 'Class'
+        DataType = ftString
+        Size = 3
+      end
+      item
+        Name = 'StudId'
+        DataType = ftFloat
+      end
+      item
+        Name = 'StudName'
+        DataType = ftString
+        Size = 30
+      end
+      item
+        Name = 'Totmark'
+        DataType = ftFloat
+      end
+      item
+        Name = 'Rank'
+        DataType = ftFloat
+      end
+      item
+        Name = 'Rankstr'
+        DataType = ftString
+        Size = 15
+      end>
+    IndexDefs = <
+      item
+        Name = 'TbRankIndex1'
+        Fields = 'SrlNo'
+        Options = [ixPrimary, ixUnique]
+      end>
+    StoreDefs = True
+    TableName = 'Ranklist.db'
+    Left = 392
+    Top = 200
+    object TbRankSrlNo: TAutoIncField
+      FieldName = 'SrlNo'
+      ReadOnly = True
+    end
+    object TbRankClass: TStringField
+      FieldName = 'Class'
+      Size = 3
+    end
+    object TbRankStudId: TFloatField
+      FieldName = 'StudId'
+    end
+    object TbRankTotmark: TFloatField
+      FieldName = 'Totmark'
+    end
+    object TbRankRank: TFloatField
+      FieldName = 'Rank'
+    end
+    object TbRankRankstr: TStringField
+      FieldName = 'Rankstr'
+      Size = 15
+    end
+    object TbRankStudName: TStringField
+      FieldName = 'StudName'
+      Size = 30
+    end
+  end
+  object DsRank: TDataSource
+    DataSet = TbRank
+    Left = 352
+    Top = 200
+  end
+  object QrStudMk: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      
+        'SELECT Studmast.StudID, Studmast.Name, Marksubdet.Term, Marksubd' +
+        'et.Markobt, Subjmast.Subjname, Subjmast.Subjtot, Studmast.ClCode'
+      'FROM "StudMast.DB" Studmast'
+      '   INNER JOIN "markmast.DB" Markmast'
+      '   ON  (Studmast.StudID = Markmast.Studid)  '
+      '   INNER JOIN "markdet.DB" Markdet'
+      '   ON  (Markmast.Studid = Markdet.StudId)  '
+      '   INNER JOIN "marksubdet.DB" Marksubdet'
+      '   ON  (Markdet.SrlNo = Marksubdet.Rno)  '
+      '   INNER JOIN "subjmast.db" Subjmast'
+      '   ON  (Marksubdet.Subjcd = Subjmast.Subjcode)  '
+      
+        'where  Studmast.StudID=:sid and Studmast.ClCode=:cl and Marksubd' +
+        'et.Term=:trm')
+    Left = 553
+    Top = 112
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'sid'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftString
+        Name = 'cl'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftString
+        Name = 'trm'
+        ParamType = ptUnknown
+      end>
+    object QrStudMkStudID: TFloatField
+      FieldName = 'StudID'
+    end
+    object QrStudMkName: TStringField
+      FieldName = 'Name'
+      Size = 40
+    end
+    object QrStudMkTerm: TStringField
+      FieldName = 'Term'
+      Size = 2
+    end
+    object QrStudMkMarkobt: TFloatField
+      FieldName = 'Markobt'
+    end
+    object QrStudMkSubjname: TStringField
+      FieldName = 'Subjname'
+      Size = 15
+    end
+    object QrStudMkSubjtot: TFloatField
+      FieldName = 'Subjtot'
+    end
+    object QrStudMkClCode: TStringField
+      FieldName = 'ClCode'
+      Size = 5
+    end
+  end
+  object QrAbsent: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      
+        'SELECT Studmast.StudID, Absentees."Date", Absentees.Absent, Stud' +
+        'mast.ClCode, Studmast.Name'
+      'FROM "StudMast.DB" Studmast'
+      '   INNER JOIN "absentees.DB" Absentees'
+      '   ON  (Studmast.StudID = Absentees.StudId)  '
+      
+        'where Absentees.Absent=true and  Absentees."Date" between :sdt a' +
+        'nd :edt')
+    Left = 609
+    Top = 16
+    ParamData = <
+      item
+        DataType = ftDate
+        Name = 'sdt'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftDate
+        Name = 'edt'
+        ParamType = ptUnknown
+      end>
+    object QrAbsentStudID: TFloatField
+      FieldName = 'StudID'
+      Origin = 'SCHDATA."StudMast.DB".StudID'
+    end
+    object QrAbsentDate: TDateField
+      FieldName = 'Date'
+      Origin = 'SCHDATA."absentees.DB".Date'
+    end
+    object QrAbsentAbsent: TBooleanField
+      FieldName = 'Absent'
+      Origin = 'SCHDATA."absentees.DB".Absent'
+    end
+    object QrAbsentClCode: TStringField
+      FieldName = 'ClCode'
+      Origin = 'SCHDATA."StudMast.DB".ClCode'
+      Size = 5
+    end
+    object QrAbsentName: TStringField
+      FieldName = 'Name'
+      Origin = 'SCHDATA."StudMast.DB".Name'
+      Size = 40
+    end
+  end
+  object usertb1: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'Uid'
+        DataType = ftString
+        Size = 5
+      end
+      item
+        Name = 'Uname'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'Passwd'
+        DataType = ftString
+        Size = 7
+      end
+      item
+        Name = 'Stat'
+        DataType = ftFloat
+      end
+      item
+        Name = 'Uno'
+        Attributes = [faReadonly]
+        DataType = ftAutoInc
+      end>
+    IndexDefs = <
+      item
+        Name = 'usertbIndex1'
+        Fields = 'Uid'
+        Options = [ixPrimary, ixUnique]
+      end>
+    StoreDefs = True
+    TableName = 'usertb.DB'
+    Left = 296
+    Top = 104
+    object usertb1Uname: TStringField
+      FieldName = 'Uname'
+      Size = 15
+    end
+    object usertb1Passwd: TStringField
+      FieldName = 'Passwd'
+      Size = 7
+    end
+    object usertb1Stat: TFloatField
+      FieldName = 'Stat'
+    end
+    object usertb1Uid: TStringField
+      FieldName = 'Uid'
+      Size = 5
+    end
+    object usertb1Uno: TAutoIncField
+      FieldName = 'Uno'
+      ReadOnly = True
+    end
+  end
+  object userds: TDataSource
+    DataSet = usertb1
+    Left = 240
+    Top = 104
+  end
+  object tbttable: TTable
+    OnCalcFields = tbttableCalcFields
+    DatabaseName = 'mydb'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'Period'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Day'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'CCode'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Teacher'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'SID'
+        DataType = ftSmallint
+      end>
+    StoreDefs = True
+    TableName = 'TTABLE.DB'
+    Left = 296
+    Top = 8
+    object tbttablePeriod: TSmallintField
+      FieldName = 'Period'
+    end
+    object tbttableDay: TSmallintField
+      FieldName = 'Day'
+    end
+    object tbttableCCode: TSmallintField
+      FieldName = 'CCode'
+    end
+    object tbttableTeacher: TSmallintField
+      FieldName = 'Teacher'
+      OnChange = tbttableTeacherChange
+    end
+    object tbttableSID: TSmallintField
+      FieldName = 'SID'
+    end
+    object tbttabletchName: TStringField
+      FieldKind = fkLookup
+      FieldName = 'tchName'
+      LookupDataSet = tbTeacher
+      LookupKeyFields = 'TID'
+      LookupResultField = 'Desc'
+      KeyFields = 'Teacher'
+      Lookup = True
+    end
+    object tbttablesname: TStringField
+      FieldKind = fkLookup
+      FieldName = 'sname'
+      LookupDataSet = tbTeacher
+      LookupKeyFields = 'TID'
+      LookupResultField = 'Desc'
+      KeyFields = 'Teacher'
+      Lookup = True
+    end
+    object tbttabledname: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'dname'
+      Calculated = True
+    end
+    object tbttableSubDesc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'SubDesc'
+      LookupDataSet = tbSubMast
+      LookupKeyFields = 'SID'
+      LookupResultField = 'Descr'
+      KeyFields = 'SID'
+      Lookup = True
+    end
+    object tbttablecldesc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'cldesc'
+      LookupDataSet = tbClMast_
+      LookupKeyFields = 'CLCode'
+      LookupResultField = 'Desc'
+      KeyFields = 'CCode'
+      Lookup = True
+    end
+    object tbttabletchAbName: TStringField
+      FieldKind = fkLookup
+      FieldName = 'tchAbName'
+      LookupDataSet = tbTeacher
+      LookupKeyFields = 'TID'
+      LookupResultField = 'AbName'
+      KeyFields = 'Teacher'
+      Lookup = True
+    end
+  end
+  object tbClMast_: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    IndexFieldNames = 'Desc'
+    TableName = 'tbClmast.DB'
+    Left = 72
+    Top = 152
+    object tbClMast_CLCode: TSmallintField
+      FieldName = 'CLCode'
+    end
+    object StringField1: TStringField
+      FieldName = 'Desc'
+      Size = 15
+    end
+  end
+  object tbClMastS_: TDataSource
+    DataSet = tbClMast_
+    Left = 16
+    Top = 152
+  end
+  object tbBmast: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    TableName = 'bmast.db'
+    Left = 72
+    Top = 296
+    object tbBmastBcode: TSmallintField
+      FieldName = 'Bcode'
+    end
+    object tbBmastDesc: TStringField
+      FieldName = 'Desc'
+      Size = 30
+    end
+  end
+  object dsBmast: TDataSource
+    DataSet = tbBmast
+    Left = 16
+    Top = 296
+  end
+  object tbBrmast: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    TableName = 'brmast.db'
+    Left = 72
+    Top = 248
+    object tbBrmastBcode: TSmallintField
+      FieldName = 'Bcode'
+    end
+    object tbBrmastDesc: TStringField
+      FieldName = 'Desc'
+      Size = 30
+    end
+  end
+  object dsBrMast: TDataSource
+    DataSet = tbBrmast
+    Left = 16
+    Top = 248
+  end
+  object qryIncme: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      
+        'SELECT Fee.MR_NO, Fee.BillNo, Fee.MR_DATE, Studmast.Name, Fee.FE' +
+        'E_AMT'
+      'FROM "Fee.DB" Fee'
+      '   INNER JOIN "StudMast.DB" Studmast'
+      '   ON  (Studmast.StudID = Fee.StudID)  '
+      'Where MR_DATE between :sdate and :edate')
+    Left = 609
+    Top = 112
+    ParamData = <
+      item
+        DataType = ftDate
+        Name = 'sdate'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftDate
+        Name = 'edate'
+        ParamType = ptUnknown
+      end>
+  end
+  object qryBank: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      'SELECT Fee.CHQ_NO, Bmast."Desc", Brmast."Desc", Fee.CHQ_AMT'
+      'FROM "Fee.DB" Fee'
+      '   INNER JOIN "bmast.db" Bmast'
+      '   ON  (Bmast.Bcode = Fee.DRAWN_ON)  '
+      '   INNER JOIN "brmast.db" Brmast'
+      '   ON  (Brmast.Bcode = Fee.Branch)  '
+      'WHERE  Fee.CHQ_NO <> '#39#39' '
+      'and MR_DATE between :sdate and :edate')
+    Left = 553
+    Top = 208
+    ParamData = <
+      item
+        DataType = ftDate
+        Name = 'sdate'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftDate
+        Name = 'edate'
+        ParamType = ptUnknown
+      end>
+    object qryBankCHQ_NO: TStringField
+      FieldName = 'CHQ_NO'
+    end
+    object qryBankDesc: TStringField
+      FieldName = 'Desc'
+      Size = 30
+    end
+    object qryBankDesc_1: TStringField
+      FieldName = 'Desc_1'
+      Size = 30
+    end
+    object qryBankCHQ_AMT: TCurrencyField
+      FieldName = 'CHQ_AMT'
+    end
+  end
+  object dsfeematrix1: TDataSource
+    DataSet = SemCorT
+    Left = 240
+    Top = 352
+  end
+  object qryPayroll: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      'SELECT Empmast.Name, Empmast.AccNo, Trnsmst.MnthSal'
+      'FROM "TrnsMst.DB" Trnsmst'
+      '   INNER JOIN "EmpMast.DB" Empmast'
+      '   ON  (Empmast.EmpNo = Trnsmst.EmpNo)  '
+      'where Trnsmst."Date" between :sdate and :edate')
+    Left = 609
+    Top = 208
+    ParamData = <
+      item
+        DataType = ftDate
+        Name = 'sdate'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftDate
+        Name = 'edate'
+        ParamType = ptUnknown
+      end>
+  end
+  object qryYrly: TQuery
+    OnCalcFields = qryYrlyCalcFields
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      'SELECT Name, AccNo, PFAcNo, PayScale, '
+      'Basic,Basic*.45 DA,200 HRA,(basic+basic*.45+200) gross'
+      'FROM "EmpMast.DB" Empmast')
+    Left = 609
+    Top = 160
+    object qryYrlyName: TStringField
+      FieldName = 'Name'
+      Size = 40
+    end
+    object qryYrlyAccNo: TStringField
+      FieldName = 'AccNo'
+      Size = 6
+    end
+    object qryYrlyPFAcNo: TStringField
+      FieldName = 'PFAcNo'
+      Size = 6
+    end
+    object qryYrlyPayScale: TStringField
+      FieldName = 'PayScale'
+      Size = 30
+    end
+    object qryYrlyBasic: TCurrencyField
+      FieldName = 'Basic'
+    end
+    object qryYrlyDA: TCurrencyField
+      FieldName = 'DA'
+    end
+    object qryYrlyHRA: TFloatField
+      FieldName = 'HRA'
+      currency = True
+    end
+    object qryYrlygross: TCurrencyField
+      FieldName = 'gross'
+    end
+    object qryYrlyPF: TCurrencyField
+      FieldKind = fkCalculated
+      FieldName = 'PF'
+      Calculated = True
+    end
+    object qryYrlyNetAmt: TCurrencyField
+      FieldKind = fkCalculated
+      FieldName = 'NetAmt'
+      Calculated = True
+    end
+  end
+  object TcData: TTable
+    AfterInsert = TcDataAfterInsert
+    BeforePost = TcDataBeforePost
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'SlNo'
+        DataType = ftFloat
+      end
+      item
+        Name = 'AdmNo'
+        DataType = ftString
+        Size = 10
+      end
+      item
+        Name = 'TCNo'
+        DataType = ftString
+        Size = 10
+      end
+      item
+        Name = 'DtLeft'
+        DataType = ftDate
+      end
+      item
+        Name = 'Character'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'YrFrom'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'YrTo'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'TcDate'
+        DataType = ftDate
+      end
+      item
+        Name = 'Promotion'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'Oinfo'
+        DataType = ftMemo
+        Size = 15
+      end>
+    IndexDefs = <
+      item
+        Name = 'TcDataIndex1'
+        Fields = 'SlNo'
+        Options = [ixPrimary, ixUnique]
+      end>
+    StoreDefs = True
+    TableName = 'TcData.db'
+    Left = 392
+    Top = 248
+    object TcDataSlNo: TFloatField
+      FieldName = 'SlNo'
+    end
+    object TcDataAdmNo: TStringField
+      FieldName = 'AdmNo'
+      Size = 10
+    end
+    object TcDataTCNo: TStringField
+      FieldName = 'TCNo'
+      Size = 10
+    end
+    object TcDataDtLeft: TDateField
+      FieldName = 'DtLeft'
+    end
+    object TcDataCharacter: TStringField
+      FieldName = 'Character'
+      Size = 15
+    end
+    object TcDataYrFrom: TStringField
+      FieldName = 'YrFrom'
+      Size = 15
+    end
+    object TcDataYrTo: TStringField
+      FieldName = 'YrTo'
+      Size = 15
+    end
+    object TcDataTcDate: TDateField
+      FieldName = 'TcDate'
+    end
+    object TcDataPromotion: TStringField
+      FieldName = 'Promotion'
+      Size = 15
+    end
+    object TcDataOinfo: TMemoField
+      FieldName = 'Oinfo'
+      BlobType = ftMemo
+      Size = 15
+    end
+    object TcDataSname: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Sname'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'AdmNo'
+      LookupResultField = 'Name'
+      KeyFields = 'AdmNo'
+      Lookup = True
+    end
+    object TcDataSfName: TStringField
+      FieldKind = fkLookup
+      FieldName = 'SfName'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'AdmNo'
+      LookupResultField = 'Fname'
+      KeyFields = 'AdmNo'
+      Lookup = True
+    end
+    object TcDataSDoB: TDateField
+      FieldKind = fkLookup
+      FieldName = 'SDoB'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'AdmNo'
+      LookupResultField = 'DOB'
+      KeyFields = 'AdmNo'
+      Lookup = True
+    end
+    object TcDataSDoA: TDateField
+      FieldKind = fkLookup
+      FieldName = 'SDoA'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'AdmNo'
+      LookupResultField = 'DOA'
+      KeyFields = 'AdmNo'
+      Lookup = True
+    end
+    object TcDatasClass: TStringField
+      FieldKind = fkLookup
+      FieldName = 'sClass'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'AdmNo'
+      LookupResultField = 'clCaption'
+      KeyFields = 'AdmNo'
+      Lookup = True
+    end
+    object TcDatasSchool: TStringField
+      FieldKind = fkLookup
+      FieldName = 'sSchool'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'AdmNo'
+      LookupResultField = 'SchLast'
+      KeyFields = 'AdmNo'
+      Lookup = True
+    end
+    object TcDataStName: TStringField
+      FieldKind = fkLookup
+      FieldName = 'StName'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'AdmNo'
+      LookupResultField = 'Name'
+      KeyFields = 'AdmNo'
+      Size = 30
+      Lookup = True
+    end
+  end
+  object TcDataS: TDataSource
+    DataSet = TcData
+    Left = 352
+    Top = 248
+  end
+  object birth: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'SlNo'
+        DataType = ftFloat
+      end
+      item
+        Name = 'AdmNo'
+        DataType = ftFloat
+      end
+      item
+        Name = 'Comment'
+        DataType = ftMemo
+        Size = 20
+      end>
+    IndexDefs = <
+      item
+        Name = 'Table1Index1'
+        Fields = 'SlNo'
+        Options = [ixPrimary, ixUnique]
+      end>
+    StoreDefs = True
+    TableName = 'birth.db'
+    Left = 392
+    Top = 104
+    object birthSlNo: TFloatField
+      FieldName = 'SlNo'
+    end
+    object birthAdmNo: TFloatField
+      FieldName = 'AdmNo'
+    end
+    object birthComment: TMemoField
+      FieldName = 'Comment'
+      BlobType = ftMemo
+      Size = 20
+    end
+    object birthsname: TStringField
+      FieldKind = fkLookup
+      FieldName = 'sname'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'StudID'
+      LookupResultField = 'Name'
+      KeyFields = 'AdmNo'
+      Lookup = True
+    end
+    object birthsfName: TStringField
+      FieldKind = fkLookup
+      FieldName = 'sfName'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'StudID'
+      LookupResultField = 'Fname'
+      KeyFields = 'AdmNo'
+      Lookup = True
+    end
+    object birthsDOB: TDateField
+      FieldKind = fkLookup
+      FieldName = 'sDOB'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'StudID'
+      LookupResultField = 'DOB'
+      KeyFields = 'AdmNo'
+      Lookup = True
+    end
+  end
+  object birthS: TDataSource
+    DataSet = birth
+    Left = 352
+    Top = 104
+  end
+  object qryCllist: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      'SELECT ClCode, Section, AdmNo, Name, RollNo, Fname, DOB,Phone'
+      'FROM "StudMast.DB" Studmast'
+      ' where ClCode=:ccode and Section=:sec and Catcode<>0 '
+      'ORDER BY ClCode, Section, AdmNo'
+      ''
+      '')
+    Left = 665
+    Top = 208
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'ccode'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftString
+        Name = 'sec'
+        ParamType = ptUnknown
+      end>
+    object qryCllistAdmNo: TStringField
+      FieldName = 'AdmNo'
+      Origin = 'MYDB."StudMast.DB".AdmNo'
+      Size = 10
+    end
+    object qryCllistRollNo: TFloatField
+      FieldName = 'RollNo'
+      Origin = 'SCHDATA1."StudMast.DB".RollNo'
+    end
+    object qryCllistName: TStringField
+      FieldName = 'Name'
+      Origin = 'SCHDATA1."StudMast.DB".Name'
+      Size = 40
+    end
+    object qryCllistFname: TStringField
+      FieldName = 'Fname'
+      Origin = 'SCHDATA1."StudMast.DB".Fname'
+      Size = 40
+    end
+    object qryCllistDOB: TDateField
+      FieldName = 'DOB'
+      Origin = 'SCHDATA1."StudMast.DB".DOB'
+    end
+    object qryCllistPhone: TStringField
+      FieldName = 'Phone'
+      Origin = 'MYDB."StudMast.DB".Phone'
+      Size = 30
+    end
+  end
+  object QrByBus: TQuery
+    DatabaseName = 'MyDB'
+    Filtered = True
+    SessionName = 'MySession'
+    SQL.Strings = (
+      'SELECT StudID, Name, ClCode, RollNo, Section, GName, LAddr'
+      'FROM "StudMast.DB" Studmast'
+      'where bybus=true')
+    Left = 553
+    Top = 304
+  end
+  object QryFeeColl: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      'SELECT Clmast."Desc", Studmast.Section, Fee.FEE_AMT, Fee.MR_NO, '
+      'Fee.BillNo'
+      'FROM "FEE.db" Fee'
+      '   INNER JOIN "StudMast.DB" Studmast'
+      '   ON  (Fee.StudID = Studmast.StudID)  '
+      '   INNER JOIN "CLMast.db" Clmast'
+      '   ON  (Studmast.ClCode = Clmast.ClCode) '
+      'where fee.mr_date between :dt1 and :dt2'
+      'ORDER BY Clmast."Desc", Studmast.Section')
+    Left = 713
+    Top = 160
+    ParamData = <
+      item
+        DataType = ftDate
+        Name = 'dt1'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftDate
+        Name = 'dt2'
+        ParamType = ptUnknown
+      end>
+  end
+  object QryFeeColl1: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      'SELECT Itemmast.Idesc'
+      'FROM "FEE_DETAIL.DB" Fee_detail'
+      '   INNER JOIN "ItemMast.db" Itemmast'
+      '   ON  (Fee_detail.AC_NO = Itemmast.ICode)  , "FEE.db" Fee')
+    Left = 662
+    Top = 304
+  end
+  object QryDefaulter: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      
+        'SELECT Clmast."Desc",Studmast.Section,AdmNo, Studmast.Name,StudM' +
+        'ast.NOTERMS-:tm,Clmast.mfee,'
+      'Clmast.Adfee,StudMast.StudId,'
+      ''
+      'FROM "CLMast.db" Clmast'
+      '   INNER JOIN "StudMast.DB" Studmast'
+      '   ON  (Clmast.ClCode = Studmast.ClCode)  '
+      '   INNER JOIN "FEE_MATRIX.DB" Fee_matrix'
+      
+        '   ON  (Clmast.ClCode = Fee_matrix.STD)  WHERE   (Fee_matrix.AC_' +
+        'NO = 1)  '
+      '   AND  (Studmast.NOTERMS <:trm)  and(Studmast.CatCode=1)'
+      'ORDER BY Clmast."Desc",StudMast.StudId,StudMast.AdmNo'
+      '')
+    Left = 713
+    Top = 208
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'tm'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftInteger
+        Name = 'trm'
+        ParamType = ptUnknown
+      end>
+  end
+  object QryFreeship: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      
+        'SELECT  ClMast."DESC",Studmast.Section,Studmast.Name, Studmast.R' +
+        'ollNo, Studmast.GName, Studmast.LAddr'
+      'FROM "StudMast.DB" Studmast'
+      '   INNER JOIN "CLMast.db" Clmast'
+      '   ON  (Studmast.ClCode = Clmast.ClCode) '
+      'WHERE  CatCode=2 ')
+    Left = 713
+    Top = 256
+  end
+  object Qrytotalstud: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      
+        'SELECT Clmast."Desc" Cldesc, Section, StudID, Name,  RollNo, Sec' +
+        'tion, Fname, DOB, LAddr, Studmast."Cast", DOA, Sex'
+      'FROM "StudMast.DB" Studmast'
+      '   INNER JOIN "ClMast.DB" Clmast'
+      '   ON  (Clmast.ClCode = Studmast.ClCode) '
+      'WHERE StudMast.CatCode<>0'
+      'ORDER BY Cldesc, Section,Studid'
+      '')
+    Left = 553
+    Top = 256
+  end
+  object Qrhouse: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      
+        'SELECT Name, ClCode, RollNo, Section, DOB, Fname, Sex, LAddr, Ho' +
+        'use'
+      'FROM "StudMast.DB" Studmast')
+    Left = 665
+    Top = 16
+  end
+  object QrFee: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      'SELECT Fee.MR_NO, Studmast.ClCode, Studmast.Section'
+      'FROM "StudMast.DB" Studmast'
+      '   INNER JOIN "FEE.db" Fee'
+      
+        '   ON  (Fee.StudID = Studmast.StudID)  order by Studmast.ClCode,' +
+        ' Studmast.Section')
+    Left = 665
+    Top = 112
+    object QrFeeMR_NO: TFloatField
+      FieldName = 'MR_NO'
+      Origin = 'SCHPROJ."FEE.DB".MR_NO'
+    end
+    object QrFeeClCode: TSmallintField
+      FieldName = 'ClCode'
+      Origin = 'SCHPROJ."StudMast.DB".ClCode'
+    end
+    object QrFeeSection: TStringField
+      FieldName = 'Section'
+      Origin = 'SCHPROJ."StudMast.DB".Section'
+      Size = 2
+    end
+  end
+  object DsStud_def: TDataSource
+    DataSet = tbstud_def
+    Left = 352
+    Top = 56
+  end
+  object tbstud_def: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    TableName = 'stud_def.DB'
+    Left = 392
+    Top = 56
+    object tbstud_defSlno: TAutoIncField
+      FieldName = 'Slno'
+      ReadOnly = True
+    end
+    object tbstud_defStudId: TStringField
+      FieldName = 'StudId'
+      Size = 10
+    end
+    object tbstud_defNotice: TMemoField
+      FieldName = 'Notice'
+      BlobType = ftMemo
+      Size = 30
+    end
+    object tbstud_defStudName: TStringField
+      FieldKind = fkLookup
+      FieldName = 'StudName'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'StudId'
+      LookupResultField = 'Name'
+      KeyFields = 'StudId'
+      Lookup = True
+    end
+    object tbstud_defStudRoll: TIntegerField
+      FieldKind = fkLookup
+      FieldName = 'StudRoll'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'StudID'
+      LookupResultField = 'RollNo'
+      KeyFields = 'StudId'
+      Lookup = True
+    end
+    object tbstud_defStudClass: TStringField
+      FieldKind = fkLookup
+      FieldName = 'StudClass'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'StudID'
+      LookupResultField = 'stCLDESC'
+      KeyFields = 'StudId'
+      Size = 4
+      Lookup = True
+    end
+    object tbstud_defStudSection: TStringField
+      FieldKind = fkLookup
+      FieldName = 'StudSection'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'StudID'
+      LookupResultField = 'Section'
+      KeyFields = 'StudId'
+      Size = 4
+      Lookup = True
+    end
+  end
+  object qrStudHist: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      'SELECT MR_NO, NOTERM,TERM,MR_DATE, (FEE_AMT+LATE_FEE) Tamt'
+      'FROM "FEE.DB" Fee'
+      'Where studid=:stid'
+      'ORDER BY MR_DATE')
+    Left = 665
+    Top = 64
+    ParamData = <
+      item
+        DataType = ftFloat
+        Name = 'stid'
+        ParamType = ptUnknown
+      end>
+    object qrStudHistMR_NO: TFloatField
+      FieldName = 'MR_NO'
+      Origin = 'SCHDATA."FEE.DB".MR_NO'
+    end
+    object qrStudHistTamt: TCurrencyField
+      FieldName = 'Tamt'
+      Origin = 'SCHDATA."FEE.DB".FEE_AMT'
+    end
+    object qrStudHistNOTERM: TFloatField
+      FieldName = 'NOTERM'
+      Origin = 'MYDB."FEE.DB".NOTERM'
+    end
+    object qrStudHistTERM: TSmallintField
+      FieldName = 'TERM'
+      Origin = 'MYDB."FEE.DB".TERM'
+    end
+    object qrStudHistMR_DATE: TDateField
+      FieldName = 'MR_DATE'
+      Origin = 'MYDB."FEE.DB".MR_DATE'
+    end
+  end
+  object DsStud_Det: TDataSource
+    DataSet = TbStud_Det
+    Left = 352
+    Top = 8
+  end
+  object QrTc: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    DataSource = TcDataS
+    SQL.Strings = (
+      
+        'SELECT Tcdata.AdmNo, Tcdata.TcDate, Tcdata.DtLeft, Studmast.ClCo' +
+        'de, Studmast.Name, Studmast.Section, Studmast.RollNo'
+      'FROM "TcData.DB" Tcdata'
+      '   INNER JOIN "StudMast.DB" Studmast'
+      '   ON  (Tcdata.AdmNo = Studmast.StudID)  ')
+    Left = 665
+    Top = 160
+    object QrTcAdmNo: TFloatField
+      FieldName = 'AdmNo'
+      Origin = 'SCHDATA."TcData.DB".AdmNo'
+    end
+    object QrTcTcDate: TDateField
+      FieldName = 'TcDate'
+      Origin = 'SCHDATA."TcData.DB".TcDate'
+    end
+    object QrTcDtLeft: TDateField
+      FieldName = 'DtLeft'
+      Origin = 'SCHDATA."TcData.DB".DtLeft'
+    end
+    object QrTcClCode: TSmallintField
+      FieldName = 'ClCode'
+      Origin = 'SCHDATA."StudMast.DB".ClCode'
+    end
+    object QrTcName: TStringField
+      FieldName = 'Name'
+      Origin = 'SCHDATA."StudMast.DB".Name'
+      Size = 40
+    end
+    object QrTcSection: TStringField
+      FieldName = 'Section'
+      Origin = 'SCHDATA."StudMast.DB".Section'
+      Size = 2
+    end
+    object QrTcRollNo: TFloatField
+      FieldName = 'RollNo'
+      Origin = 'SCHDATA."StudMast.DB".RollNo'
+    end
+  end
+  object QrTotAdm: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      'SELECT StudID, Name, ClCode, Section, DOB, Fname'
+      'FROM "StudMast.DB" Studmast where DOA between :dt1 and :dt2')
+    Left = 713
+    Top = 112
+    ParamData = <
+      item
+        DataType = ftDate
+        Name = 'dt1'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftDate
+        Name = 'dt2'
+        ParamType = ptUnknown
+      end>
+    object QrTotAdmStudID: TFloatField
+      FieldName = 'StudID'
+      Origin = 'SCHDATA."StudMast.DB".StudID'
+    end
+    object QrTotAdmName: TStringField
+      FieldName = 'Name'
+      Origin = 'SCHDATA."StudMast.DB".Name'
+      Size = 40
+    end
+    object QrTotAdmClCode: TSmallintField
+      FieldName = 'ClCode'
+      Origin = 'SCHDATA."StudMast.DB".ClCode'
+    end
+    object QrTotAdmSection: TStringField
+      FieldName = 'Section'
+      Origin = 'SCHDATA."StudMast.DB".Section'
+      Size = 2
+    end
+    object QrTotAdmDOB: TDateField
+      FieldName = 'DOB'
+      Origin = 'SCHDATA."StudMast.DB".DOB'
+    end
+    object QrTotAdmFname: TStringField
+      FieldName = 'Fname'
+      Origin = 'SCHDATA."StudMast.DB".Fname'
+      Size = 40
+    end
+  end
+  object tbItems: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    TableName = 'items.db'
+    Left = 392
+    Top = 152
+    object tbItemsItemCode: TAutoIncField
+      FieldName = 'ItemCode'
+      ReadOnly = True
+    end
+    object tbItemsDescr: TStringField
+      FieldName = 'Descr'
+      Size = 30
+    end
+    object tbItemsRte: TCurrencyField
+      FieldName = 'Rte'
+    end
+  end
+  object dsItems: TDataSource
+    DataSet = tbItems
+    Left = 352
+    Top = 152
+  end
+  object tbTrans: TTable
+    AfterInsert = tbTransAfterInsert
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    TableName = 'trans.DB'
+    Left = 392
+    Top = 296
+    object tbTransTransNo: TAutoIncField
+      FieldName = 'TransNo'
+      ReadOnly = True
+    end
+    object tbTransTrDate: TDateField
+      FieldName = 'TrDate'
+    end
+    object tbTransName: TStringField
+      FieldName = 'Name'
+      Size = 30
+    end
+    object tbTransClass: TStringField
+      FieldName = 'Class'
+      Size = 15
+    end
+    object tbTransItemCode: TFloatField
+      FieldName = 'ItemCode'
+      OnChange = tbTransItemCodeChange
+    end
+    object tbTransAmount: TCurrencyField
+      FieldName = 'Amount'
+    end
+    object tbTransItemDesc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'ItemDesc'
+      LookupDataSet = tbItems
+      LookupKeyFields = 'ItemCode'
+      LookupResultField = 'Descr'
+      KeyFields = 'ItemCode'
+      Lookup = True
+    end
+    object tbTransItemRte: TCurrencyField
+      FieldKind = fkLookup
+      FieldName = 'ItemRte'
+      LookupDataSet = tbItems
+      LookupKeyFields = 'ItemCode'
+      LookupResultField = 'Rte'
+      KeyFields = 'ItemCode'
+      Lookup = True
+    end
+  end
+  object dsTrans: TDataSource
+    DataSet = tbTrans
+    Left = 352
+    Top = 296
+  end
+  object qryItem: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      'SELECT Items.descr,count(items.descr) cnt,sum(Amount) amt'
+      'FROM "trans.DB" trans'
+      '   INNER JOIN "items.db" items'
+      '   ON  (items.ItemCode = trans.ItemCode)  '
+      'where trdate between :dt1 and :dt2'
+      'GROUP BY items.descr')
+    Left = 713
+    Top = 16
+    ParamData = <
+      item
+        DataType = ftDate
+        Name = 'dt1'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftDate
+        Name = 'dt2'
+        ParamType = ptUnknown
+      end>
+  end
+  object qryMiscList: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      'SELECT TransNo,TrDate,Class,Name,Amount'
+      'FROM "trans.DB" trans'
+      'where trdate between :dt1 and :dt2')
+    Left = 713
+    Top = 64
+    ParamData = <
+      item
+        DataType = ftDate
+        Name = 'dt1'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftDate
+        Name = 'dt2'
+        ParamType = ptUnknown
+      end>
+  end
+  object qryClrep: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      'SELECT Clmast."Desc",sum(Fee.FEE_AMT) amt'
+      ''
+      'FROM "FEE.db" Fee'
+      '   INNER JOIN "StudMast.DB" Studmast'
+      '   ON  (Fee.StudID = Studmast.StudID)  '
+      '   INNER JOIN "CLMast.db" Clmast'
+      '   ON  (Studmast.ClCode = Clmast.ClCode) '
+      'where fee.mr_date between :dt1 and :dt2'
+      'group  BY Clmast."Desc"')
+    Left = 614
+    Top = 304
+    ParamData = <
+      item
+        DataType = ftDate
+        Name = 'dt1'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftDate
+        Name = 'dt2'
+        ParamType = ptUnknown
+      end>
+  end
+  object qryFeeacc: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      'SELECT Clmast."Desc", Studmast.Section, Studmast.STUDID,'
+      'Studmast.NAME,SUM(Fee.FEE_AMT) amt'
+      'FROM "FEE.db" Fee'
+      '   INNER JOIN "StudMast.DB" Studmast'
+      '   ON  (Fee.StudID = Studmast.StudID)  '
+      '   INNER JOIN "CLMast.db" Clmast'
+      '   ON  (Studmast.ClCode = Clmast.ClCode) '
+      'where fee.mr_date between :dt1 and :dt2'
+      
+        'GROUP BY Clmast."Desc", Studmast.Section,Studmast.STUDID,Studmas' +
+        't.NAME'
+      
+        'ORDER BY Clmast."Desc", Studmast.Section,Studmast.STUDID,Studmas' +
+        't.NAME')
+    Left = 609
+    Top = 256
+    ParamData = <
+      item
+        DataType = ftDate
+        Name = 'dt1'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftDate
+        Name = 'dt2'
+        ParamType = ptUnknown
+      end>
+  end
+  object dsSubMast: TDataSource
+    DataSet = tbSubMast
+    Left = 16
+    Top = 400
+  end
+  object tbSubMast: TTable
+    AfterInsert = tbSubMastAfterInsert
+    BeforePost = tbSubMastBeforePost
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'SID'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Descr'
+        DataType = ftString
+        Size = 15
+      end>
+    IndexDefs = <
+      item
+        Name = 'tbSubMastIndex1'
+        Fields = 'SID'
+        Options = [ixPrimary, ixUnique]
+      end>
+    StoreDefs = True
+    TableName = 'SubMast.db'
+    Left = 72
+    Top = 400
+    object tbSubMastSID: TSmallintField
+      FieldName = 'SID'
+    end
+    object tbSubMastDescr: TStringField
+      FieldName = 'Descr'
+      Size = 15
+    end
+  end
+  object tbSubDet: TTable
+    DatabaseName = 'mydb'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'TID'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'SID'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Slno'
+        Attributes = [faReadonly]
+        DataType = ftAutoInc
+      end>
+    IndexDefs = <
+      item
+        Name = 'tbSubDetIndex1'
+        Fields = 'TID;SID'
+        Options = [ixPrimary, ixUnique]
+      end>
+    IndexFieldNames = 'TID'
+    MasterFields = 'TID'
+    MasterSource = dsTeacher
+    StoreDefs = True
+    TableName = 'SubDet.db'
+    Left = 184
+    Top = 400
+    object tbSubDetTID: TSmallintField
+      FieldName = 'TID'
+    end
+    object tbSubDetSID: TSmallintField
+      FieldName = 'SID'
+    end
+    object tbSubDetSubDesc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'SubDesc'
+      LookupDataSet = tbSubMast
+      LookupKeyFields = 'SID'
+      LookupResultField = 'Descr'
+      KeyFields = 'SID'
+      Lookup = True
+    end
+    object tbSubDetSlno: TAutoIncField
+      FieldName = 'Slno'
+      ReadOnly = True
+    end
+  end
+  object dsSubDet: TDataSource
+    DataSet = tbSubDet
+    Left = 128
+    Top = 400
+  end
+  object tbClassDet: TTable
+    DatabaseName = 'mydb'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'Slno'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'CID'
+        DataType = ftSmallint
+      end>
+    IndexDefs = <
+      item
+        Name = 'tbClassDetIndex1'
+        Fields = 'Slno;CID'
+        Options = [ixPrimary, ixUnique]
+      end>
+    IndexFieldNames = 'Slno'
+    MasterFields = 'Slno'
+    MasterSource = dsSubDet
+    StoreDefs = True
+    TableName = 'ClassDet.db'
+    Left = 296
+    Top = 400
+    object tbClassDetClDesc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'ClDesc'
+      LookupDataSet = CLMast_
+      LookupKeyFields = 'ClCode'
+      LookupResultField = 'Desc'
+      KeyFields = 'CID'
+      Lookup = True
+    end
+    object tbClassDetSlno: TSmallintField
+      FieldName = 'Slno'
+    end
+    object tbClassDetCID: TSmallintField
+      FieldName = 'CID'
+    end
+  end
+  object dsClassDet: TDataSource
+    DataSet = tbClassDet
+    Left = 240
+    Top = 400
+  end
+  object CLMast_: TTable
+    DatabaseName = 'mydb'
+    SessionName = 'MySession'
+    TableName = 'CLMast.db'
+    Left = 296
+    Top = 296
+    object CLMast_ClCode: TSmallintField
+      FieldName = 'ClCode'
+    end
+    object CLMast_Clcaption: TStringField
+      FieldName = 'Clcaption'
+      Size = 10
+    end
+    object CLMast_Desc: TStringField
+      FieldName = 'Desc'
+      Size = 15
+    end
+    object CLMast_Mfee: TCurrencyField
+      FieldName = 'Mfee'
+    end
+    object CLMast_UPClass: TSmallintField
+      FieldName = 'UPClass'
+    end
+    object CLMast_Adfee: TCurrencyField
+      FieldName = 'Adfee'
+    end
+  end
+  object dsclsubdet: TDataSource
+    DataSet = tbclsubdet
+    Left = 15
+    Top = 444
+  end
+  object tbclsubdet: TTable
+    DatabaseName = 'mydb'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'Slno'
+        Attributes = [faReadonly]
+        DataType = ftAutoInc
+      end
+      item
+        Name = 'Cid'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Sid'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Tid'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Subdesc'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'Totalmarks'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Passmarks'
+        DataType = ftSmallint
+      end>
+    IndexDefs = <
+      item
+        Name = 'tbclsubdetIndex1'
+        Fields = 'Slno'
+        Options = [ixPrimary, ixUnique]
+      end
+      item
+        Name = 'cindex'
+        Fields = 'Cid'
+        Options = [ixCaseInsensitive]
+      end>
+    IndexName = 'cindex'
+    MasterFields = 'ClCode'
+    MasterSource = CLMastS_
+    StoreDefs = True
+    TableName = 'clsubdet.db'
+    Left = 67
+    Top = 444
+    object tbclsubdetSlno: TAutoIncField
+      FieldName = 'Slno'
+      ReadOnly = True
+    end
+    object tbclsubdetCid: TSmallintField
+      FieldName = 'Cid'
+    end
+    object tbclsubdetSid: TSmallintField
+      FieldName = 'Sid'
+    end
+    object tbclsubdetTid: TSmallintField
+      FieldName = 'Tid'
+    end
+    object tbclsubdetSubdesc: TStringField
+      FieldName = 'Subdesc'
+    end
+    object tbclsubdetTotalmarks: TSmallintField
+      FieldName = 'Totalmarks'
+    end
+    object tbclsubdetPassmarks: TSmallintField
+      FieldName = 'Passmarks'
+    end
+    object tbclsubdettotmark: TIntegerField
+      FieldKind = fkCalculated
+      FieldName = 'totmark'
+      Calculated = True
+    end
+  end
+  object dsstudmarkdet: TDataSource
+    DataSet = tbstudmarkdet
+    Left = 131
+    Top = 444
+  end
+  object tbstudmarkdet: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'Srlno'
+        DataType = ftFloat
+      end
+      item
+        Name = 'Studid'
+        DataType = ftFloat
+      end
+      item
+        Name = 'Mobt'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Cl'
+        DataType = ftString
+        Size = 10
+      end
+      item
+        Name = 'Sid'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Subdesc'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'Myear'
+        DataType = ftString
+        Size = 10
+      end
+      item
+        Name = 'Pf'
+        DataType = ftString
+        Size = 1
+      end>
+    IndexDefs = <
+      item
+        Name = 'tbstudmarkdetIndex1'
+        Fields = 'Srlno;Studid'
+        Options = [ixPrimary, ixUnique]
+      end>
+    IndexFieldNames = 'Srlno'
+    MasterFields = 'Slno'
+    MasterSource = dsclsubdet
+    StoreDefs = True
+    TableName = 'studmarkdet.db'
+    Left = 180
+    Top = 444
+    object tbstudmarkdetSrlno: TFloatField
+      FieldName = 'Srlno'
+    end
+    object tbstudmarkdetStudid: TFloatField
+      FieldName = 'Studid'
+    end
+    object tbstudmarkdetMobt: TSmallintField
+      FieldName = 'Mobt'
+    end
+    object tbstudmarkdetCl: TStringField
+      FieldName = 'Cl'
+      Size = 10
+    end
+    object tbstudmarkdetSid: TSmallintField
+      FieldName = 'Sid'
+    end
+    object tbstudmarkdetSubdesc: TStringField
+      FieldName = 'Subdesc'
+      Size = 15
+    end
+    object tbstudmarkdetName: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Name'
+      LookupDataSet = Studmast1
+      LookupKeyFields = 'StudID'
+      LookupResultField = 'Name'
+      KeyFields = 'Studid'
+      Lookup = True
+    end
+    object tbstudmarkdetRollNo: TIntegerField
+      FieldKind = fkLookup
+      FieldName = 'RollNo.'
+      LookupDataSet = Studmast1
+      LookupKeyFields = 'Studid'
+      LookupResultField = 'RollNo'
+      KeyFields = 'Studid'
+      Lookup = True
+    end
+    object tbstudmarkdetMyear: TStringField
+      FieldName = 'Myear'
+      Size = 10
+    end
+  end
+  object dsexammast: TDataSource
+    DataSet = tbexammast
+    Left = 235
+    Top = 444
+  end
+  object tbexammast: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'Eslno'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Ccode'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Ename'
+        DataType = ftString
+        Size = 15
+      end>
+    IndexDefs = <
+      item
+        Name = 'tbexammastIndex1'
+        Fields = 'Eslno'
+        Options = [ixPrimary, ixUnique]
+      end>
+    IndexFieldNames = 'Ccode'
+    MasterFields = 'ClCode'
+    MasterSource = CLMastS_
+    StoreDefs = True
+    TableName = 'Exammast.db'
+    Left = 299
+    Top = 444
+    object tbexammastCcode: TSmallintField
+      FieldName = 'Ccode'
+    end
+    object tbexammastEslno: TSmallintField
+      FieldName = 'Eslno'
+    end
+    object tbexammastEname: TStringField
+      FieldName = 'Ename'
+      Size = 15
+    end
+  end
+  object dsqry: TDataSource
+    DataSet = qryclstud
+    Left = 550
+    Top = 357
+  end
+  object qryclstud: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      
+        'SELECT studmast.StudID,studmast.Name, Studmast.ClCode,studmast.R' +
+        'ollNo,CLMast.clCaption,'
+      'CLMast."Desc"'
+      'FROM "StudMast.DB" Studmast'
+      'INNER JOIN "clmast.db" clmast'
+      'ON (Studmast.clcode=clmast.clcode)'
+      'WHERE studmast.clcode = :cl'
+      'Order By Studmast.clcode')
+    Left = 583
+    Top = 356
+    ParamData = <
+      item
+        DataType = ftSmallint
+        Name = 'cl'
+        ParamType = ptUnknown
+      end>
+    object qryclstudStudID: TFloatField
+      FieldName = 'StudID'
+      Origin = 'MYDB."StudMast.DB".StudID'
+    end
+    object qryclstudName: TStringField
+      FieldName = 'Name'
+      Origin = 'MYDB."StudMast.DB".Name'
+      Size = 40
+    end
+    object qryclstudClCode: TSmallintField
+      FieldName = 'ClCode'
+      Origin = 'MYDB."StudMast.DB".ClCode'
+    end
+    object qryclstudRollNo: TFloatField
+      FieldName = 'RollNo'
+      Origin = 'MYDB."StudMast.DB".RollNo'
+    end
+    object qryclstudclCaption: TStringField
+      FieldName = 'clCaption'
+      Origin = 'MYDB."CLMast.DB".Clcaption'
+      Size = 10
+    end
+    object qryclstudDesc: TStringField
+      FieldName = 'Desc'
+      Origin = 'MYDB."CLMast.DB".Desc'
+      Size = 15
+    end
+  end
+  object dsqrytabul: TDataSource
+    DataSet = qtab
+    Left = 620
+    Top = 358
+  end
+  object qtab: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      
+        'SELECT Studmast.studID, Studmast.Name, Studmast.ClCode, studmark' +
+        'det.Srlno, studmarkdet.Mobt, Clmast.Clcaption,clsubdet.subdesc,c' +
+        'lsubdet.TotalMarks,clsubdet.passmarks'
+      'FROM "StudMast.DB" Studmast'
+      '   INNER JOIN "Clmast.DB" Clmast'
+      '   ON  (Studmast.ClCode = Clmast.ClCode)  '
+      '   INNER JOIN "studmarkdet.DB" studmarkdet'
+      '   ON  (Studmast.studID = studmarkdet.studid)  '
+      '   INNER JOIN "clsubdet.DB" clsubdet'
+      '    ON(studmarkdet.srlno=clsubdet.slno)'
+      '   ')
+    Left = 654
+    Top = 357
+    object qtabstudID: TFloatField
+      FieldName = 'studID'
+    end
+    object qtabName: TStringField
+      FieldName = 'Name'
+      Size = 40
+    end
+    object qtabClCode: TSmallintField
+      FieldName = 'ClCode'
+    end
+    object qtabSrlno: TFloatField
+      FieldName = 'Srlno'
+    end
+    object qtabMobt: TSmallintField
+      FieldName = 'Mobt'
+    end
+    object qtabClcaption: TStringField
+      FieldName = 'Clcaption'
+      Size = 10
+    end
+    object qtabsubdesc: TStringField
+      FieldName = 'subdesc'
+    end
+    object qtabTotalMarks: TSmallintField
+      FieldName = 'TotalMarks'
+    end
+    object qtabpassmarks: TSmallintField
+      FieldName = 'passmarks'
+    end
+    object qtabtmarks: TFloatField
+      FieldKind = fkCalculated
+      FieldName = 'tmarks'
+      Calculated = True
+    end
+  end
+  object Studmast1: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    TableName = 'StudMast.DB'
+    Left = 353
+    Top = 398
+    object Studmast1StudID: TFloatField
+      FieldName = 'StudID'
+    end
+    object Studmast1Name: TStringField
+      FieldName = 'Name'
+      Size = 40
+    end
+    object Studmast1ClCode: TSmallintField
+      FieldName = 'ClCode'
+    end
+    object Studmast1RollNo: TFloatField
+      FieldName = 'RollNo'
+    end
+    object Studmast1Section: TStringField
+      FieldName = 'Section'
+      Size = 2
+    end
+    object Studmast1DOB: TDateField
+      FieldName = 'DOB'
+    end
+    object Studmast1Sex: TStringField
+      FieldName = 'Sex'
+      Size = 1
+    end
+    object Studmast1GName: TStringField
+      FieldName = 'GName'
+      Size = 40
+    end
+    object Studmast1Fname: TStringField
+      FieldName = 'Fname'
+      Size = 40
+    end
+    object Studmast1Mname: TStringField
+      FieldName = 'Mname'
+      Size = 40
+    end
+    object Studmast1LAddr: TMemoField
+      FieldName = 'LAddr'
+      BlobType = ftMemo
+      Size = 20
+    end
+    object Studmast1PAddr: TMemoField
+      FieldName = 'PAddr'
+      BlobType = ftMemo
+      Size = 20
+    end
+    object Studmast1CatCode: TFloatField
+      FieldName = 'CatCode'
+    end
+    object Studmast1DOA: TDateField
+      FieldName = 'DOA'
+    end
+    object Studmast1Age: TStringField
+      FieldName = 'Age'
+    end
+    object Studmast1Photo: TGraphicField
+      FieldName = 'Photo'
+      BlobType = ftGraphic
+    end
+    object Studmast1NOTERMS: TFloatField
+      FieldName = 'NOTERMS'
+    end
+    object Studmast1Phone: TStringField
+      FieldName = 'Phone'
+      Size = 30
+    end
+    object Studmast1Eml: TStringField
+      FieldName = 'Eml'
+      Size = 35
+    end
+    object Studmast1M_Phone: TStringField
+      FieldName = 'M_Phone'
+    end
+    object Studmast1Religion: TStringField
+      FieldName = 'Religion'
+      Size = 15
+    end
+    object Studmast1Cast: TStringField
+      FieldName = 'Cast'
+      Size = 15
+    end
+    object Studmast1NofSB: TStringField
+      FieldName = 'NofSB'
+      Size = 30
+    end
+    object Studmast1F_occp: TStringField
+      FieldName = 'F_occp'
+    end
+    object Studmast1F_qual: TStringField
+      FieldName = 'F_qual'
+    end
+    object Studmast1M_qual: TStringField
+      FieldName = 'M_qual'
+    end
+    object Studmast1M_occp: TStringField
+      FieldName = 'M_occp'
+    end
+    object Studmast1SchLast: TStringField
+      FieldName = 'SchLast'
+      Size = 50
+    end
+    object Studmast1BloodGroup: TStringField
+      FieldName = 'BloodGroup'
+      Size = 15
+    end
+    object Studmast1House: TStringField
+      FieldName = 'House'
+      Size = 25
+    end
+    object Studmast1Mtounge: TStringField
+      FieldName = 'Mtounge'
+      Size = 15
+    end
+    object Studmast1Remark: TMemoField
+      FieldName = 'Remark'
+      BlobType = ftMemo
+      Size = 20
+    end
+    object Studmast1ByBus: TBooleanField
+      FieldName = 'ByBus'
+    end
+  end
+  object qryLkUp: TQuery
+    DatabaseName = 'MyDB'
+    Filtered = True
+    SessionName = 'MySession'
+    SQL.Strings = (
+      'SELECT AdmNo,Remark,"Desc",clcode,UpGrdYr '
+      'FROM "StudMast.DB" studmst'
+      'INNER JOIN "ClMast.DB" Clmst'
+      'ON (studmst.clcode=clmst.clcode)'
+      'WHERE catcode<>0'
+      'AND clcode BETWEEN :frm AND :to')
+    Left = 722
+    Top = 357
+    ParamData = <
+      item
+        DataType = ftSmallint
+        Name = 'frm'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftSmallint
+        Name = 'to'
+        ParamType = ptUnknown
+      end>
+    object qryLkUpRemark: TMemoField
+      FieldName = 'Remark'
+      BlobType = ftMemo
+      Size = 20
+    end
+    object qryLkUpDesc: TStringField
+      FieldName = 'Desc'
+      Size = 4
+    end
+    object qryLkUpclcode: TSmallintField
+      FieldName = 'clcode'
+    end
+    object qryLkUpUpGrdYr: TStringField
+      FieldName = 'UpGrdYr'
+      Size = 2
+    end
+    object qryLkUpAdmNo: TStringField
+      FieldName = 'AdmNo'
+      Size = 10
+    end
+  end
+  object qryLkUpD: TDataSource
+    DataSet = qryLkUp
+    Left = 690
+    Top = 357
+  end
+  object dsSubDet1: TDataSource
+    DataSet = tbSubDet1
+    Left = 128
+    Top = 488
+  end
+  object TbStud_Det: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'AdmNo'
+        DataType = ftString
+        Size = 10
+      end
+      item
+        Name = 'Class'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Name'
+        DataType = ftString
+        Size = 40
+      end
+      item
+        Name = 'ClCode'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Det'
+        DataType = ftBoolean
+      end>
+    StoreDefs = True
+    TableName = 'Stud_Det.DB'
+    Left = 392
+    Top = 8
+    object TbStud_DetName: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Name'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'AdmNo'
+      LookupResultField = 'Name'
+      KeyFields = 'AdmNo'
+      Lookup = True
+    end
+    object TbStud_DetClCode: TSmallintField
+      FieldName = 'ClCode'
+    end
+    object TbStud_DetDet: TBooleanField
+      FieldName = 'Det'
+    end
+    object TbStud_DetClDesc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'ClDesc'
+      LookupDataSet = StudMast_
+      LookupKeyFields = 'AdmNo'
+      LookupResultField = 'stCLDESC'
+      KeyFields = 'AdmNo'
+      Lookup = True
+    end
+    object TbStud_DetAdmNo: TStringField
+      FieldName = 'AdmNo'
+      Size = 10
+    end
+  end
+  object Query1: TQuery
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    SQL.Strings = (
+      'SELECT StudID, Name, ClCaption, Section, Fname, DOB, DOA'
+      'FROM "StudMast.DB" Studmast'
+      '   INNER JOIN "ClMast.DB" Clmast'
+      '   ON  (Clmast.ClCode = Studmast.ClCode) '
+      'WHERE StudMast.CatCode<>0'
+      'ORDER BY Studid')
+    Left = 661
+    Top = 256
+    object QrytotalstudStudID: TFloatField
+      FieldName = 'StudID'
+      Origin = 'MYDB."StudMast.DB".StudID'
+    end
+    object QrytotalstudName: TStringField
+      FieldName = 'Name'
+      Origin = 'MYDB."StudMast.DB".Name'
+      Size = 40
+    end
+    object QrytotalstudClCaption: TStringField
+      FieldName = 'ClCaption'
+      Origin = 'MYDB."ClMast.DB".Clcaption'
+      Size = 10
+    end
+    object QrytotalstudSection: TStringField
+      FieldName = 'Section'
+      Origin = 'MYDB."StudMast.DB".Section'
+      Size = 2
+    end
+    object QrytotalstudFname: TStringField
+      FieldName = 'Fname'
+      Origin = 'MYDB."StudMast.DB".Fname'
+      Size = 40
+    end
+    object QrytotalstudDOB: TDateField
+      FieldName = 'DOB'
+      Origin = 'MYDB."StudMast.DB".DOB'
+    end
+    object QrytotalstudDOA: TDateField
+      FieldName = 'DOA'
+      Origin = 'MYDB."StudMast.DB".DOA'
+    end
+  end
+  object tbSubDet1: TTable
+    DatabaseName = 'mydb'
+    SessionName = 'MySession'
+    TableName = 'SubDet.DB'
+    Left = 178
+    Top = 488
+    object tbSubDet1TID: TSmallintField
+      FieldName = 'TID'
+    end
+    object tbSubDet1SID: TSmallintField
+      FieldName = 'SID'
+    end
+    object tbSubDet1Slno: TAutoIncField
+      FieldName = 'Slno'
+      ReadOnly = True
+    end
+    object tbSubDet1subdesc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'subdesc'
+      LookupDataSet = tbSubMast
+      LookupKeyFields = 'SID'
+      LookupResultField = 'Descr'
+      KeyFields = 'SID'
+      Lookup = True
+    end
+  end
+  object tbClassDet1: TTable
+    DatabaseName = 'mydb'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'Slno'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'CID'
+        DataType = ftSmallint
+      end>
+    IndexDefs = <
+      item
+        Name = 'tbClassDet1Index1'
+        Fields = 'Slno;CID'
+        Options = [ixPrimary, ixUnique]
+      end>
+    IndexFieldNames = 'Slno'
+    MasterFields = 'Slno'
+    MasterSource = dsSubDet
+    StoreDefs = True
+    TableName = 'ClassDet.DB'
+    Left = 64
+    Top = 488
+    object tbClassDet1Slno: TSmallintField
+      FieldName = 'Slno'
+    end
+    object tbClassDet1CID: TSmallintField
+      FieldName = 'CID'
+    end
+  end
+  object dsClassDet1: TDataSource
+    DataSet = tbClassDet1
+    Left = 14
+    Top = 488
+  end
+  object tbTeacher1: TTable
+    DatabaseName = 'mydb'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'TID'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Desc'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'Sub1'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'Sub2'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'Abs'
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'AbName'
+        DataType = ftString
+        Size = 5
+      end>
+    IndexDefs = <
+      item
+        Name = 'tbTeacher1Index1'
+        Fields = 'TID'
+        Options = [ixPrimary, ixUnique]
+      end>
+    StoreDefs = True
+    TableName = 'TEACHER.DB'
+    Left = 296
+    Top = 488
+    object tbTeacher1TID: TSmallintField
+      FieldName = 'TID'
+    end
+    object tbTeacher1Desc: TStringField
+      FieldName = 'Desc'
+    end
+    object tbTeacher1Sub1: TStringField
+      FieldName = 'Sub1'
+    end
+    object tbTeacher1Sub2: TStringField
+      FieldName = 'Sub2'
+    end
+    object tbTeacher1Abs: TStringField
+      FieldName = 'Abs'
+      Size = 1
+    end
+  end
+  object dsTeacher1: TDataSource
+    DataSet = tbTeacher1
+    Left = 232
+    Top = 488
+  end
+  object tbttable1: TTable
+    OnCalcFields = tbttable1CalcFields
+    DatabaseName = 'mydb'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'Period'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Day'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'CCode'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Teacher'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'SID'
+        DataType = ftSmallint
+      end>
+    StoreDefs = True
+    TableName = 'TTABLE.DB'
+    Left = 388
+    Top = 344
+    object tbttable1Period: TSmallintField
+      FieldName = 'Period'
+    end
+    object tbttable1Day: TSmallintField
+      FieldName = 'Day'
+    end
+    object tbttable1CCode: TSmallintField
+      FieldName = 'CCode'
+    end
+    object tbttable1Teacher: TSmallintField
+      FieldName = 'Teacher'
+    end
+    object tbttable1SID: TSmallintField
+      FieldName = 'SID'
+    end
+    object tbttable1tchname: TStringField
+      FieldKind = fkLookup
+      FieldName = 'tchname'
+      LookupDataSet = tbTeacher
+      LookupKeyFields = 'TID'
+      LookupResultField = 'Desc'
+      KeyFields = 'Teacher'
+      Lookup = True
+    end
+    object tbttable1subdesc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'subdesc'
+      LookupDataSet = tbSubMast
+      LookupKeyFields = 'SID'
+      LookupResultField = 'Descr'
+      KeyFields = 'SID'
+      Lookup = True
+    end
+  end
+  object dsttable1: TDataSource
+    DataSet = tbttable1
+    Left = 353
+    Top = 344
+  end
+  object tbttable2: TTable
+    DatabaseName = 'mydb'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'Period'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Day'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'CCode'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Teacher'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'SID'
+        DataType = ftSmallint
+      end>
+    StoreDefs = True
+    TableName = 'TTABLE.DB'
+    Left = 396
+    Top = 486
+    object tbttable2Period: TSmallintField
+      FieldName = 'Period'
+    end
+    object tbttable2Day: TSmallintField
+      FieldName = 'Day'
+    end
+    object tbttable2CCode: TSmallintField
+      FieldName = 'CCode'
+    end
+    object tbttable2Teacher: TSmallintField
+      FieldName = 'Teacher'
+    end
+    object tbttable2SID: TSmallintField
+      FieldName = 'SID'
+    end
+    object tbttable2tchname: TStringField
+      FieldKind = fkLookup
+      FieldName = 'tchname'
+      LookupDataSet = tbTeacher
+      LookupKeyFields = 'TID'
+      LookupResultField = 'Desc'
+      KeyFields = 'Teacher'
+      Lookup = True
+    end
+    object tbttable2cldesc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'cldesc'
+      LookupDataSet = tbClMast_
+      LookupKeyFields = 'CLCode'
+      LookupResultField = 'Desc'
+      KeyFields = 'CCode'
+      Lookup = True
+    end
+    object tbttable2subdesc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'subdesc'
+      LookupDataSet = tbSubMast
+      LookupKeyFields = 'SID'
+      LookupResultField = 'Descr'
+      KeyFields = 'SID'
+      Lookup = True
+    end
+  end
+  object dsttable2: TDataSource
+    DataSet = tbttable2
+    Left = 353
+    Top = 486
+  end
+  object dsTabsent: TDataSource
+    DataSet = tbTabsent
+    Left = 352
+    Top = 446
+  end
+  object tbTabsent: TTable
+    AfterInsert = tbTabsentAfterInsert
+    DatabaseName = 'mydb'
+    SessionName = 'MySession'
+    TableName = 'TAbsent.db'
+    Left = 392
+    Top = 445
+    object tbTabsentSlno: TAutoIncField
+      FieldName = 'Slno'
+      ReadOnly = True
+    end
+    object tbTabsentDate: TDateField
+      FieldName = 'Date'
+    end
+    object tbTabsentTID: TSmallintField
+      FieldName = 'TID'
+    end
+    object tbTabsenttchname: TStringField
+      FieldKind = fkLookup
+      FieldName = 'tchname'
+      LookupDataSet = tbTeacher1
+      LookupKeyFields = 'TID'
+      LookupResultField = 'Desc'
+      KeyFields = 'TID'
+      Lookup = True
+    end
+  end
+  object ActionList1: TActionList
+    Left = 572
+    Top = 419
+    object dsIns: TAction
+      Caption = '&New'
+      OnExecute = dsInsExecute
+    end
+    object dsSav: TAction
+      Caption = '&Save'
+      Enabled = False
+      OnExecute = dsSavExecute
+    end
+  end
+  object dummyT: TTable
+    DatabaseName = 'MyDB'
+    SessionName = 'MySession'
+    TableName = 'dummy.db'
+    Left = 392
+    Top = 398
+    object AutoIncField1: TAutoIncField
+      FieldName = 'ItemCode'
+      ReadOnly = True
+    end
+    object StringField2: TStringField
+      FieldName = 'Descr'
+      Size = 30
+    end
+    object CurrencyField1: TCurrencyField
+      FieldName = 'Rte'
+    end
+  end
+  object StfApplnT: TTable
+    AfterOpen = StfApplnTAfterEdit
+    AfterInsert = StfApplnTAfterInsert
+    AfterEdit = StfApplnTAfterEdit
+    AfterPost = StfApplnTAfterEdit
+    BeforeCancel = StfApplnTBeforeCancel
+    AfterCancel = StfApplnTAfterEdit
+    BeforeDelete = StfApplnTBeforeDelete
+    AfterDelete = StfApplnTAfterEdit
+    DatabaseName = 'mydb'
+    SessionName = 'MySession'
+    TableName = 'StfAppln.DB'
+    Left = 478
+    Top = 8
+    object StfApplnTAppln_No: TIntegerField
+      FieldName = 'Appln_No'
+    end
+    object StfApplnTJob_1: TStringField
+      DisplayWidth = 15
+      FieldName = 'Job_1'
+    end
+    object StfApplnTName_1: TStringField
+      DisplayWidth = 25
+      FieldName = 'Name_1'
+      Size = 25
+    end
+    object StfApplnTDOB: TDateField
+      FieldName = 'DOB'
+    end
+    object StfApplnTAddr_1: TMemoField
+      FieldName = 'Addr_1'
+      BlobType = ftMemo
+      Size = 5
+    end
+    object StfApplnTTel_No_1: TStringField
+      FieldName = 'Tel_No_1'
+      Size = 15
+    end
+    object StfApplnTPOB: TStringField
+      FieldName = 'POB'
+      Size = 15
+    end
+    object StfApplnTNationality: TStringField
+      FieldName = 'Nationality'
+      Size = 15
+    end
+    object StfApplnTMar_Stat: TStringField
+      FieldName = 'Mar_Stat'
+      Size = 10
+    end
+    object StfApplnTChild_No: TSmallintField
+      FieldName = 'Child_No'
+    end
+    object StfApplnTName_2: TStringField
+      FieldName = 'Name_2'
+      Size = 25
+    end
+    object StfApplnTOccupation: TStringField
+      FieldName = 'Occupation'
+      Size = 15
+    end
+    object StfApplnTAddr_2: TMemoField
+      FieldName = 'Addr_2'
+      BlobType = ftMemo
+      Size = 5
+    end
+    object StfApplnTTel_No_2: TStringField
+      FieldName = 'Tel_No_2'
+      Size = 15
+    end
+    object StfApplnTPhoto: TGraphicField
+      FieldName = 'Photo'
+      BlobType = ftGraphic
+    end
+    object StfApplnTScholarship: TMemoField
+      FieldName = 'Scholarship'
+      BlobType = ftMemo
+      Size = 5
+    end
+    object StfApplnTResearch: TMemoField
+      FieldName = 'Research'
+      BlobType = ftMemo
+      Size = 5
+    end
+    object StfApplnTTot_Ex: TFloatField
+      FieldName = 'Tot_Ex'
+    end
+    object StfApplnTTeach_Ex: TFloatField
+      FieldName = 'Teach_Ex'
+    end
+    object StfApplnTAdmin_Ex: TFloatField
+      FieldName = 'Admin_Ex'
+    end
+    object StfApplnTOther_Ex: TFloatField
+      FieldName = 'Other_Ex'
+    end
+    object StfApplnTCurr_Orgn: TMemoField
+      FieldName = 'Curr_Orgn'
+      BlobType = ftMemo
+      Size = 5
+    end
+    object StfApplnTCurr_Post: TStringField
+      FieldName = 'Curr_Post'
+      Size = 15
+    end
+    object StfApplnTDOJ: TDateField
+      FieldName = 'DOJ'
+    end
+    object StfApplnTPost_Place: TStringField
+      FieldName = 'Post_Place'
+      Size = 15
+    end
+    object StfApplnTTot_Pay: TCurrencyField
+      FieldName = 'Tot_Pay'
+    end
+    object StfApplnTBasic: TCurrencyField
+      FieldName = 'Basic'
+    end
+    object StfApplnTAllowances: TCurrencyField
+      FieldName = 'Allowances'
+    end
+    object StfApplnTOthers: TCurrencyField
+      FieldName = 'Others'
+    end
+    object StfApplnTBond_: TStringField
+      FieldName = 'Bond_?'
+      Size = 3
+    end
+    object StfApplnTBond_Det: TMemoField
+      FieldName = 'Bond_Det'
+      BlobType = ftMemo
+      Size = 5
+    end
+    object StfApplnTTime_to_Join: TFloatField
+      FieldName = 'Time_to_Join'
+    end
+    object StfApplnTIllness: TStringField
+      FieldName = 'Illness'
+      Size = 3
+    end
+    object StfApplnTIll_Det: TMemoField
+      FieldName = 'Ill_Det'
+      BlobType = ftMemo
+      Size = 5
+    end
+    object StfApplnTLaw_Case: TStringField
+      FieldName = 'Law_Case'
+      Size = 3
+    end
+    object StfApplnTCase_Det: TMemoField
+      FieldName = 'Case_Det'
+      BlobType = ftMemo
+      Size = 5
+    end
+    object StfApplnTStatement: TMemoField
+      FieldName = 'Statement'
+      BlobType = ftMemo
+      Size = 5
+    end
+    object StfApplnTInterests: TMemoField
+      FieldName = 'Interests'
+      BlobType = ftMemo
+      Size = 5
+    end
+    object StfApplnTAppln_Date: TDateField
+      FieldName = 'Appln_Date'
+    end
+    object StfApplnTPath: TStringField
+      FieldName = 'Path'
+      Size = 30
+    end
+  end
+  object StfApplnD: TDataSource
+    DataSet = StfApplnT
+    Left = 441
+    Top = 8
+  end
+  object AcdT: TTable
+    BeforePost = AcdTBeforePost
+    DatabaseName = 'mydb'
+    Filter = 'Flag='#39'a'#39
+    Filtered = True
+    SessionName = 'MySession'
+    IndexFieldNames = 'Appln_No'
+    MasterFields = 'Appln_No'
+    MasterSource = StfApplnD
+    TableName = 'AcadProf.DB'
+    Left = 478
+    Top = 152
+    object AcdTAppln_No: TIntegerField
+      FieldName = 'Appln_No'
+    end
+    object AcdTSl_No: TSmallintField
+      FieldName = 'Sl_No'
+    end
+    object AcdTFlag: TStringField
+      FieldName = 'Flag'
+      Size = 1
+    end
+    object AcdTQualfn: TStringField
+      FieldName = 'Qualfn'
+      Size = 15
+    end
+    object AcdTSubj: TStringField
+      FieldName = 'Subj'
+      Size = 15
+    end
+    object AcdTInstitute: TStringField
+      FieldName = 'Institute'
+      Size = 35
+    end
+    object AcdTYear: TDateField
+      FieldName = 'Year'
+    end
+    object AcdTMarks: TFloatField
+      FieldName = 'Marks'
+    end
+    object AcdTDiv: TStringField
+      FieldName = 'Div'
+      Size = 5
+    end
+  end
+  object AcdD: TDataSource
+    DataSet = AcdT
+    Left = 441
+    Top = 152
+  end
+  object ProT: TTable
+    BeforePost = ProTBeforePost
+    DatabaseName = 'mydb'
+    Filter = 'Flag='#39'p'#39
+    Filtered = True
+    SessionName = 'MySession'
+    IndexFieldNames = 'Appln_No'
+    MasterFields = 'Appln_No'
+    MasterSource = StfApplnD
+    TableName = 'AcadProf.DB'
+    Left = 477
+    Top = 200
+    object ProTAppln_No: TIntegerField
+      FieldName = 'Appln_No'
+    end
+    object ProTSl_No: TSmallintField
+      FieldName = 'Sl_No'
+    end
+    object ProTFlag: TStringField
+      FieldName = 'Flag'
+      Size = 1
+    end
+    object ProTQualfn: TStringField
+      FieldName = 'Qualfn'
+      Size = 15
+    end
+    object ProTSubj: TStringField
+      FieldName = 'Subj'
+      Size = 15
+    end
+    object ProTInstitute: TStringField
+      FieldName = 'Institute'
+      Size = 35
+    end
+    object ProTYear: TDateField
+      FieldName = 'Year'
+    end
+    object ProTMarks: TFloatField
+      FieldName = 'Marks'
+    end
+    object ProTDiv: TStringField
+      FieldName = 'Div'
+      Size = 5
+    end
+  end
+  object ProD: TDataSource
+    DataSet = ProT
+    Left = 441
+    Top = 200
+  end
+  object BooksT: TTable
+    DatabaseName = 'mydb'
+    SessionName = 'MySession'
+    IndexFieldNames = 'Appl_No'
+    MasterFields = 'Appln_No'
+    MasterSource = StfApplnD
+    TableName = 'Books.db'
+    Left = 478
+    Top = 56
+    object BooksTAppl_No: TIntegerField
+      FieldName = 'Appl_No'
+    end
+    object BooksTSl_No: TSmallintField
+      FieldName = 'Sl_No'
+    end
+    object BooksTTitle: TStringField
+      FieldName = 'Title'
+      Size = 35
+    end
+    object BooksTAuthors: TStringField
+      FieldName = 'Authors'
+      Size = 15
+    end
+  end
+  object dsBooks: TDataSource
+    DataSet = BooksT
+    Left = 441
+    Top = 56
+  end
+  object RefsD: TDataSource
+    DataSet = RefsT
+    Left = 441
+    Top = 104
+  end
+  object RefsT: TTable
+    DatabaseName = 'mydb'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'Appl_No'
+        DataType = ftInteger
+      end
+      item
+        Name = 'SlNo'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'Name'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'Occupation'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'Addr'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'Tel_No'
+        DataType = ftString
+        Size = 15
+      end>
+    IndexDefs = <
+      item
+        Name = 'RefsTIndex1'
+        Fields = 'Appl_No;SlNo'
+        Options = [ixPrimary, ixUnique]
+      end>
+    IndexFieldNames = 'Appl_No'
+    MasterFields = 'Appln_No'
+    MasterSource = StfApplnD
+    StoreDefs = True
+    TableName = 'Refs.DB'
+    Left = 478
+    Top = 104
+    object RefsTAppl_No: TIntegerField
+      FieldName = 'Appl_No'
+    end
+    object RefsTName: TStringField
+      FieldName = 'Name'
+      Size = 15
+    end
+    object RefsTOccupation: TStringField
+      FieldName = 'Occupation'
+      Size = 15
+    end
+    object RefsTAddr: TStringField
+      FieldName = 'Addr'
+      Size = 255
+    end
+    object RefsTTel_No: TStringField
+      FieldName = 'Tel_No'
+      Size = 15
+    end
+    object RefsTSlNo: TSmallintField
+      FieldName = 'SlNo'
+    end
+  end
+  object Lang1T: TTable
+    BeforePost = Lang1TBeforePost
+    DatabaseName = 'mydb'
+    Filter = 'Tb_Flag='#39'p'#39
+    Filtered = True
+    SessionName = 'MySession'
+    IndexFieldNames = 'Appln_No'
+    MasterFields = 'Appln_No'
+    MasterSource = StfApplnD
+    TableName = 'Lang.DB'
+    Left = 481
+    Top = 248
+    object Lang1TAppln_No: TIntegerField
+      FieldName = 'Appln_No'
+    end
+    object Lang1TSl_No: TSmallintField
+      FieldName = 'Sl_No'
+    end
+    object Lang1TTb_Flag: TStringField
+      FieldName = 'Tb_Flag'
+      Size = 1
+    end
+    object Lang1TLanguage: TStringField
+      FieldName = 'Language'
+      Size = 15
+    end
+    object Lang1TRead: TStringField
+      FieldName = 'Read'
+      Size = 3
+    end
+    object Lang1TWrite: TStringField
+      FieldName = 'Write'
+      Size = 3
+    end
+    object Lang1TSpeak: TStringField
+      FieldName = 'Speak'
+      Size = 3
+    end
+  end
+  object Lang1D: TDataSource
+    DataSet = Lang1T
+    Left = 441
+    Top = 248
+  end
+  object Lang2D: TDataSource
+    DataSet = Lang2T
+    Left = 441
+    Top = 296
+  end
+  object Lang2T: TTable
+    BeforePost = Lang2TBeforePost
+    DatabaseName = 'mydb'
+    Filter = 'Tb_Flag='#39'h'#39
+    Filtered = True
+    SessionName = 'MySession'
+    IndexFieldNames = 'Appln_No'
+    MasterFields = 'Appln_No'
+    MasterSource = StfApplnD
+    TableName = 'Lang.DB'
+    Left = 481
+    Top = 296
+    object Lang2TAppln_No: TIntegerField
+      FieldName = 'Appln_No'
+    end
+    object Lang2TSl_No: TSmallintField
+      FieldName = 'Sl_No'
+    end
+    object Lang2TTb_Flag: TStringField
+      FieldName = 'Tb_Flag'
+      Size = 1
+    end
+    object Lang2TLanguage: TStringField
+      FieldName = 'Language'
+      Size = 15
+    end
+    object Lang2TRead: TStringField
+      FieldName = 'Read'
+      Size = 3
+    end
+    object Lang2TWrite: TStringField
+      FieldName = 'Write'
+      Size = 3
+    end
+    object Lang2TSpeak: TStringField
+      FieldName = 'Speak'
+      Size = 3
+    end
+  end
+  object WorkExT: TTable
+    DatabaseName = 'mydb'
+    SessionName = 'MySession'
+    IndexFieldNames = 'Appln_No'
+    MasterFields = 'Appln_No'
+    MasterSource = StfApplnD
+    TableName = 'WorkEx.db'
+    Left = 481
+    Top = 344
+    object WorkExTAppln_No: TIntegerField
+      FieldName = 'Appln_No'
+    end
+    object WorkExTSl_No: TSmallintField
+      FieldName = 'Sl_No'
+    end
+    object WorkExTInstitute: TStringField
+      FieldName = 'Institute'
+      Size = 35
+    end
+    object WorkExTFrom: TDateField
+      FieldName = 'From'
+    end
+    object WorkExTTo: TDateField
+      FieldName = 'To'
+    end
+    object WorkExTPost: TStringField
+      FieldName = 'Post'
+      Size = 15
+    end
+    object WorkExTSubj_Cls: TStringField
+      FieldName = 'Subj_Cls'
+      Size = 15
+    end
+  end
+  object WorkExD: TDataSource
+    DataSet = WorkExT
+    Left = 441
+    Top = 344
+  end
+  object SemCorD: TDataSource
+    DataSet = SemCorT
+    Left = 441
+    Top = 392
+  end
+  object SemCorT: TTable
+    DatabaseName = 'mydb'
+    SessionName = 'MySession'
+    IndexFieldNames = 'Appln_No'
+    MasterFields = 'Appln_No'
+    MasterSource = StfApplnD
+    TableName = 'SemCor.db'
+    Left = 481
+    Top = 392
+    object SemCorTAppln_No: TIntegerField
+      FieldName = 'Appln_No'
+    end
+    object SemCorTSl_No: TSmallintField
+      FieldName = 'Sl_No'
+    end
+    object SemCorTSeminar: TStringField
+      FieldName = 'Seminar'
+      Size = 15
+    end
+    object SemCorTDuration: TFloatField
+      FieldName = 'Duration'
+    end
+    object SemCorTDates: TDateField
+      FieldName = 'Dates'
+    end
+    object SemCorTDesc: TStringField
+      FieldName = 'Desc'
+      Size = 35
+    end
+  end
+  object RdBtnValD: TDataSource
+    DataSet = RdBtnValT
+    Left = 441
+    Top = 443
+  end
+  object RdBtnValT: TTable
+    DatabaseName = 'mydb'
+    SessionName = 'MySession'
+    FieldDefs = <
+      item
+        Name = 'FieldName'
+        DataType = ftString
+        Size = 30
+      end>
+    StoreDefs = True
+    TableName = 'RdBtnVal.db'
+    Left = 485
+    Top = 443
+    object RdBtnValTFieldName: TStringField
+      FieldName = 'FieldName'
+      Size = 30
+    end
+  end
+  object myconn: TMyConnection
+    Database = 'sms1'
+    Username = 'root'
+    Server = 'localhost'
+    Connected = True
+    Left = 880
+    Top = 16
+  end
+  object tbClmast: TMyTable
+    TableName = 'tbclmast'
+    Connection = myconn
+    FetchAll = True
+    Left = 880
+    Top = 80
+    object tbClmastCLCODE: TSmallintField
+      FieldName = 'CLCODE'
+    end
+    object tbClmastDESCR: TStringField
+      FieldName = 'DESCR'
+      Size = 15
+    end
+  end
+  object tbClmastS: TDataSource
+    DataSet = tbClmast
+    Left = 816
+    Top = 80
+  end
+  object ClMastS: TDataSource
+    DataSet = ClMast
+    Left = 816
+    Top = 192
+  end
+  object ClMast: TMyTable
+    TableName = 'clmast'
+    Connection = myconn
+    FetchAll = True
+    Left = 880
+    Top = 192
+    object ClMastCLCODE: TSmallintField
+      FieldName = 'CLCODE'
+      Origin = 'clmast.CLCODE'
+    end
+    object ClMastCLCAPTION: TStringField
+      FieldName = 'CLCAPTION'
+      Origin = 'clmast.CLCAPTION'
+      Size = 10
+    end
+    object ClMastDESCR: TStringField
+      FieldName = 'DESCR'
+      Origin = 'clmast.DESCR'
+      Size = 15
+    end
+    object ClMastMFEE: TFloatField
+      FieldName = 'MFEE'
+      Origin = 'clmast.MFEE'
+    end
+    object ClMastUPCLASS: TSmallintField
+      FieldName = 'UPCLASS'
+      Origin = 'clmast.UPCLASS'
+    end
+    object ClMastADFEE: TFloatField
+      FieldName = 'ADFEE'
+      Origin = 'clmast.ADFEE'
+    end
+  end
+  object catgrmastS: TDataSource
+    DataSet = catgrmast
+    Left = 816
+    Top = 312
+  end
+  object catgrmast: TMyTable
+    TableName = 'catgrmast'
+    Connection = myconn
+    FetchAll = True
+    Left = 880
+    Top = 312
+    object catgrmastCATCODE: TSmallintField
+      FieldName = 'CATCODE'
+      Origin = 'catgrmast.CATCODE'
+    end
+    object catgrmastDESCR: TStringField
+      FieldName = 'DESCR'
+      Origin = 'catgrmast.DESCR'
+    end
+  end
+  object studmastS: TDataSource
+    DataSet = studmast
+    Left = 816
+    Top = 136
+  end
+  object studmast: TMyTable
+    TableName = 'studmast'
+    Connection = myconn
+    AfterOpen = studmastAfterEdit
+    AfterInsert = studmastAfterInsert
+    AfterEdit = studmastAfterEdit
+    BeforePost = studmastBeforePost
+    AfterPost = studmastAfterEdit
+    AfterCancel = studmastAfterEdit
+    AfterDelete = studmastAfterEdit
+    OnCalcFields = studmastCalcFields
+    FetchAll = True
+    Left = 880
+    Top = 136
+    object studmastSTUDID: TFloatField
+      FieldName = 'STUDID'
+      Origin = 'studmast.STUDID'
+      EditFormat = '####/##'
+    end
+    object studmastADMNO: TStringField
+      FieldName = 'ADMNO'
+      Origin = 'studmast.ADMNO'
+      Size = 10
+    end
+    object studmastNAME: TStringField
+      FieldName = 'NAME'
+      Origin = 'studmast.NAME'
+      Size = 40
+    end
+    object studmastCLCODE: TSmallintField
+      FieldName = 'CLCODE'
+      Origin = 'studmast.CLCODE'
+    end
+    object studmastROLLNO: TFloatField
+      FieldName = 'ROLLNO'
+      Origin = 'studmast.ROLLNO'
+    end
+    object studmastSECTION: TStringField
+      FieldName = 'SECTION'
+      Origin = 'studmast.SECTION'
+      Size = 2
+    end
+    object studmastDOB: TDateField
+      FieldName = 'DOB'
+      Origin = 'studmast.DOB'
+    end
+    object studmastSEX: TStringField
+      FieldName = 'SEX'
+      Origin = 'studmast.SEX'
+      Size = 1
+    end
+    object studmastGNAME: TStringField
+      FieldName = 'GNAME'
+      Origin = 'studmast.GNAME'
+      Size = 40
+    end
+    object studmastFNAME: TStringField
+      FieldName = 'FNAME'
+      Origin = 'studmast.FNAME'
+      Size = 40
+    end
+    object studmastMNAME: TStringField
+      FieldName = 'MNAME'
+      Origin = 'studmast.MNAME'
+      Size = 40
+    end
+    object studmastLADDR: TMemoField
+      FieldName = 'LADDR'
+      Origin = 'studmast.LADDR'
+      BlobType = ftMemo
+    end
+    object studmastPADDR: TMemoField
+      FieldName = 'PADDR'
+      Origin = 'studmast.PADDR'
+      BlobType = ftMemo
+    end
+    object studmastCATCODE: TFloatField
+      FieldName = 'CATCODE'
+      Origin = 'studmast.CATCODE'
+    end
+    object studmastDOA: TDateField
+      FieldName = 'DOA'
+      Origin = 'studmast.DOA'
+    end
+    object studmastAGE: TStringField
+      FieldName = 'AGE'
+      Origin = 'studmast.AGE'
+    end
+    object studmastPHOTO: TBlobField
+      FieldName = 'PHOTO'
+      Origin = 'studmast.PHOTO'
+    end
+    object studmastNOTERMS: TFloatField
+      FieldName = 'NOTERMS'
+      Origin = 'studmast.NOTERMS'
+    end
+    object studmastPHONE: TStringField
+      FieldName = 'PHONE'
+      Origin = 'studmast.PHONE'
+    end
+    object studmastEML: TStringField
+      FieldName = 'EML'
+      Origin = 'studmast.EML'
+      Size = 35
+    end
+    object studmastM_PHONE: TStringField
+      FieldName = 'M_PHONE'
+      Origin = 'studmast.M_PHONE'
+    end
+    object studmastRELIGION: TStringField
+      FieldName = 'RELIGION'
+      Origin = 'studmast.RELIGION'
+      Size = 15
+    end
+    object studmastCASTE: TStringField
+      FieldName = 'CASTE'
+      Origin = 'studmast.CASTE'
+      Size = 15
+    end
+    object studmastNOFSB: TStringField
+      FieldName = 'NOFSB'
+      Origin = 'studmast.NOFSB'
+      Size = 30
+    end
+    object studmastF_OCCP: TStringField
+      FieldName = 'F_OCCP'
+      Origin = 'studmast.F_OCCP'
+      Size = 40
+    end
+    object studmastF_QUAL: TStringField
+      FieldName = 'F_QUAL'
+      Origin = 'studmast.F_QUAL'
+      Size = 40
+    end
+    object studmastM_QUAL: TStringField
+      FieldName = 'M_QUAL'
+      Origin = 'studmast.M_QUAL'
+    end
+    object studmastM_OCCP: TStringField
+      FieldName = 'M_OCCP'
+      Origin = 'studmast.M_OCCP'
+    end
+    object studmastSCHLAST: TStringField
+      FieldName = 'SCHLAST'
+      Origin = 'studmast.SCHLAST'
+      Size = 30
+    end
+    object studmastBLOODGROUP: TStringField
+      FieldName = 'BLOODGROUP'
+      Origin = 'studmast.BLOODGROUP'
+      Size = 15
+    end
+    object studmastHOUSE: TStringField
+      FieldName = 'HOUSE'
+      Origin = 'studmast.HOUSE'
+      Size = 25
+    end
+    object studmastMTOUNGE: TStringField
+      FieldName = 'MTOUNGE'
+      Origin = 'studmast.MTOUNGE'
+      Size = 15
+    end
+    object studmastBYBUS: TBooleanField
+      FieldName = 'BYBUS'
+      Origin = 'studmast.BYBUS'
+    end
+    object studmastREMARK: TMemoField
+      FieldName = 'REMARK'
+      Origin = 'studmast.REMARK'
+      BlobType = ftMemo
+    end
+    object studmastUPGRDYR: TStringField
+      FieldName = 'UPGRDYR'
+      Origin = 'studmast.UPGRDYR'
+      Size = 2
+    end
+    object studmastADM_CL: TSmallintField
+      FieldName = 'ADM_CL'
+      Origin = 'studmast.ADM_CL'
+    end
+    object studmastPATH: TStringField
+      FieldName = 'PATH'
+      Origin = 'studmast.PATH'
+      Size = 30
+    end
+    object studmastAmd_cl_desc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Amd_cl_desc'
+      LookupDataSet = ClMast
+      LookupKeyFields = 'CLCODE'
+      LookupResultField = 'DESCR'
+      KeyFields = 'ADM_CL'
+      Lookup = True
+    end
+    object studmastcl_caption: TStringField
+      FieldKind = fkLookup
+      FieldName = 'cl_caption'
+      LookupDataSet = ClMast
+      LookupKeyFields = 'CLCODE'
+      LookupResultField = 'CLCAPTION'
+      KeyFields = 'CLCODE'
+      Lookup = True
+    end
+    object studmastcatDesc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'catDesc'
+      LookupDataSet = catgrmast
+      LookupKeyFields = 'CATCODE'
+      LookupResultField = 'DESCR'
+      KeyFields = 'CATCODE'
+      Lookup = True
+    end
+    object studmaststMfee: TCurrencyField
+      FieldKind = fkLookup
+      FieldName = 'stMfee'
+      LookupDataSet = ClMast
+      LookupKeyFields = 'CLCODE'
+      LookupResultField = 'MFEE'
+      KeyFields = 'CLCODE'
+      Lookup = True
+    end
+    object studmaststClDesc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'stClDesc'
+      LookupDataSet = ClMast
+      LookupKeyFields = 'CLCODE'
+      LookupResultField = 'DESCR'
+      KeyFields = 'CLCODE'
+      Lookup = True
+    end
+    object studmastcage: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'cage'
+      Size = 40
+      Calculated = True
+    end
+  end
+  object tmpClmastS: TDataSource
+    DataSet = tmpClmast
+    Left = 816
+    Top = 248
+  end
+  object tmpClmast: TMyTable
+    TableName = 'tmpclmast'
+    Connection = myconn
+    FetchAll = True
+    Left = 880
+    Top = 248
+    object tmpClmastclcode: TWordField
+      FieldName = 'clcode'
+    end
+  end
+end

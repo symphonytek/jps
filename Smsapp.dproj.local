@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899-12-30 00:00:00.000.743,F:\proj\school\jps\frmRelationsU.dfm=F:\proj\school\jps\Unit1.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.111,F:\proj\school\jps\frmDocTypeU.pas=F:\proj\school\jps\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.201,F:\proj\school\jps\frmHandicapU.pas=F:\proj\school\jps\frmCompanyU.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.637,F:\proj\school\jps\frmAdmStudMastU.pas=F:\proj\school\jps\frmStudMastU.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.271,F:\proj\school\jps\frmAdmStudMastU.pas=F:\proj\school\jps\frmAdmStudMastXIU.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.509,=F:\proj\school\jps\frmAdmStudMastU.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.835,=F:\proj\school\jps\Smsapp.todo</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.934,=F:\proj\school\jps\frmXlclasslistU.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.452,=C:\proj\school\jps\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.159,F:\proj\school\jps\frmRepMastU.pas=F:\proj\school\jps\frmCatMastU.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.953,F:\proj\school\jps\frmBounceU.dfm=F:\proj\school\jps\Unit1.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.937,=F:\proj\school\jps\frmCatMastU.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.595,F:\proj\school\jps\frmXlclasslistU.pas=F:\proj\school\jps\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.783,F:\proj\school\jps\frmCompanyU.dfm=F:\proj\school\jps\frmRelationsU.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.621,=F:\proj\school\jps\frmStudMastU.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.246,F:\proj\school\jps\qrpTCu.pas=</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.743,F:\proj\school\jps\frmRelationsU.pas=F:\proj\school\jps\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.124,=F:\proj\school\jps\frmRelationsU.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.102,F:\proj\school\jps\frmXlreportU.pas=F:\proj\school\jps\frmXlclasslistU.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.028,=F:\proj\school\jps\frmAutoRejU.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.787,F:\proj\school\jps\Unit1.dfm=F:\proj\school\jps\frmDueDtU.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.242,F:\proj\school\jps\Unit1.dfm=F:\proj\school\jps\frmDailyAttndU.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.161,F:\proj\school\jps\Unit1.dfm=F:\proj\school\jps\frmAdmitCardU.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.652,F:\proj\school\jps\frmAutoRejU.pas=</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.662,=F:\proj\school\jps\frmCompanyU.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.783,F:\proj\school\jps\frmCompanyU.pas=F:\proj\school\jps\frmRelationsU.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.959,=F:\proj\school\jps\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.574,C:\proj\school\jps\frmAdHocU.pas=C:\proj\school\jps\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.657,=C:\proj\school\jps\frmSMSSendU.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.327,=F:\proj\school\jps\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.850,=F:\proj\school\jps\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.235,=F:\proj\school\jps\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.102,F:\proj\school\jps\frmXlreportU.dfm=F:\proj\school\jps\frmXlclasslistU.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.637,F:\proj\school\jps\frmAdmStudMastU.dfm=F:\proj\school\jps\frmStudMastU.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.271,F:\proj\school\jps\frmAdmStudMastU.dfm=F:\proj\school\jps\frmAdmStudMastXIU.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.916,F:\proj\school\jps\frmAdmitCardU.dfm=F:\proj\school\jps\frmAdmitCardOthU.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.727,=F:\proj\school\jps\frmFrmSellU.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.201,F:\proj\school\jps\frmHandicapU.dfm=F:\proj\school\jps\frmCompanyU.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.159,F:\proj\school\jps\frmRepMastU.dfm=F:\proj\school\jps\frmCatMastU.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.574,C:\proj\school\jps\frmAdHocU.dfm=C:\proj\school\jps\Unit1.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.551,=F:\proj\school\jps\frmAdmitCardU.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.916,F:\proj\school\jps\frmAdmitCardU.pas=F:\proj\school\jps\frmAdmitCardOthU.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.595,F:\proj\school\jps\frmXlclasslistU.dfm=F:\proj\school\jps\Unit1.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.953,F:\proj\school\jps\frmBounceU.pas=F:\proj\school\jps\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.111,F:\proj\school\jps\frmDocTypeU.dfm=F:\proj\school\jps\Unit1.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.002,=F:\proj\school\jps\frmAdmLocU.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.591,=F:\proj\school\jps\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.242,F:\proj\school\jps\Unit1.pas=F:\proj\school\jps\frmDailyAttndU.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.787,F:\proj\school\jps\Unit1.pas=F:\proj\school\jps\frmDueDtU.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.789,=F:\proj\school\jps\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.161,F:\proj\school\jps\Unit1.pas=F:\proj\school\jps\frmAdmitCardU.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.157,=F:\proj\school\jps\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

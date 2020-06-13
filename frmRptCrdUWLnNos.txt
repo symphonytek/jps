@@ -1,0 +1,216 @@
+unit frmRptCrdU;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ComCtrls, StdCtrls, Buttons,DB, ExtCtrls, DBCtrls, Grids,
+  DBGrids, dbcgrids;
+
+type
+  TfrmRptCrd = class(TForm)
+    btnList: TSpeedButton;
+    BitBtn1: TBitBtn;
+    REdit: TRichEdit;
+    Bevel1: TBevel;
+    Label3: TLabel;
+    dbfilter: TDBLookupComboBox;
+    btnPrint: TBitBtn;
+    Memo1: TMemo;
+    DBGrid1: TDBGrid;
+    DBCtrlGrid1: TDBCtrlGrid;
+    DBText1: TDBText;
+    DBCheckBox1: TDBCheckBox;
+    DBText2: TDBText;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label4: TLabel;
+    RdGp2: TDBRadioGroup;
+    Label5: TLabel;
+    edPgSz: TEdit;
+    StaticText1: TStaticText;
+    REdt: TRichEdit;
+    Label6: TLabel;
+    CBx1: TComboBox;
+    procedure btnListClick(Sender: TObject);
+    procedure btnPrintClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    kpTbOpn: Boolean;
+    sntBy: String;
+  end;
+
+var
+  frmRptCrd: TfrmRptCrd;
+
+implementation
+
+uses genperfU, exmdataU, myfuncU;
+
+{$R *.dfm}
+procedure TfrmRptCrd.btnListClick(Sender: TObject);
+const
+grdAr: array[0..26] of String=('Absent','A','B','C','D','E','F','G','H','I',
+                               'J','K','L','M','N','O','P','Q','R','S','T',
+                               'U','V','W','X','Y','Z');
+var
+i,j,k,l,lnCnt,cnt,pgSz,smRc,xmDtRc,xSMRc1,xSMRc2,x1:integer;
+mksFrXm: array of array of array of String;//real;
+studAr,subAr: array of array of String;//real;
+xmAr: array of String;
+tmpStr,tmpStr1,tmpStr2,yrStr: String;
+wdStr:AnsiString;
+bMk1: TBookMark;
+yr,mon,dy:word;
+tempdate:tdatetime;
+begin                                               //exmdata.exmMast.Filter:='Slct=''True''';
+pgSz:=trunc(strtoint(edPgSz.Text)*12/strtoint(rdgp2.Value)); x1:=1;
+if sntBy='frmSht'then
+begin
+exmdata.QrByBus.SQL[14]:='AND StudId = '+exmdata.SheetdetStudId.AsString;
+exmdata.Query4.SQL[7]:='AND StudId = '+exmdata.SheetdetStudId.AsString; sntBy:='';
+end
+else
+begin exmdata.QrByBus.SQL[14]:=''; exmdata.Query4.SQL[7]:=''; end;
+if exmdata.exmMast.State in [dsEdit] then
+begin exmdata.exmMast.Post;bMk1:=exmdata.exmMast.GetBookmark;
+ exmdata.exmMast.Close;exmdata.exmMast.Open;exmdata.exmMast.GotoBookmark(bMk1);end;//exmdata.exmMast.Filtered:=True;
+exmdata.Query1.Open;smRc:=exmdata.Query1maxm.AsInteger;exmdata.Query1.Close;
+exmdata.Query2.Open;xmDtRc:=exmdata.Query2maxm.Value;exmdata.Query2.Close;
+exmdata.Query3.Open;xSMRc1:=exmdata.Query3maxS.Value;xSMRc2:=exmdata.Query3maxC.Value;
+exmdata.Query3.Close;
+i:=smRc+1; j:=xmDtRc+1; k:=xSMRc1+1; l:=xSMRc2+1; tmpStr1:='                      ';
+exmdata.Query5.Open;exmdata.Query6.Open;exmdata.Query7.Open; {smRc:=exmdata.StudMast.RecordCount;xmDtRc:=exmdata.exmMast.RecordCount;xSMRc:=exmdata.exsubmast1.RecordCount;}
+setlength(mksFrXm,i,j,k);setlength(studAr,5,i);setlength(xmAr,j);
+setlength(subAr,l,k);                             //exmdata.StudMast.First;//i:=1;
+while not exmdata.Query5.Eof do
+begin
+i:=exmdata.Query5StudId.AsInteger;
+studAr[0,i]:=exmdata.Query5Name.Value;studAr[1,i]:=exmdata.Query5AdmNo.Value;
+studAr[2,i]:=exmdata.Query5clCaption.Value;
+studAr[3,i]:=exmdata.Query5Section.Value;
+studAr[4,i]:=exmdata.Query5RollNo.AsString;exmdata.Query5.Next;
+end; //showmessage('1');  exmdata.exmMast.First;//j:=1;
+while not exmdata.Query6.Eof do
+begin
+j:=exmdata.Query6ExmId.AsInteger;
+xmAr[j]:=exmdata.Query6Exmdesc.Value;exmdata.Query6.Next;
+tmpStr1:=tmpStr1+'   '+xmAr[j];
+end;  //showmessage('2');   exmdata.exsubmast1.First;//k:=1;
+while not exmdata.Query7.Eof do
+begin
+k:=exmdata.Query7SubjId.AsInteger;
+l:=exmdata.Query7ClCode.Value;
+subAr[l,k]:=exmdata.Query7Subjdesc.Value;exmdata.Query7.Next;
+end;   //showmessage('3');exmdata.exmMast.Filtered:=False;
+decodedate(exmdata.Query6Exmdate.Value,yr,mon,dy);
+exmdata.Query5.Close;exmdata.Query6.Close;exmdata.Query7.Close;
+//Redit.Lines.clear;
+if dbfilter.Text<>'' then
+begin
+exmdata.QrByBus.Filter:='ClCode='+QuotedStr(dbfilter.KeyValue);
+exmdata.Query4.Filter:='ClCode='+QuotedStr(dbfilter.KeyValue);tmpStr2:=' AND ';
+end
+else begin exmdata.QrByBus.Filter:='';exmdata.Query4.Filter:='';tmpStr2:='';end;
+if CBx1.Text<>'' then
+begin
+exmdata.QrByBus.Filter:=exmdata.QrByBus.Filter+tmpStr2+'Section='+
+                                      QuotedStr(CBx1.Text);
+exmdata.Query4.Filter:=exmdata.Query4.Filter+tmpStr2+'Section='+
+                                      QuotedStr(CBx1.Text);
+end
+else begin exmdata.QrByBus.Filter:=exmdata.Query4.Filter;
+exmdata.Query4.Filter:=exmdata.QrByBus.Filter;end;       //showmessage(exmdata.QrByBus.Filter+#13+#10+inttostr(x1)++exmdata.Query4.Filter);
+exmdata.QrByBus.Open; //showmessage('3a');
+while not exmdata.QrByBus.Eof do
+begin
+i:=exmdata.QrByBusStudId.AsInteger; j:=exmdata.QrByBusExmId.Value;
+k:=exmdata.QrByBusSubId.Value;
+if(exmdata.QrByBusMarks.Value<0)or(exmdata.QrByBusMarks.IsNull)then
+ mksFrXm[i,j,k]:=grdAr[abs(exmdata.QrByBusMarks.AsInteger)]
+else mksFrXm[i,j,k]:=exmdata.QrByBusMarks.AsString; exmdata.QrByBus.Next;
+end; //showmessage('4');  exmdata.Query4.Params[0].AsInteger:=
+if mon<strtoint(genperf.edtsession.text)then yr:=yr-1;
+tempdate:=encodedate(yr,mon,dy);
+yrStr:=copy(datetostr(tempdate),length(datetostr(tempdate))-1,2);
+//tmpStr2:='';for lnCnt:=1 to pgSz do tmpStr2:=tmpStr2+#13+#10+inttostr(x1)+;
+exmdata.Query4.Open; wdStr:=inttostr(x1);inc(x1);
+while not exmdata.Query4.Eof do     //{for i:=1 to smRc do
+begin
+cnt:=11; i:=exmdata.Query4StudId.AsInteger; wdStr:=wdStr+#13+#10+inttostr(x1);inc(x1);
+wdStr:=wdStr+#14+padc('REPORT CARD FOR '''+yrStr+#13+#10+inttostr(x1)+'~~~~~~~~~~~~~~~~~~~~',40);inc(x1);
+wdStr:=wdStr+#13+#10+inttostr(x1);inc(x1);
+wdStr:=wdStr+#13+#10+inttostr(x1)+format(' Name  : %-40s   Adm. No. : %10s',
+                       [studAr[0,i],studAr[1,i]]);inc(x1); wdStr:=wdStr+#13+#10+inttostr(x1);inc(x1);
+wdStr:=wdStr+#13+#10+inttostr(x1)+format(' Class : %-15s   Sec : %-13s      Roll No. : %3s',
+                       [studAr[2,i],studAr[3,i],studAr[4,i]]);inc(x1);
+wdStr:=wdStr+#13+#10+inttostr(x1);inc(x1);wdStr:=wdStr+#13+#10+inttostr(x1)+tmpStr1;inc(x1);wdStr:=wdStr+#13+#10+inttostr(x1);inc(x1);
+for k:=1 to xSMRc1 do
+begin tmpStr:=format(' %-20s ',[subAr[exmdata.Query4ClCode.Value,k]]);
+if subAr[exmdata.Query4ClCode.Value,k]<>''then
+begin
+for j:=1 to xmDtRc do
+begin                          //showmessage(inttostr(i)+' '+ inttostr(k)+' '+ inttostr(j)+'   '+mksFrXm[i,j,k]);
+if mksFrXm[i,j,k]<>''then
+tmpStr:=tmpStr+format('   %'+inttostr(length(xmAr[j]))+'s',[mksFrXm[i,j,k]]);
+end;
+wdStr:=wdStr+#13+#10+inttostr(x1)+tmpStr;inc(x1);inc(cnt);
+end; //...if tmpStr<>
+end; //...for k:=
+//setlength(tmpStr2,pgSz-cnt);
+tmpStr2:='';
+for lnCnt:=1 to pgSz-cnt do begin tmpStr2:=tmpStr2+#13+#10+inttostr(x1);inc(x1);end;//Redit.Lines.add('');
+wdStr:=wdStr+#13+#10+inttostr(x1)+tmpStr2;inc(x1);
+wdStr:=wdStr+'     Class Teacher                                     Principal';
+wdStr:=wdStr+#13+#10+inttostr(x1);inc(x1);
+exmdata.Query4.Next;
+end; //  ShowMessage(inttostr(Redit.Lines.Count));
+exmdata.Query4.Close; exmdata.QrByBus.close;
+Redit.Lines.Clear;
+Redit.Lines.Add(wdStr);wdStr:='';
+end;
+
+procedure TfrmRptCrd.btnPrintClick(Sender: TObject);
+begin
+try
+  if Redit.GetTextLen>1 then
+  begin
+  Redt.Lines.Add(#27#67+chr(strtoint(edPgSz.Text))+#27#65+
+                      chr(strtoint(rdgp2.Value)));//+#27#78+chr(strtoint(genperf.edit4.Text)*2)+chr(14)+padc(genperf.edit1.text,32)+ ;
+  Redt.Lines.Add(Redit.Text);        {ShowMessage(inttostr(Redit.Lines.Count)+' '+inttostr(Redt.Lines.Count));}
+  memo1.Lines.SaveToFile('PRN');
+  Redt.Lines.SaveToFile('PRN');
+  Redt.Lines.Clear;
+  end
+  else
+  showmessage('Nothing to print');
+except
+  Redt.Lines.Clear;
+  ShowMessage('Printer not responding');
+end;
+end;
+
+procedure TfrmRptCrd.FormActivate(Sender: TObject);
+begin
+btnList.Caption:='&Report'+#13+'Card  '; dbfilter.KeyValue:=-999;
+exmdata.CLMast.Open;exmdata.RdBtnValT.Open;
+exmdata.exmmast.Open;RdGp2.ItemIndex:=0;RdGp2.Value:='12';
+//ShowMessage(RdGp2.Value)
+end;
+
+procedure TfrmRptCrd.FormClose(Sender: TObject; var Action: TCloseAction);
+begin dbfilter.KeyValue:=-999; CBx1.Text:=''; exmdata.RdBtnValT.Close;
+if not kpTbOpn then begin exmdata.exmmast.Close;exmdata.CLMast.Close; end;
+end;
+
+end.
+
+
+
+
+
+

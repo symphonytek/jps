@@ -1,0 +1,343 @@
+unit exmdataU;
+
+interface
+
+uses
+  SysUtils, Classes, DB, DBTables, ActnList, DBActns,Inifiles, DBAccess,
+  MyAccess, MemDS, frxClass, frxDBSet;
+
+type
+  Texmdata = class(TDataModule)
+    CLMast: TMyTable;
+    CLMastClCode: TSmallintField;
+    CLMastClcaption: TStringField;
+    CLMastDesc: TStringField;
+    CLMastMfee: TCurrencyField;
+    CLMastUPClass: TSmallintField;
+    CLMastAdfee: TCurrencyField;
+    CLMastS: TDataSource;
+    StudMast: TMyTable;
+    StudMastStudID: TFloatField;
+    StudMastName: TStringField;
+    StudMastRollNo: TFloatField;
+    StudMastSection: TStringField;
+    StudMastDOB: TDateField;
+    StudMastSex: TStringField;
+    StudMastGName: TStringField;
+    StudMastFname: TStringField;
+    StudMastLAddr: TMemoField;
+    StudMastPAddr: TMemoField;
+    StudMastCatCode: TFloatField;
+    StudMastDOA: TDateField;
+    StudMastAge: TStringField;
+    StudMastPhoto: TGraphicField;
+    StudMaststCLDESC: TStringField;
+    StudMaststMfee: TCurrencyField;
+    StudMastPhone: TStringField;
+    StudMastEml: TStringField;
+    StudMastClCode: TSmallintField;
+    StudMastNOTERMS: TFloatField;
+    StudMastM_Phone: TStringField;
+    StudMastAdm_Cl: TSmallintField;
+    StudMastReligion: TStringField;
+    StudMastCast: TStringField;
+    StudMastF_occp: TStringField;
+    StudMastF_qual: TStringField;
+    StudMastM_qual: TStringField;
+    StudMastM_occp: TStringField;
+    StudMastSchLast: TStringField;
+    StudMastBloodGroup: TStringField;
+    StudMastMname: TStringField;
+    StudMastclCaption: TStringField;
+    StudMastHouse: TStringField;
+    StudMastMtounge: TStringField;
+    StudMastRemark: TMemoField;
+    StudMastByBus: TBooleanField;
+    StudMastAmd_cl_desc: TStringField;
+    StudMastUpGrdyr: TStringField;
+    StudMastAdmNo: TStringField;
+    StudMastPath: TStringField;
+    StudMastS: TDataSource;
+    exsubmast: TMyTable;
+    exsubmastS: TDataSource;
+    marksdet: TMyTable;
+    marksdetS: TDataSource;
+    marksdetSlno: TAutoIncField;
+    marksdetStudid: TFloatField;
+    marksdetExmid: TSmallintField;
+    marksdetSubid: TSmallintField;
+    marksdetMarks: TFloatField;
+    exmmast: TMyTable;
+    exmmastS: TDataSource;
+    exmmastExmid: TAutoIncField;
+    exmmastExmdesc: TStringField;
+    exmmastExmdate: TDateField;
+    exsubmast1: TMyTable;
+    exsubmast1S: TDataSource;
+    exsubmast1Subjid: TAutoIncField;
+    exsubmast1Clcode: TSmallintField;
+    exsubmast1Subjdesc: TStringField;
+    exsubmast1Fmarks: TSmallintField;
+    exsubmast1Pmarks: TSmallintField;
+    exsubmast1Cont: TBooleanField;
+    ActionList1: TActionList;
+    dsins: TDataSetInsert;
+    dspost: TDataSetPost;
+    excldet: TMyTable;
+    excldetS: TDataSource;
+    excldetExid: TFloatField;
+    excldetClid: TFloatField;
+    sheet: TMyTable;
+    sheetS: TDataSource;
+    sheetClcode: TSmallintField;
+    sheetExmid: TSmallintField;
+    sheetSubid: TSmallintField;
+    sheetexdescr: TStringField;
+    sheetSection: TStringField;
+    sheetdet: TMyTable;
+    sheetdetS: TDataSource;
+    sheetdetStudId: TFloatField;
+    sheetdetMarks: TFloatField;
+    sheetdetstudName: TStringField;
+    qryCllist: TMyQuery;
+    excldetcldescr: TStringField;
+    sheetcldescr: TStringField;
+    sheetsubdescr: TStringField;
+    sheetcldes: TStringField;
+    sheetsubdes: TStringField;
+    sheetdetAdmNo: TStringField;
+    sheetdetRlNo: TFloatField;
+    QrByBus: TMyQuery;
+    DS1: TDataSource;
+    QrByBusName: TStringField;
+    QrByBusSubjdesc: TStringField;
+    QrByBusMarks: TFloatField;
+    QrByBusAdmNo: TStringField;
+    QrByBusRlNo: TFloatField;
+    QrByBusClCode: TSmallintField;
+    QrByBusStudId: TFloatField;
+    QrByBusSubId: TSmallintField;
+    QrByBusExmId: TSmallintField;
+    Query1: TMyQuery;
+    Query2: TMyQuery;
+    Query3: TMyQuery;
+    Query2maxm: TIntegerField;
+    QrByBusSection: TStringField;
+    Query4: TMyQuery;
+    Query4studid: TFloatField;
+    Query4cnt: TIntegerField;
+    QrByBusClcaption: TStringField;
+    Query4ClCode: TSmallintField;
+    Query4Section: TStringField;
+    Query4RlNo: TFloatField;
+    exmmastSlct: TBooleanField;
+    Query5: TMyQuery;
+    Query6: TMyQuery;
+    Query6Exmid: TIntegerField;
+    Query6Exmdesc: TStringField;
+    Query6Exmdate: TDateField;
+    Query5Name: TStringField;
+    Query5clCaption: TStringField;
+    Query5Section: TStringField;
+    Query7: TMyQuery;
+    Query7Subjid: TIntegerField;
+    Query7Clcode: TSmallintField;
+    Query7Subjdesc: TStringField;
+    Query7Fmarks: TSmallintField;
+    Query7Pmarks: TSmallintField;
+    Query7Cont: TBooleanField;
+    Query5StudId: TFloatField;
+    Query3maxS: TIntegerField;
+    Query3maxC: TSmallintField;
+    Query5RollNo: TFloatField;
+    RdBtnValD: TDataSource;
+    RdBtnValT: TMyTable;
+    RdBtnValTFieldName: TStringField;
+    Query8: TMyQuery;
+    Query8subid: TSmallintField;
+    Query8studid: TFloatField;
+    qrySrch: TMyQuery;
+    qrySrchS: TDataSource;
+    qrySrchSection: TStringField;
+    qrySrchExmdesc: TStringField;
+    qrySrchExmdate: TDateField;
+    qrySrchClcaption: TStringField;
+    qrySrchSubjdesc: TStringField;
+    Query9: TMyQuery;
+    Query9studid: TFloatField;
+    Query9ExmId: TSmallintField;
+    Query9tot: TIntegerField;
+    Query10: TMyQuery;
+    Query10studid: TFloatField;
+    Query10tot: TIntegerField;
+    Query5DoB: TDateField;
+    Query8tot: TIntegerField;
+    Query2minm: TIntegerField;
+    Query3minS: TIntegerField;
+    QrByBusDoB: TDateField;
+    qrySrchSheetId: TFloatField;
+    Query11: TMyQuery;
+    exmmastOINFO: TStringField;
+    exmmastEXDT: TStringField;
+    Query11maxm: TLargeintField;
+    Query10ucTot: TFloatField;
+    Query8ucTot: TFloatField;
+    Query9ucTot: TFloatField;
+    qrytemp: TMyQuery;
+    sheetSHEETID: TIntegerField;
+    sheetlocked: TLargeintField;
+    sheetpasswd: TStringField;
+    sheetdetSHEETID: TIntegerField;
+    QrByBusSheetId: TIntegerField;
+    Query8rollno: TFloatField;
+    Query9rollno: TFloatField;
+    Query10rollno: TFloatField;
+    Query1maxm: TFloatField;
+    qryMsheet: TMyQuery;
+    frxRpt: TfrxReport;
+    frxDBqryMsheet: TfrxDBDataset;
+    qryMsheetname: TStringField;
+    qryMsheetrlno: TFloatField;
+    qryMsheetsubjdesc: TStringField;
+    qryMsheetmarks: TFloatField;
+    frxRepcard: TfrxReport;
+    frxUDSslist: TfrxUserDataSet;
+    Query7SUBGROUP: TStringField;
+    qryStudlist: TMyQuery;
+    qryMarks: TMyQuery;
+    dsStudlist: TMyDataSource;
+    dsMarks: TMyDataSource;
+    qryStudlistName: TStringField;
+    qryStudlistAdmNo: TStringField;
+    qryStudlistclCaption: TStringField;
+    qryStudlistSection: TStringField;
+    qryStudlistStudId: TFloatField;
+    qryStudlistRollNo: TFloatField;
+    qryStudlistDoB: TDateField;
+    frxDBstudlist: TfrxDBDataset;
+    frxDBMarks: TfrxDBDataset;
+    qrySubgroup: TMyQuery;
+    dsSubgroup: TMyDataSource;
+    qrySubgroupstudid: TFloatField;
+    qrySubgroupSUBGROUP: TStringField;
+    frxDBSubgroup: TfrxDBDataset;
+    qrySubgroupgrdmsg: TStringField;
+    exsubgroup: TMyTable;
+    exsubgroupS: TDataSource;
+    exsubmastSUBJID: TIntegerField;
+    exsubmastCLCODE: TSmallintField;
+    exsubmastSUBJDESC: TStringField;
+    exsubmastFMARKS: TSmallintField;
+    exsubmastPMARKS: TSmallintField;
+    exsubmastCONT: TBooleanField;
+    exsubmastSUBGRPID: TSmallintField;
+    exsubgroupSUBGRPID: TSmallintField;
+    exsubgroupSUBGROUP: TStringField;
+    exsubgroupGRDMSG: TStringField;
+    exsubmastSUBGROUP: TStringField;
+    qrySubgroupsubgrpid: TSmallintField;
+    qryMarksGrd: TMyQuery;
+    frxDBMarksGrd: TfrxDBDataset;
+    qryMarksGrdSTUDID: TFloatField;
+    qryMarksGrdSUBGRPID: TSmallintField;
+    qryMarksGrdsubid: TIntegerField;
+    qryMarksGrdSUBJDESC: TStringField;
+    qryMarksGrdFMARKS: TStringField;
+    qryMarksGrdEXMDESC: TStringField;
+    qryMarksGrdMARKS: TStringField;
+    qryMarksSTUDID: TFloatField;
+    qryMarksSUBGRPID: TLargeintField;
+    qryMarksSUBID: TLargeintField;
+    qryMarksSUBJDESC: TStringField;
+    qryMarksEXMDESC: TStringField;
+    qryMarksMARKS: TStringField;
+    Query5AdmNo: TStringField;
+    qryMarksFMARKS: TSmallintField;
+    qryCllistClCode: TWordField;
+    qryCllistSection: TStringField;
+    qryCllistName: TStringField;
+    qryCllistRollNo: TFloatField;
+    qryCllistFname: TStringField;
+    qryCllistDOB: TDateField;
+    qryCllistPhone: TStringField;
+    qryCllistStudId: TFloatField;
+    procedure Query4CalcFields(DataSet: TDataSet);
+    procedure Query8CalcFields(DataSet: TDataSet);
+    procedure Query9CalcFields(DataSet: TDataSet);
+    procedure Query10CalcFields(DataSet: TDataSet);
+    procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
+    procedure frxRepcardGetValue(const VarName: String;
+      var Value: Variant);
+    procedure frxRptGetValue(const VarName: String; var Value: Variant);
+  private
+    { Private declarations }
+  public
+  sl: TStringList;
+  xmlist:string;
+    { Public declarations }
+//    actlstds,actlstdetds1,actlstdetds2,actlstdetds3,mstds,detds:TDataSet;
+  end;
+
+var
+  exmdata: Texmdata;
+   lno:integer;
+   mfile:Tinifile;
+
+implementation
+
+uses MyDataU;
+
+{$R *.dfm}
+
+procedure Texmdata.Query4CalcFields(DataSet: TDataSet);
+begin
+ Query4cnt.Value:=Query4.RecNo;
+end;
+
+procedure Texmdata.Query8CalcFields(DataSet: TDataSet);
+begin
+ Query8tot.Value:=Query8ucTot.AsInteger;
+end;
+
+procedure Texmdata.Query9CalcFields(DataSet: TDataSet);
+begin
+ Query9tot.Value:=Query9ucTot.AsInteger;
+end;
+
+procedure Texmdata.Query10CalcFields(DataSet: TDataSet);
+begin
+ Query10tot.Value:=Query10ucTot.AsInteger;
+end;
+
+procedure Texmdata.DataModuleCreate(Sender: TObject);
+begin
+mfile:=Tinifile.Create('.\marks.ini');
+ sl := TStringList.Create;
+ xmlist:='';
+end;
+
+procedure Texmdata.DataModuleDestroy(Sender: TObject);
+begin
+sl.free;
+mfile.Free;
+end;
+
+
+
+procedure Texmdata.frxRepcardGetValue(const VarName: String;
+  var Value: Variant);
+begin
+  if CompareText(VarName, 'myvar') = 0 then
+    Value := sl[frxUDSslist.RecNo];
+end;
+
+procedure Texmdata.frxRptGetValue(const VarName: String;
+  var Value: Variant);
+begin
+if CompareText(VarName, 'colhead') = 0 then
+Value := format('%-70s',
+[xmlist]);
+end;
+
+end.

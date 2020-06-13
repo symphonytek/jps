@@ -1,0 +1,646 @@
+unit MainFrmU;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  ToolWin, ComCtrls, Menus, ImgList, ExtCtrls;
+
+type
+  TMainFrm = class(TForm)
+    MainMenu1: TMainMenu;
+    ImageList1: TImageList;
+    Transaction1: TMenuItem;
+    FeeCollection1: TMenuItem;
+    MonthlyReport1: TMenuItem;
+    Preference1: TMenuItem;
+    General1: TMenuItem;
+    Advanced1: TMenuItem;
+    Help1: TMenuItem;
+    About1: TMenuItem;
+    StatusBar1: TStatusBar;
+    General2: TMenuItem;
+    Medicinemaster1: TMenuItem;
+    MedicineStock1: TMenuItem;
+    Wards1: TMenuItem;
+    Utility1: TMenuItem;
+    Filemanager1: TMenuItem;
+    Calculator1: TMenuItem;
+    Contents1: TMenuItem;
+    CoolBar1: TCoolBar;
+    ToolBar1: TToolBar;
+    ToolButton1: TToolButton;
+    ToolButton2: TToolButton;
+    ToolButton3: TToolButton;
+    ToolButton4: TToolButton;
+    ToolButton5: TToolButton;
+    ToolButton6: TToolButton;
+    ToolButton7: TToolButton;
+    ToolButton8: TToolButton;
+    ToolButton9: TToolButton;
+    ToolButton10: TToolButton;
+    ToolButton11: TToolButton;
+    ToolButton12: TToolButton;
+    ToolButton13: TToolButton;
+    ToolButton14: TToolButton;
+    Image1: TImage;
+    AdministrativeTools1: TMenuItem;
+    UserManager1: TMenuItem;
+    Audit1: TMenuItem;
+    OtherReports1: TMenuItem;
+    DepartmentMaster1: TMenuItem;
+    DesignationMaster1: TMenuItem;
+    Exit2: TMenuItem;
+    CategoryMaster1: TMenuItem;
+    FeeMatrix1: TMenuItem;
+    TimeTable1: TMenuItem;
+    TimeTableWizard1: TMenuItem;
+    TeachersTimeTable1: TMenuItem;
+    ClassTimeTable1: TMenuItem;
+    EditTimeTable1: TMenuItem;
+    PayRoll1: TMenuItem;
+    EmployeeMaster1: TMenuItem;
+    AllowanceMaster1: TMenuItem;
+    PayRollGeneration1: TMenuItem;
+    ClassMaster1: TMenuItem;
+    teachersMaster1: TMenuItem;
+    BankandBranch1: TMenuItem;
+    certificates1: TMenuItem;
+    C1: TMenuItem;
+    AgeCertificate1: TMenuItem;
+    ClassList1: TMenuItem;
+    SpecialReport1: TMenuItem;
+    otalStudent1: TMenuItem;
+    HouseWiseList1: TMenuItem;
+    ClassUpgradation1: TMenuItem;
+    GroupReport1: TMenuItem;
+    Misc1: TMenuItem;
+    Formselling1: TMenuItem;
+    Report1: TMenuItem;
+    ItemsMaster1: TMenuItem;
+    SubjectMaster1: TMenuItem;
+    FindReplacement1: TMenuItem;
+    Attendence1: TMenuItem;
+    ToolButton15: TToolButton;
+    StaffProfile1: TMenuItem;
+    ReportCard1: TMenuItem;
+    SubjectMaster2: TMenuItem;
+    Exammaster1: TMenuItem;
+    ReportCard: TMenuItem;
+    Sheetpreperation1: TMenuItem;
+    Marksentry1: TMenuItem;
+    SubjectGroups1: TMenuItem;
+    Documenttypes1: TMenuItem;
+    Company1: TMenuItem;
+    Relations1: TMenuItem;
+    Handicaptypes1: TMenuItem;
+    AdhocReportmaster1: TMenuItem;
+    Adhocexcelreport1: TMenuItem;
+    AdmitcardforXI1: TMenuItem;
+    BouncedCheque1: TMenuItem;
+    Studentattendance1: TMenuItem;
+    Duedatelist1: TMenuItem;
+    Admitcard1: TMenuItem;
+    procedure FormActivate(Sender: TObject);
+    procedure About1Click(Sender: TObject);
+    procedure Exit1Click(Sender: TObject);
+    procedure Exit2Click(Sender: TObject);
+    procedure Calculator1Click(Sender: TObject);
+    procedure Filemanager1Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure UserManager1Click(Sender: TObject);
+    procedure FeeCollection1Click(Sender: TObject);
+    procedure MedicineStock1Click(Sender: TObject);
+    procedure Wards1Click(Sender: TObject);
+    procedure CategoryMaster1Click(Sender: TObject);
+    procedure Medicinemaster1Click(Sender: TObject);
+    procedure DepartmentMaster1Click(Sender: TObject);
+    procedure DesignationMaster1Click(Sender: TObject);
+    procedure General1Click(Sender: TObject);
+    procedure FeeMatrix1Click(Sender: TObject);
+    procedure DefaulterList1Click(Sender: TObject);
+    procedure TimeTableWizard1Click(Sender: TObject);
+    procedure EditTimeTable1Click(Sender: TObject);
+    procedure MarkEntry1Click(Sender: TObject);
+    procedure Subjectmaster1Click(Sender: TObject);
+    procedure Studentmark1Click(Sender: TObject);
+    procedure Attendance1Click(Sender: TObject);
+    procedure N1Click(Sender: TObject);
+    procedure ClassMaster1Click(Sender: TObject);
+    procedure TeachersTimeTable1Click(Sender: TObject);
+    procedure ClassTimeTable1Click(Sender: TObject);
+    procedure BankandBranch1Click(Sender: TObject);
+    procedure OtherReports1Click(Sender: TObject);
+    procedure C1Click(Sender: TObject);
+    procedure AgeCertificate1Click(Sender: TObject);
+    procedure ClassList1Click(Sender: TObject);
+    procedure SpecialReport1Click(Sender: TObject);
+    procedure otalStudent1Click(Sender: TObject);
+    procedure HouseWiseList1Click(Sender: TObject);
+    procedure DefaulterNotice1Click(Sender: TObject);
+    procedure ClassUpgradation1Click(Sender: TObject);
+    procedure GroupReport1Click(Sender: TObject);
+    procedure ItemsMaster1Click(Sender: TObject);
+    procedure Formselling1Click(Sender: TObject);
+    procedure Report1Click(Sender: TObject);
+    procedure Marks2Click(Sender: TObject);
+    procedure Marks1Click(Sender: TObject);
+    procedure MarksDetails1Click(Sender: TObject);
+    procedure Marks21Click(Sender: TObject);
+    procedure PreMarksheetProcessing1Click(Sender: TObject);
+    procedure ClassWiseExamMaster1Click(Sender: TObject);
+    procedure abulationSheet1Click(Sender: TObject);
+    procedure FindReplacement1Click(Sender: TObject);
+    procedure teachersMaster1Click(Sender: TObject);
+    procedure Attendence1Click(Sender: TObject);
+    procedure Contents1Click(Sender: TObject);
+    procedure ToolButton15Click(Sender: TObject);
+    procedure StaffProfile1Click(Sender: TObject);
+    procedure SubjectMaster2Click(Sender: TObject);
+    procedure Exammaster1Click(Sender: TObject);
+    procedure Sheetpreperation1Click(Sender: TObject);
+    procedure ReportCardClick(Sender: TObject);
+    procedure Marksentry1Click(Sender: TObject);
+    procedure SubjectGroups1Click(Sender: TObject);
+    procedure Documenttypes1Click(Sender: TObject);
+    procedure Relations1Click(Sender: TObject);
+    procedure Company1Click(Sender: TObject);
+    procedure Registration1Click(Sender: TObject);
+    procedure Handicaptypes1Click(Sender: TObject);
+    procedure Locationmaster1Click(Sender: TObject);
+    procedure AutorejectionAge1Click(Sender: TObject);
+    procedure RegistrationforXI1Click(Sender: TObject);
+    procedure AdhocReportmaster1Click(Sender: TObject);
+    procedure Adhocexcelreport1Click(Sender: TObject);
+    procedure AdmitcardforXI1Click(Sender: TObject);
+    procedure BouncedCheque1Click(Sender: TObject);
+    procedure Studentattendance1Click(Sender: TObject);
+    procedure Duedatelist1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  MainFrm: TMainFrm;
+
+implementation
+
+uses AboutU, myfuncu, userU, usermgrfrmU, frmCLMastU,
+  frmItemMastU, frmCatMastU, frmStudMastU, frmDepMastU, frmDsgMastU,
+  frmfeematrixU, frmachead, genperfU, frmFeeU, frmSchWizU, frmTTableU,
+  dlgStudMarkU, MyDataU, frmTchTableU,
+  frmClTableU, frmBankMastU, frmOtherRepU, frmTCu, frmBirthU,
+  frmClListU, frmRepoU, QrrotStudU, QrpHouseu, stud_detU, dlgRepoU,
+   frmMiscRepU, frmSubjU, frmTMastU,
+  //frmmarksU, frmmarkdetU,qrpmarkentrysheetU, frmtabulationsheetU,
+  frmPreviewU,   QrpMarkEntryU,
+   frmReplaceU, frmAttendenceU,
+  FmxUtils, frmStfApplnU, frmClroomMastU, frmexmmastU, frmexsubmastU,
+  frmNSheetU, frmRptCrdU, exmdataU, frmSheetU, frmSubGrpMastU, frmDocTypeU,
+  frmRelationsU, frmCompanyU, frmAdmStudMastU, frmHandicapU, frmAdmLocU,
+  frmFrmSellU, frmAdmStudMastXIU, frmRepMastU, frmXlreportU, frmAdmitCardU,
+  frmBounceU, frmDailyAttndU, frmDueDtU;
+
+{$R *.DFM}
+
+procedure TMainFrm.FormActivate(Sender: TObject);
+begin
+Caption:='School Management System ('+genperf.edtOrgnm.Text+')';
+Statusbar1.panels[2].Text:='System Date '+datetostr(date());
+image1.left:=trunc(MainFrm.width/2-Image1.width/2);
+image1.top:=trunc(Mainfrm.height/2-Image1.height/2);
+end;
+
+procedure TMainFrm.About1Click(Sender: TObject);
+begin
+AboutBox.Showmodal;
+end;
+
+procedure TMainFrm.Exit1Click(Sender: TObject);
+begin
+close;
+end;
+
+procedure TMainFrm.Exit2Click(Sender: TObject);
+begin
+close;
+end;
+
+procedure TMainfrm.FileManager1Click(Sender: TObject);
+var result:THandle;
+begin
+try
+ result:=executeFile('D:\WINDOWS\explorer.exe','','',SW_SHOWNORMAL);
+ if result=2 then  begin
+ result:=executeFile('D:\WINDOWS\system32\explorer.exe','','',SW_SHOWNORMAL);
+ end;
+ if result=2 then  begin
+  result:=executeFile('C:\WINDOWS\explorer.exe','','',SW_SHOWNORMAL);
+  end;
+ if result=2 then  begin
+  result:=executeFile('C:\WINDOWS\system32\explorer.exe','','',SW_SHOWNORMAL);
+  end;
+ if result=2 then  begin
+  result:=executeFile('C:\WIN\explorer.exe','','',SW_SHOWNORMAL);
+ end;
+ if result=2 then  begin
+  result:=executeFile('C:\WIN\system32\explorer.exe','','',SW_SHOWNORMAL);
+ end;
+ if result=2 then  begin
+  result:=executeFile('D:\WIN\explorer.exe','','',SW_SHOWNORMAL);
+ end;
+ if result=2 then  begin
+  executeFile('D:\WIN\system32\explorer.exe','','',SW_SHOWNORMAL);
+ end;
+except showmessage('Unable to run Explorer.');
+end;end;
+
+procedure TMainfrm.Calculator1Click(Sender: TObject);
+var result:THandle;
+begin
+try
+ result:=executeFile('C:\WINDOWS\calc.exe','','',SW_SHOWNORMAL);
+ if result=2 then  begin
+  result:=executeFile('C:\WINDOWS\system32\calc.exe','','',SW_SHOWNORMAL);
+ end;
+ if result=2 then  begin
+  result:=executeFile('D:\WINDOWS\calc.exe','','',SW_SHOWNORMAL);
+ end;
+ if result=2 then  begin
+  result:=executeFile('D:\WINDOWS\system32\calc.exe','','',SW_SHOWNORMAL);
+ end;
+ if result=2 then  begin
+  result:=executeFile('C:\WIN\calc.exe','','',SW_SHOWNORMAL);
+ end;
+ if result=2 then  begin
+  result:=executeFile('C:\WIN\system32\calc.exe','','',SW_SHOWNORMAL);
+ end;
+ if result=2 then  begin
+  result:=executeFile('D:\WIN\calc.exe','','',SW_SHOWNORMAL);
+ end;
+ if result=2 then  begin
+  executeFile('D:\WIN\system32\calc.exe','','',SW_SHOWNORMAL);
+ end;
+except showmessage('Unable to run Calculator.');
+end;
+end;
+
+procedure TMainFrm.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+userfrm.close;
+end;
+
+procedure TMainFrm.UserManager1Click(Sender: TObject);
+begin
+usermgrfrm.showmodal;
+end;
+
+procedure TMainFrm.FeeCollection1Click(Sender: TObject);
+begin
+frmfee.showmodal;
+end;
+
+procedure TMainFrm.MedicineStock1Click(Sender: TObject);
+begin
+frmCLMast.showmodal;
+end;
+
+procedure TMainFrm.Wards1Click(Sender: TObject);
+begin
+frmItemMast.showmodal;
+end;
+
+procedure TMainFrm.CategoryMaster1Click(Sender: TObject);
+begin
+frmCatMast.showmodal;
+end;
+
+procedure TMainFrm.Medicinemaster1Click(Sender: TObject);
+begin
+frmStudMast.showmodal;
+end;
+
+procedure TMainFrm.DepartmentMaster1Click(Sender: TObject);
+begin
+frmDepMast.showmodal;
+end;
+
+procedure TMainFrm.DesignationMaster1Click(Sender: TObject);
+begin
+frmDsgMast.showmodal;
+end;
+
+procedure TMainFrm.Documenttypes1Click(Sender: TObject);
+begin
+frmDocType.showmodal;
+end;
+
+procedure TMainFrm.Duedatelist1Click(Sender: TObject);
+begin
+frmDueDt.showmodal;
+end;
+
+procedure TMainFrm.General1Click(Sender: TObject);
+begin
+genperf.showmodal;
+end;
+
+procedure TMainFrm.FeeMatrix1Click(Sender: TObject);
+begin
+frmfeematrix.showmodal;
+end;
+
+procedure TMainFrm.DefaulterList1Click(Sender: TObject);
+begin
+//frmdefaulter.showmodal;
+end;
+
+procedure TMainFrm.TimeTableWizard1Click(Sender: TObject);
+begin
+frmSchWiz.showmodal;
+end;
+
+procedure TMainFrm.EditTimeTable1Click(Sender: TObject);
+begin
+frmTTable.showmodal;
+end;
+
+procedure TMainFrm.MarkEntry1Click(Sender: TObject);
+begin
+//frmMarkEntry.showmodal;
+end;
+
+procedure TMainFrm.Subjectmaster1Click(Sender: TObject);
+begin
+frmsubj.showmodal;
+end;
+
+procedure TMainFrm.Studentattendance1Click(Sender: TObject);
+begin
+frmDailyAttnd.showmodal;
+end;
+
+procedure TMainFrm.Studentmark1Click(Sender: TObject);
+begin
+dlgStudMark.showmodal;
+end;
+
+procedure TMainFrm.Attendance1Click(Sender: TObject);
+begin
+//frmAbsentees.showmodal;
+end;
+
+procedure TMainFrm.N1Click(Sender: TObject);
+begin
+{Mydata.qrabsent.open;
+QrpAbsentees.preview;}
+end;
+
+procedure TMainFrm.ClassMaster1Click(Sender: TObject);
+begin
+frmClroomMast.ShowModal;
+end;
+
+procedure TMainFrm.TeachersTimeTable1Click(Sender: TObject);
+begin
+frmTchTable.showmodal;
+end;
+
+procedure TMainFrm.ClassTimeTable1Click(Sender: TObject);
+begin
+frmClTable.showmodal;
+end;
+
+procedure TMainFrm.BankandBranch1Click(Sender: TObject);
+begin
+frmBankMast.showmodal;
+end;
+
+procedure TMainFrm.BouncedCheque1Click(Sender: TObject);
+begin
+frmBounce.showmodal;
+end;
+
+procedure TMainFrm.OtherReports1Click(Sender: TObject);
+var
+mdate:Tmydate;
+begin
+mdate:=tmydate.Create;
+frmOtherRep.SDT.Date:=mdate.sdate;
+frmOtherRep.EDT.Date:=mdate.edate;
+frmOtherRep.showmodal;
+end;
+
+procedure TMainFrm.C1Click(Sender: TObject);
+begin
+frmTc.showmodal;
+end;
+
+procedure TMainFrm.Adhocexcelreport1Click(Sender: TObject);
+begin
+frmXlreport.showmodal;
+end;
+
+procedure TMainFrm.AdhocReportmaster1Click(Sender: TObject);
+begin
+frmRepMAst.showmodal;
+end;
+
+procedure TMainFrm.AdmitcardforXI1Click(Sender: TObject);
+begin
+frmAdmitCard.showmodal;
+end;
+
+procedure TMainFrm.AgeCertificate1Click(Sender: TObject);
+begin
+frmBirth.showmodal;
+end;
+
+procedure TMainFrm.ClassList1Click(Sender: TObject);
+begin
+frmClList.showmodal;
+end;
+
+procedure TMainFrm.SpecialReport1Click(Sender: TObject);
+begin
+frmRepo.showmodal;
+end;
+
+procedure TMainFrm.otalStudent1Click(Sender: TObject);
+begin
+Mydata.Qrytotalstud.Open;
+qrptotalstud.PreviewModal;
+Mydata.Qrytotalstud.Close;
+end;
+procedure TMainFrm.Handicaptypes1Click(Sender: TObject);
+begin
+frmHandicap.showmodal;
+end;
+
+procedure TMainFrm.HouseWiseList1Click(Sender: TObject);
+begin
+Mydata.Qrhouse.open;
+QrpHouse.previewmodal;
+Mydata.Qrhouse.close
+end;
+procedure TMainFrm.DefaulterNotice1Click(Sender: TObject);
+begin
+//frmdefnotice.showmodal;
+end;
+
+procedure TMainFrm.ClassUpgradation1Click(Sender: TObject);
+begin
+Stud_det.showmodal();
+end;
+
+procedure TMainFrm.GroupReport1Click(Sender: TObject);
+begin
+dlgRepo.showmodal;
+end;
+
+procedure TMainFrm.ItemsMaster1Click(Sender: TObject);
+begin
+//frmItems.showmodal;
+end;
+
+procedure TMainFrm.Locationmaster1Click(Sender: TObject);
+begin
+frmAdmLoc.showmodal;
+end;
+
+procedure TMainFrm.Formselling1Click(Sender: TObject);
+begin
+FrmSell.showmodal;
+end;
+
+procedure TMainFrm.Registration1Click(Sender: TObject);
+begin
+frmAdmStudmast.showmodal;
+end;
+
+procedure TMainFrm.RegistrationforXI1Click(Sender: TObject);
+begin
+frmAdmStudMastXI.showmodal;
+end;
+
+procedure TMainFrm.Relations1Click(Sender: TObject);
+begin
+frmRelations.showmodal;
+end;
+
+procedure TMainFrm.Report1Click(Sender: TObject);
+begin
+frmMiscRep.showmodal;
+end;
+
+procedure TMainFrm.Marks2Click(Sender: TObject);
+begin
+//frmmarksobtained.ShowModal;
+end;
+
+procedure TMainFrm.Marks1Click(Sender: TObject);
+begin
+//frmmarkentry.ShowModal;
+//frmmarksobtained.ShowModal;
+end;
+
+procedure TMainFrm.MarksDetails1Click(Sender: TObject);
+begin
+//frmmarkdet.ShowModal;
+end;
+
+procedure TMainFrm.Marks21Click(Sender: TObject);
+begin
+//frmmarkdet.ShowModal;
+end;
+
+procedure TMainFrm.PreMarksheetProcessing1Click(Sender: TObject);
+begin
+//frmmarksheetprocess.ShowModal;
+end;
+
+procedure TMainFrm.ClassWiseExamMaster1Click(Sender: TObject);
+begin
+//frmexam.ShowModal;
+end;
+
+procedure TMainFrm.abulationSheet1Click(Sender: TObject);
+begin
+//frmtabulation.ShowModal;
+end;
+
+procedure TMainFrm.FindReplacement1Click(Sender: TObject);
+begin
+frmReplace.ShowModal;
+end;
+
+procedure TMainFrm.teachersMaster1Click(Sender: TObject);
+begin
+frmTMast.showmodal;
+
+end;
+
+procedure TMainFrm.Attendence1Click(Sender: TObject);
+begin
+frmAttendence.ShowModal;
+end;
+
+procedure TMainFrm.AutorejectionAge1Click(Sender: TObject);
+begin
+//frmAutoRej.showmodal;
+end;
+
+procedure TMainFrm.Company1Click(Sender: TObject);
+begin
+frmCompany.showmodal;
+end;
+
+procedure TMainFrm.Contents1Click(Sender: TObject);
+begin
+executeFile('SMS_Booklet3.pdf','','',SW_SHOWNORMAL);
+end;
+
+procedure TMainFrm.ToolButton15Click(Sender: TObject);
+begin
+executeFile('SMS.chm','','',SW_SHOWNORMAL);
+end;
+
+procedure TMainFrm.StaffProfile1Click(Sender: TObject);
+begin
+ frmStfAppln.ShowModal;
+end;
+
+procedure TMainFrm.SubjectMaster2Click(Sender: TObject);
+begin
+frmexsubmast.showmodal;
+end;
+
+procedure TMainFrm.Exammaster1Click(Sender: TObject);
+begin
+frmexmmast.showmodal;
+end;
+
+procedure TMainFrm.Sheetpreperation1Click(Sender: TObject);
+begin
+frmNSheet.showmodal;
+end;
+
+procedure TMainFrm.ReportCardClick(Sender: TObject);
+begin
+exmdata.QrByBus.SQL[14]:='';exmdata.Query4.SQL[7]:='';
+frmRptCrd.ShowModal;
+end;
+
+procedure TMainFrm.Marksentry1Click(Sender: TObject);
+begin
+frmSheet.showmodal;
+end;
+
+procedure TMainFrm.SubjectGroups1Click(Sender: TObject);
+begin
+frmSubgrpMast.showmodal;
+end;
+
+end.

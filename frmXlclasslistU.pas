@@ -1,0 +1,43 @@
+unit frmXlclasslistU;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  Vcl.Grids, AdvObj, BaseGrid, AdvGrid, DBAdvGrid;
+
+type
+  TfrmXlclasslist = class(TForm)
+    dbgQryCllist: TDBAdvGrid;
+    Splitter1: TSplitter;
+    btnExport: TBitBtn;
+    SaveDialog1: TSaveDialog;
+    procedure btnExportClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmXlclasslist: TfrmXlclasslist;
+
+implementation
+
+{$R *.dfm}
+
+uses MyDataU;
+
+procedure TfrmXlclasslist.btnExportClick(Sender: TObject);
+begin
+if SaveDialog1.Execute then
+try
+  dbgQryCllist.SaveToXLS(SaveDialog1.FileName);
+  showmessage('File exported successfully');
+except on E:exception do
+  showmessage(e.Message);
+end;
+end;
+
+end.

@@ -1,0 +1,1029 @@
+unit MyDataU;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  Db, DBTables,iniFiles, ActnList, MemDS, DBAccess, MyAccess, frxClass,
+  frxDBSet, MyDacVcl;
+
+type
+  TMyData = class(TDataModule)
+    ItemMastS: TDataSource;
+    DsgMastS: TDataSource;
+    DepMastS: TDataSource;
+    tbfeeDetail: TMyTable;
+    tbfeeDetailAC_NO: TFloatField;
+    tbfeeDetailAC_AMT: TCurrencyField;
+    tbfeeDetailS: TDataSource;
+    tbfee: TMyTable;
+    tbfeeS: TDataSource;
+    tbfeeMatrix: TMyTable;
+    tbfeeMatrixS: TDataSource;
+    tbfeeMatrixAC_NO: TFloatField;
+    tbfeeMatrixFEE: TCurrencyField;
+    tbfeeMR_DATE: TDateField;
+    tbfeeNOTERM: TFloatField;
+    tbfeeFEE_AMT: TCurrencyField;
+    tbfeeCASH: TBooleanField;
+    tbfeeCHQ_NO: TStringField;
+    tbfeeLATE_FEE: TCurrencyField;
+    tbfeeStudID: TFloatField;
+    tbfeestudname: TStringField;
+    tbfeesec: TStringField;
+    tbfeetot_terms: TIntegerField;
+    qryachead: TMyQuery;
+    qryacheadAC_NAME: TStringField;
+    qryacheadsum_amt: TCurrencyField;
+    qryFee: TMyQuery;
+    qryFeeAC_NO: TFloatField;
+    qryFeeAC_NAME: TStringField;
+    qryFeeAC_MODE: TStringField;
+    tbAcMasterS: TDataSource;
+    tbfeetot_amt: TCurrencyField;
+    tbfeeDetailAC_NAME: TStringField;
+    CLMast1S: TDataSource;
+    tbfeematrix1: TMyTable;
+    dsttable: TDataSource;
+    dsTeacher: TDataSource;
+    QrMark: TMyQuery;
+    QrTerm: TMyQuery;
+    QrTermTerm: TStringField;
+    QrMarkStudID: TFloatField;
+    QrMarkClCode: TStringField;
+    QrMarkTerm: TStringField;
+    QrMarkTotmark: TFloatField;
+    QrMarkName: TStringField;
+    QrStudMk: TMyQuery;
+    QrStudMkStudID: TFloatField;
+    QrStudMkName: TStringField;
+    QrStudMkTerm: TStringField;
+    QrStudMkMarkobt: TFloatField;
+    QrStudMkSubjname: TStringField;
+    QrStudMkSubjtot: TFloatField;
+    QrStudMkClCode: TStringField;
+    QrAbsent: TMyQuery;
+    QrAbsentStudID: TFloatField;
+    QrAbsentDate: TDateField;
+    QrAbsentAbsent: TBooleanField;
+    QrAbsentClCode: TStringField;
+    QrAbsentName: TStringField;
+    userds: TDataSource;
+    tbfeestd: TFloatField;
+    tbfeeclDesc: TStringField;
+    tbfeeMatrixCODE: TSmallintField;
+    tbfeematrix1AC_NO: TFloatField;
+    tbfeematrix1FEE: TCurrencyField;
+    dsBmast: TDataSource;
+    dsBrMast: TDataSource;
+    tbfeeDRAWN_ON: TSmallintField;
+    tbfeeCHQ_AMT: TCurrencyField;
+    tbfeeBranch: TSmallintField;
+    tbfeebdesc: TStringField;
+    tbfeebrdesc: TStringField;
+    tbfeeBillNo: TFloatField;
+    qryIncme: TMyQuery;
+    qryBank: TMyQuery;
+    dsfeematrix1: TDataSource;
+    tbfeematrix1AcDesc: TStringField;
+    qryPayroll: TMyQuery;
+    qryYrly: TMyQuery;
+    qryYrlyName: TStringField;
+    qryYrlyAccNo: TStringField;
+    qryYrlyPFAcNo: TStringField;
+    qryYrlyPayScale: TStringField;
+    qryYrlyBasic: TCurrencyField;
+    qryYrlyDA: TCurrencyField;
+    qryYrlyHRA: TFloatField;
+    qryYrlygross: TCurrencyField;
+    qryYrlyPF: TCurrencyField;
+    qryYrlyNetAmt: TCurrencyField;
+    TcData: TMyTable;
+    TcDataS: TDataSource;
+    TcDataSlNo: TFloatField;
+    TcDataTCNo: TStringField;
+    TcDataDtLeft: TDateField;
+    TcDataCharacter: TStringField;
+    TcDataYrFrom: TStringField;
+    TcDataYrTo: TStringField;
+    TcDataTcDate: TDateField;
+    TcDataPromotion: TStringField;
+    TcDataOinfo: TMemoField;
+    birth: TMyTable;
+    birthS: TDataSource;
+    birthSlNo: TFloatField;
+    birthAdmNo: TFloatField;
+    birthComment: TMemoField;
+    birthsname: TStringField;
+    birthsfName: TStringField;
+    birthsDOB: TDateField;
+    qryCllist: TMyQuery;
+    QrByBus: TMyQuery;
+    qryBankCHQ_NO: TStringField;
+    qryBankDesc: TStringField;
+    qryBankDesc_1: TStringField;
+    qryBankCHQ_AMT: TCurrencyField;
+    QryFeeColl: TMyQuery;
+    QryFeeColl1: TMyQuery;
+    QryDefaulter: TMyQuery;
+    QryFreeship: TMyQuery;
+    Qrytotalstud: TMyQuery;
+    Qrhouse: TMyQuery;
+    QrFee: TMyQuery;
+    QrFeeMR_NO: TFloatField;
+    QrFeeClCode: TSmallintField;
+    QrFeeSection: TStringField;
+    qrStudHist: TMyQuery;
+    qrStudHistTamt: TCurrencyField;
+    tbfeeTERM: TSmallintField;
+    qrStudHistNOTERM: TFloatField;
+    qrStudHistTERM: TSmallintField;
+    qrStudHistMR_DATE: TDateField;
+    DsStud_Det: TDataSource;
+    QrTc: TMyQuery;
+    QrTcAdmNo: TFloatField;
+    QrTcTcDate: TDateField;
+    QrTcDtLeft: TDateField;
+    QrTcClCode: TSmallintField;
+    QrTcName: TStringField;
+    QrTcSection: TStringField;
+    QrTcRollNo: TFloatField;
+    QrTotAdm: TMyQuery;
+    QrTotAdmStudID: TFloatField;
+    QrTotAdmName: TStringField;
+    QrTotAdmClCode: TSmallintField;
+    QrTotAdmSection: TStringField;
+    QrTotAdmDOB: TDateField;
+    QrTotAdmFname: TStringField;
+    qryItem: TMyQuery;
+    qryMiscList: TMyQuery;
+    qryClrep: TMyQuery;
+    qryFeeacc: TMyQuery;
+    dsSubMast: TDataSource;
+    dsSubDet: TDataSource;
+    dsClassDet: TDataSource;
+    dsqry: TDataSource;
+    qryclstud: TMyQuery;
+    qryclstudStudID: TFloatField;
+    qryclstudName: TStringField;
+    qryclstudClCode: TSmallintField;
+    qryclstudRollNo: TFloatField;
+    qryclstudclCaption: TStringField;
+    qryclstudDesc: TStringField;
+    dsqrytabul: TDataSource;
+    qtab: TMyQuery;
+    qtabstudID: TFloatField;
+    qtabName: TStringField;
+    qtabClCode: TSmallintField;
+    qtabSrlno: TFloatField;
+    qtabMobt: TSmallintField;
+    qtabClcaption: TStringField;
+    qtabsubdesc: TStringField;
+    qtabTotalMarks: TSmallintField;
+    qtabpassmarks: TSmallintField;
+    qtabtmarks: TFloatField;
+    qryLkUp: TMyQuery;
+    qryLkUpRemark: TMemoField;
+    qryLkUpDesc: TStringField;
+    qryLkUpclcode: TSmallintField;
+    qryLkUpUpGrdYr: TStringField;
+    qryLkUpD: TDataSource;
+    dsSubDet1: TDataSource;
+    TbStud_Det: TMyTable;
+    TbStud_DetName: TStringField;
+    TbStud_DetClCode: TSmallintField;
+    TbStud_DetDet: TBooleanField;
+    TbStud_DetClDesc: TStringField;
+    Query1: TMyQuery;
+    QrytotalstudStudID: TFloatField;
+    QrytotalstudName: TStringField;
+    QrytotalstudClCaption: TStringField;
+    QrytotalstudSection: TStringField;
+    QrytotalstudFname: TStringField;
+    QrytotalstudDOB: TDateField;
+    QrytotalstudDOA: TDateField;
+    dsClassDet1: TDataSource;
+    dsTeacher1: TDataSource;
+    dsttable1: TDataSource;
+    dsttable2: TDataSource;
+    dsTabsent: TDataSource;
+    tbfeeAdmNo: TStringField;
+    ActionList1: TActionList;
+    dsIns: TAction;
+    dsSav: TAction;
+    dummyT: TMyTable;
+    AutoIncField1: TAutoIncField;
+    StringField2: TStringField;
+    CurrencyField1: TCurrencyField;
+    StfApplnT: TMyTable;
+    StfApplnTAppln_No: TIntegerField;
+    StfApplnTJob_1: TStringField;
+    StfApplnTName_1: TStringField;
+    StfApplnTDOB: TDateField;
+    StfApplnTAddr_1: TMemoField;
+    StfApplnTTel_No_1: TStringField;
+    StfApplnTPOB: TStringField;
+    StfApplnTNationality: TStringField;
+    StfApplnTMar_Stat: TStringField;
+    StfApplnTChild_No: TSmallintField;
+    StfApplnTName_2: TStringField;
+    StfApplnTOccupation: TStringField;
+    StfApplnTAddr_2: TMemoField;
+    StfApplnTTel_No_2: TStringField;
+    StfApplnTPhoto: TGraphicField;
+    StfApplnTScholarship: TMemoField;
+    StfApplnTResearch: TMemoField;
+    StfApplnTTot_Ex: TFloatField;
+    StfApplnTTeach_Ex: TFloatField;
+    StfApplnTAdmin_Ex: TFloatField;
+    StfApplnTOther_Ex: TFloatField;
+    StfApplnTCurr_Orgn: TMemoField;
+    StfApplnTCurr_Post: TStringField;
+    StfApplnTDOJ: TDateField;
+    StfApplnTPost_Place: TStringField;
+    StfApplnTTot_Pay: TCurrencyField;
+    StfApplnTBasic: TCurrencyField;
+    StfApplnTAllowances: TCurrencyField;
+    StfApplnTOthers: TCurrencyField;
+    StfApplnTBond_: TStringField;
+    StfApplnTBond_Det: TMemoField;
+    StfApplnTTime_to_Join: TFloatField;
+    StfApplnTIllness: TStringField;
+    StfApplnTIll_Det: TMemoField;
+    StfApplnTLaw_Case: TStringField;
+    StfApplnTCase_Det: TMemoField;
+    StfApplnTStatement: TMemoField;
+    StfApplnTInterests: TMemoField;
+    StfApplnTAppln_Date: TDateField;
+    StfApplnD: TDataSource;
+    AcdT: TMyTable;
+    AcdTSl_No: TSmallintField;
+    AcdTFlag: TStringField;
+    AcdTQualfn: TStringField;
+    AcdTSubj: TStringField;
+    AcdTInstitute: TStringField;
+    AcdTMarks: TFloatField;
+    AcdTDiv: TStringField;
+    AcdD: TDataSource;
+    ProT: TMyTable;
+    ProTAppln_No: TIntegerField;
+    ProTSl_No: TSmallintField;
+    ProTFlag: TStringField;
+    ProTQualfn: TStringField;
+    ProTSubj: TStringField;
+    ProTInstitute: TStringField;
+    ProTYear: TDateField;
+    ProTMarks: TFloatField;
+    ProTDiv: TStringField;
+    ProD: TDataSource;
+    BooksT: TMyTable;
+    BooksTAppl_No: TIntegerField;
+    BooksTSl_No: TSmallintField;
+    BooksTTitle: TStringField;
+    BooksTAuthors: TStringField;
+    dsBooks: TDataSource;
+    RefsD: TDataSource;
+    RefsT: TMyTable;
+    RefsTAppl_No: TIntegerField;
+    RefsTName: TStringField;
+    RefsTOccupation: TStringField;
+    RefsTAddr: TStringField;
+    RefsTTel_No: TStringField;
+    RefsTSlNo: TSmallintField;
+    Lang1T: TMyTable;
+    Lang1TAppln_No: TIntegerField;
+    Lang1TSl_No: TSmallintField;
+    Lang1TTb_Flag: TStringField;
+    Lang1TLanguage: TStringField;
+    Lang1TRead: TStringField;
+    Lang1TWrite: TStringField;
+    Lang1TSpeak: TStringField;
+    Lang1D: TDataSource;
+    Lang2D: TDataSource;
+    Lang2T: TMyTable;
+    Lang2TAppln_No: TIntegerField;
+    Lang2TSl_No: TSmallintField;
+    Lang2TTb_Flag: TStringField;
+    Lang2TLanguage: TStringField;
+    Lang2TRead: TStringField;
+    Lang2TWrite: TStringField;
+    Lang2TSpeak: TStringField;
+    WorkExT: TMyTable;
+    WorkExTAppln_No: TIntegerField;
+    WorkExTSl_No: TSmallintField;
+    WorkExTInstitute: TStringField;
+    WorkExTFrom: TDateField;
+    WorkExTTo: TDateField;
+    WorkExTPost: TStringField;
+    WorkExTSubj_Cls: TStringField;
+    WorkExD: TDataSource;
+    SemCorD: TDataSource;
+    SemCorT: TMyTable;
+    SemCorTAppln_No: TIntegerField;
+    SemCorTSl_No: TSmallintField;
+    SemCorTSeminar: TStringField;
+    SemCorTDuration: TFloatField;
+    SemCorTDates: TDateField;
+    SemCorTDesc: TStringField;
+    RdBtnValD: TDataSource;
+    RdBtnValT: TMyTable;
+    RdBtnValTFieldName: TStringField;
+    StfApplnTPath: TStringField;
+    TbStud_DetAdmNo: TStringField;
+    qryLkUpAdmNo: TStringField;
+    TcDataStName: TStringField;
+    TcDataAdmNo: TStringField;
+    TcDataSname: TStringField;
+    TcDataSfName: TStringField;
+    TcDataSDoB: TDateField;
+    TcDataSDoA: TDateField;
+    TcDatasClass: TStringField;
+    TcDatasSchool: TStringField;
+    myconn: TMyConnection;
+    tbClmast: TMyTable;
+    tbClmastS: TDataSource;
+    tbClmastCLCODE: TSmallintField;
+    tbClmastDESCR: TStringField;
+    ClMastS: TDataSource;
+    ClMast: TMyTable;
+    catgrmastS: TDataSource;
+    catgrmast: TMyTable;
+    studmastS: TDataSource;
+    studmast: TMyTable;
+    studmastSTUDID: TFloatField;
+    studmastADMNO: TStringField;
+    studmastNAME: TStringField;
+    studmastCLCODE: TSmallintField;
+    studmastROLLNO: TFloatField;
+    studmastSECTION: TStringField;
+    studmastDOB: TDateField;
+    studmastSEX: TStringField;
+    studmastGNAME: TStringField;
+    studmastFNAME: TStringField;
+    studmastMNAME: TStringField;
+    studmastLADDR: TMemoField;
+    studmastPADDR: TMemoField;
+    studmastCATCODE: TFloatField;
+    studmastDOA: TDateField;
+    studmastAGE: TStringField;
+    studmastNOTERMS: TFloatField;
+    studmastPHONE: TStringField;
+    studmastEML: TStringField;
+    studmastM_PHONE: TStringField;
+    studmastRELIGION: TStringField;
+    studmastCASTE: TStringField;
+    studmastF_OCCP: TStringField;
+    studmastF_QUAL: TStringField;
+    studmastM_QUAL: TStringField;
+    studmastM_OCCP: TStringField;
+    studmastSCHLAST: TStringField;
+    studmastBLOODGROUP: TStringField;
+    studmastHOUSE: TStringField;
+    studmastMTOUNGE: TStringField;
+    studmastBYBUS: TBooleanField;
+    studmastREMARK: TMemoField;
+    studmastUPGRDYR: TStringField;
+    studmastADM_CL: TSmallintField;
+    studmastPATH: TStringField;
+    catgrmastCATCODE: TSmallintField;
+    catgrmastDESCR: TStringField;
+    ClMastCLCODE: TSmallintField;
+    ClMastCLCAPTION: TStringField;
+    ClMastDESCR: TStringField;
+    ClMastMFEE: TFloatField;
+    ClMastUPCLASS: TSmallintField;
+    ClMastADFEE: TFloatField;
+    studmastAmd_cl_desc: TStringField;
+    studmastcl_caption: TStringField;
+    studmastcatDesc: TStringField;
+    studmaststMfee: TCurrencyField;
+    studmaststClDesc: TStringField;
+    studmastcage: TStringField;
+    tmpClmastS: TDataSource;
+    tmpClmast: TMyTable;
+    tmpClmastclcode: TWordField;
+    studmastdbfilterstr: TStringField;
+    ClMast1: TMyTable;
+    ClMast1CLCODE: TSmallintField;
+    ClMast1CLCAPTION: TStringField;
+    ClMast1DESCR: TStringField;
+    ClMast1MFEE: TFloatField;
+    ClMast1UPCLASS: TSmallintField;
+    ClMast1ADFEE: TFloatField;
+    ClMast1CLDESC: TStringField;
+    tbBrmast: TMyTable;
+    tbBmast: TMyTable;
+    tbBmastBCODE: TSmallintField;
+    tbBmastDESCR: TStringField;
+    tbBrmastBCODE: TSmallintField;
+    tbBrmastDESCR: TStringField;
+    dsgmast: TMyTable;
+    dsgmastDCODE: TFloatField;
+    dsgmastDESCR: TStringField;
+    ItemMast: TMyTable;
+    ItemMastICODE: TLargeintField;
+    ItemMastIDESC: TStringField;
+    ItemMastCHARGE: TFloatField;
+    DepMast: TMyTable;
+    DepMastDCODE: TFloatField;
+    DepMastDESCR: TStringField;
+    tbttable: TMyTable;
+    tbttablePERIOD: TSmallintField;
+    tbttableDAY: TSmallintField;
+    tbttableCCODE: TSmallintField;
+    tbttableTEACHER: TSmallintField;
+    tbttableSID: TSmallintField;
+    tbTeacher: TMyTable;
+    tbTeacherTID: TFloatField;
+    tbTeacherDESCR: TStringField;
+    tbTeacherSUB1: TStringField;
+    tbTeacherSUB2: TStringField;
+    tbTeacherABS: TStringField;
+    tbTeacherABNAME: TStringField;
+    tbSubMast: TMyTable;
+    tbSubMastSID: TSmallintField;
+    tbSubMastCID: TSmallintField;
+    tbSubMastDESCR: TStringField;
+    tbSubMastTOTALMARKS: TSmallintField;
+    tbSubMastPASSMARKS: TSmallintField;
+    tbttabletchname: TStringField;
+    tbttablesname: TStringField;
+    tbttabledname: TStringField;
+    tbttablesubdesc: TStringField;
+    tbttablecldesc: TStringField;
+    tbttabletchabname: TStringField;
+    tbSubdet: TMyTable;
+    tbSubdetTID: TSmallintField;
+    tbSubdetSID: TSmallintField;
+    tbSubdetSLNO: TIntegerField;
+    tbSubdetsubdesc: TStringField;
+    tbClassDet: TMyTable;
+    tbClassDetSLNO: TSmallintField;
+    tbClassDetCID: TSmallintField;
+    tbClassDetcldesc: TStringField;
+    tbTeacher1: TMyTable;
+    tbTeacher1TID: TFloatField;
+    tbTeacher1DESCR: TStringField;
+    tbTeacher1SUB1: TStringField;
+    tbTeacher1SUB2: TStringField;
+    tbTeacher1ABS: TStringField;
+    tbTeacher1ABNAME: TStringField;
+    tbClassDet1: TMyTable;
+    tbClassDet1SLNO: TSmallintField;
+    tbClassDet1CID: TSmallintField;
+    tbSubDet1: TMyTable;
+    tbSubDet1TID: TSmallintField;
+    tbSubDet1SID: TSmallintField;
+    tbSubDet1SLNO: TIntegerField;
+    tbSubDet1subdesc: TStringField;
+    usertb1: TMyTable;
+    usertb1UID: TStringField;
+    usertb1UNAME: TStringField;
+    usertb1PASSWD: TStringField;
+    usertb1STAT: TFloatField;
+    usertb1UNO: TIntegerField;
+    tbttable1: TMyTable;
+    tbttable1PERIOD: TSmallintField;
+    tbttable1DAY: TSmallintField;
+    tbttable1CCODE: TSmallintField;
+    tbttable1TEACHER: TSmallintField;
+    tbttable1SID: TSmallintField;
+    tbttable1tchname: TStringField;
+    tbttable1subdesc: TStringField;
+    tbttable2: TMyTable;
+    tbttable2PERIOD: TSmallintField;
+    tbttable2DAY: TSmallintField;
+    tbttable2CCODE: TSmallintField;
+    tbttable2TEACHER: TSmallintField;
+    tbttable2SID: TSmallintField;
+    tbttable2tchname: TStringField;
+    tbttable2subdesc: TStringField;
+    tbttable2cldesc: TStringField;
+    tbTabsent: TMyTable;
+    tbTabsentSLNO: TLargeintField;
+    tbTabsentDTE: TDateField;
+    tbTabsentTID: TSmallintField;
+    tbTabsenttchname: TStringField;
+    tbAcMaster: TMyTable;
+    tbAcMasterAC_NO: TFloatField;
+    tbAcMasterAC_NAME: TStringField;
+    tbAcMasterAC_MODE: TStringField;
+    tbAcMasterAC_MANDATORY: TBooleanField;
+    tbAcMasterAC_CODE: TStringField;
+    studmastPHOTO: TBlobField;
+    tbfeeAdmn: TStringField;
+    qryfeehdws: TMyQuery;
+    FloatField1: TFloatField;
+    StringField1: TStringField;
+    StringField3: TStringField;
+    qryfeehdwise: TMyQuery;
+    qryfeehdwisedescr: TStringField;
+    qryfeehdwisesection: TStringField;
+    qryfeehdwiseac_no: TFloatField;
+    qryfeehdwiseadmno: TStringField;
+    qryfeehdwisename: TStringField;
+    tbfeeDetailAC_AMTPAID: TFloatField;
+    qryfeehdwiseac_amtpaid: TFloatField;
+    tbfeeDetailMR_NO: TStringField;
+    tbfeeMR_NO: TStringField;
+    qryfeehdwisemr_no: TStringField;
+    AcdTYEAR: TIntegerField;
+    AcdTAPPLN_NO: TLargeintField;
+    qrStudHistMR_NO: TStringField;
+    mysp_gettmpno: TMyStoredProc;
+    mysp_setmrno: TMyStoredProc;
+    spdefaulter: TMyStoredProc;
+    spdefaulterS: TMyDataSource;
+    spdefaulteradmno: TStringField;
+    spdefaultername: TStringField;
+    spdefaulternoterms: TFloatField;
+    spdefaulterdiff: TFloatField;
+    spdefaulterclcaption: TStringField;
+    spdefaulterac_name: TStringField;
+    spdefaulterfee: TFloatField;
+    spdefaulteramt: TFloatField;
+    studmastNOFSB: TMemoField;
+    birthIssuedte: TDateField;
+    birthLastdte: TDateField;
+    birthSDOA: TDateField;
+    frxDBbirth: TfrxDBDataset;
+    frxmyrepo: TfrxReport;
+    MyConnectDialog1: TMyConnectDialog;
+    qryCllistClCode: TWordField;
+    qryCllistSection: TStringField;
+    qryCllistAdmNo: TStringField;
+    qryCllistName: TStringField;
+    qryCllistRollNo: TFloatField;
+    qryCllistFname: TStringField;
+    qryCllistDOB: TDateField;
+    qryCllistPhone: TStringField;
+    qryCllistSEX: TStringField;
+    dsFeeProf: TDataSource;
+    tbFeeProf: TMyTable;
+    tbFeeProfcode: TSmallintField;
+    tbFeeProfdescr: TStringField;
+    dsFeeProfDet: TDataSource;
+    fee_prof_det: TMyTable;
+    fee_prof_detfee_prof_code: TSmallintField;
+    fee_prof_detclcode: TSmallintField;
+    fee_prof_detclCaption: TStringField;
+    studmastFEE_PROF_CODE: TSmallintField;
+    studmastFEE_PROF_DESCR: TStringField;
+    tbfeeFEE_PROF_CODE: TSmallintField;
+    tbfeematrix1FEE_PROF_CODE: TSmallintField;
+    tbAcMasterAC_DEF: TBooleanField;
+    spdefaulterROLLNO: TFloatField;
+    spdefaulterSECTION: TStringField;
+    procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
+    procedure tbfeeAfterInsert(DataSet: TDataSet);
+    procedure tbfeeBeforePost(DataSet: TDataSet);
+    procedure tbfeeCalcFields(DataSet: TDataSet);
+    procedure tbfeeDetailAfterPost(DataSet: TDataSet);
+    procedure tbMarksubdet_AfterPost(DataSet: TDataSet);
+    procedure TbAbsenteesAfterInsert(DataSet: TDataSet);
+    procedure tbttable_CalcFields(DataSet: TDataSet);
+    procedure tbttable_TeacherChange(Sender: TField);
+    procedure tbfeeBeforeDelete(DataSet: TDataSet);
+    procedure tbfeeBeforeCancel(DataSet: TDataSet);
+    procedure tbfeeCHQ_NOChange(Sender: TField);
+    procedure qryYrlyCalcFields(DataSet: TDataSet);
+    procedure TcDataBeforePost(DataSet: TDataSet);
+    procedure tbSubMast_BeforePost(DataSet: TDataSet);
+    procedure tbSubMast_AfterInsert(DataSet: TDataSet);
+    procedure tbttable1_CalcFields(DataSet: TDataSet);
+    procedure tbTabsent_AfterInsert(DataSet: TDataSet);
+    procedure dsInsExecute(Sender: TObject);
+    procedure dsSavExecute(Sender: TObject);
+    procedure tbfeeAfterEdit(DataSet: TDataSet);
+    procedure TcDataAfterInsert(DataSet: TDataSet);
+    procedure AcdTBeforePost(DataSet: TDataSet);
+    procedure ProTBeforePost(DataSet: TDataSet);
+    procedure Lang1TBeforePost(DataSet: TDataSet);
+    procedure Lang2TBeforePost(DataSet: TDataSet);
+    procedure StfApplnTAfterInsert(DataSet: TDataSet);
+    procedure StfApplnTAfterEdit(DataSet: TDataSet);
+    procedure StfApplnTBeforeCancel(DataSet: TDataSet);
+    procedure StfApplnTBeforeDelete(DataSet: TDataSet);
+    procedure studmastCalcFields(DataSet: TDataSet);
+    procedure studmastAfterEdit(DataSet: TDataSet);
+    procedure studmastAfterInsert(DataSet: TDataSet);
+    procedure studmastBeforePost(DataSet: TDataSet);
+    procedure studmastDOBValidate(Sender: TField);
+    procedure tbTeacherCalcFields(DataSet: TDataSet);
+    procedure tbfeeDetailAC_AMTValidate(Sender: TField);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    actlstds,actlstdetds1,actlstdetds2,actlstdetds3,mstds,detds:TDataSet;
+   lastrecno: integer;
+  end;
+
+const dnm:array[1..7] of string=('Monday','Tuesday','Wednesday','Thrusday','Friday','Saturday','Sunday');
+var
+  MyData: TMyData;
+  mfile:TIniFile;
+  detdsIns:Boolean;
+  lno,stid:integer;
+  insert_flag:boolean;
+implementation
+
+uses myunit, frmReplaceU, frmAttendenceU,myfuncu,dateutils;
+
+{$R *.DFM}
+
+procedure TMyData.DataModuleCreate(Sender: TObject);
+var
+server,db,uname,passwd:string;
+begin
+insert_flag:=false;
+mfile:=Tinifile.Create('.\smsapp.ini');
+server:=mfile.ReadString('Connection','Host','localhost');
+db:=mfile.ReadString('Connection','Database','sms1');
+uname:=mfile.ReadString('Connection','UserId','root');
+passwd:=mfile.ReadString('Connection','Password','');
+lastrecno:=mfile.ReadInteger('General','Rec No.',1);
+myconn.Server:=server;
+myconn.Database:=db;
+myconn.Username:=uname;
+myconn.Password:=passwd;
+try
+  myconn.Connect;
+except
+//  if not myconn.Connected then
+//    myconn.ConnectDialog.Execute;
+//    exit;
+end;
+
+actlstds:=dummyT;
+end;
+
+procedure TMyData.DataModuleDestroy(Sender: TObject);
+begin
+if myconn.Connected then
+  begin
+  mfile.WriteString('Connection','Host',myconn.server);
+  mfile.WriteString('Connection','Database',myconn.Database);
+  mfile.WriteString('Connection','UserId',myconn.Username);
+  mfile.WriteString('Connection','Password',myconn.Password);
+  end;
+mfile.Free;
+myconn.Disconnect;
+end;
+
+procedure EnDisControls(tds:TDataSet;tac1,tac2:Taction);
+begin
+if tds.state in [dsInsert,dsEdit] then
+begin
+tac1.Enabled:=false;tac2.enabled:=true;
+end
+else
+begin
+tac1.Enabled:=True;tac2.enabled:=False;
+end;
+end;
+
+procedure TMyData.tbfeeAfterInsert(DataSet: TDataSet);
+begin
+mysp_gettmpno.ExecProc;
+tbfeeMr_no.Value:=mysp_gettmpno.Params[0].Value;
+tbfeemr_date.Value:=date;
+mydata.tbfeeNOTERM.Value:=1;
+EnDisControls(actlstds,dsIns,dsSav);
+end;
+
+procedure TMyData.tbfeeBeforePost(DataSet: TDataSet);
+begin
+if tbfee.State = dsinsert then
+begin
+  if StudMast.locate('studId',tbfeestudid.Value,[]) then
+  begin
+     StudMast.edit;
+     if StudMastnoterms.Value = -1 then
+       StudMastnoterms.Value:=tbfeenoterm.value
+     else
+       StudMastnoterms.Value := StudMastnoterms.Value + tbfeenoterm.value;
+     StudMast.post;
+  end;
+  mysp_setmrno.Params[0].Value:=tbfeeMR_NO.Value;
+  mysp_setmrno.ExecProc;
+  tbfeeMR_NO.Value:=mysp_setmrno.Params[1].Value;
+  tbfeeTerm.Value:=StudMastnoterms.asinteger;
+end;
+end;
+
+procedure TMyData.tbfeeCalcFields(DataSet: TDataSet);
+begin
+tbfeetot_amt.value:=tbfeelate_fee.value+tbfeefee_amt.Value;
+end;
+
+procedure TMyData.tbfeeDetailAfterPost(DataSet: TDataSet);
+var
+bmark: tbookmark;
+sum: real;
+begin
+bmark:=tbfeedetail.GetBookmark;
+//if tbfeedetail.State in [dsedit]then begin// if tds.state in [dsInsert,dsEdit] then
+tbfeedetail.DisableControls;
+sum:=0;
+tbfeedetail.First;
+while not tbfeedetail.Eof do
+begin
+  sum := sum + tbfeedetailac_amtpaid.value;
+  tbfeedetail.Next;
+end;
+if not(tbfee.State in[dsinsert,dsEdit]) then
+begin
+tbfee.Edit;
+detdsIns:=True;
+end;
+tbfeefee_amt.value:=sum;
+if detdsIns then
+begin
+detdsIns:=False;
+tbfee.Post;
+end;
+tbfeedetail.EnableControls;
+tbfeedetail.GotoBookmark(bmark);
+end;
+
+procedure TMyData.tbMarksubdet_AfterPost(DataSet: TDataSet);
+var
+i:real;
+begin
+{Mydata.tbMarksubdet.First ;i:=0;
+while not Mydata.tbMarksubdet.Eof do
+begin
+i:=i+ tbMarksubdetmarkobt.Value ;
+Mydata.tbMarksubdet.Next;
+end ;
+tbmarkdet.Edit ;
+tbMarkdettotmark.value:=i;}
+end;
+
+procedure TMyData.TbAbsenteesAfterInsert(DataSet: TDataSet);
+begin
+{if tbAbsentees.State in [dsinsert] then
+begin
+Mydata.TbAbsentees.Edit ;
+Mydata.tbAbsenteesDate.Value :=date;
+end;}
+end;
+
+procedure TMyData.tbttable_CalcFields(DataSet: TDataSet);
+var tmp:integer;
+begin
+tmp:=tbttableDay.asinteger;
+if ((tmp>0) and (tmp<8)) then
+tbttabledname.Value:=dnm[tbttableDay.asinteger];
+end;
+
+procedure TMyData.tbttable_TeacherChange(Sender: TField);
+begin
+//tbttableSubject.Value:=tbttableSname.Value;
+end;
+
+procedure TMyData.tbfeeBeforeDelete(DataSet: TDataSet);
+begin
+tbfeeDetail.DisableControls;
+tbfeeDetail.First;
+while not tbfeeDetail.eof do tbfeeDetail.delete;
+tbfeeDetail.EnableControls;
+//for updating no of term paid
+if StudMast.locate('studId',tbfeestudid.Value,[]) then
+  begin
+     StudMast.edit;
+     StudMastnoterms.Value:=StudMastnoterms.Value-tbfeenoterm.value;
+     StudMast.post;
+  end;
+end;
+
+procedure TMyData.tbfeeBeforeCancel(DataSet: TDataSet);
+begin
+if tbFee.State in [dsInsert] then
+begin
+tbfeeDetail.DisableControls;
+tbfeeDetail.First;
+while not tbfeeDetail.eof do tbfeeDetail.delete;
+tbfeeDetail.EnableControls;
+end;
+end;
+
+procedure TMyData.tbfeeCHQ_NOChange(Sender: TField);
+begin
+if tbfee.State = dsinsert then
+tbfeeChq_amt.Value:=tbfeeTot_amt.Value;
+end;
+
+procedure TMyData.qryYrlyCalcFields(DataSet: TDataSet);
+var t:real;
+begin
+t:=qryYrlyBasic.value+qryYrlyDA.value;
+if t>6500 then
+qryYrlyPf.value:=780 else
+qryYrlyPf.value:=t*0.12;
+qryYrlyNetAmt.value:=qryYrlyGross.value+qryYrlyPf.value;
+end;
+
+procedure TMyData.TcDataBeforePost(DataSet: TDataSet);
+var
+admno:integer;
+stat:string;
+begin
+{admno:=Mydata.StudMastStudID.AsInteger;
+if Mydata.StudMast.Locate('StudId',admno,[]) then
+begin}
+stat:=TcDataPromotion.Value;
+if stat[1]='G' then
+begin
+// clMast.Locate('ClCode',StudMastClcode.Value,[]);
+ admno:=ClMAstUPClass.Value;
+ clMast.Locate('ClCode',admno,[]);
+ stat:='Promoted to '+clMastDescr.Value;
+end
+else if stat[1]='R' then
+begin
+// clMast.Locate('ClCode',StudMastClcode.Value,[]);
+ stat:='Detained in '+clMastDescr.Value;
+end
+else
+ stat:='';
+mydata.StudMast.Edit;
+ if StudMastRemark.IsNull then
+  StudMastRemark.Value:='TC taken on '+TcDataTCDate.AsString+#13+
+                        'TC No. : '+TcDataTCNo.Value+#13+(stat)
+ else
+  StudMastRemark.Value:=StudMastRemark.Value+#13+
+                         'TC taken on '+TcDataTCDate.AsString+#13+
+                         'TC No. : '+TcDataTCNo.Value+#13+(stat);
+mydata.StudMastCatCode.Value:=0;
+mydata.StudMast.Post;
+{end
+else
+Raise exception.Create('Invalid Admission No');}
+if TcData.State in [dsInsert] then
+ mfile.WriteInteger('General','TCNo',stid+1);
+end;
+
+procedure TMyData.tbSubMast_BeforePost(DataSet: TDataSet);
+begin
+mfile.WriteInteger('General','sid',tbSubMastSID.Value+1);
+end;
+
+procedure TMyData.tbSubMast_AfterInsert(DataSet: TDataSet);
+begin
+tbSubMastSID.Value:=mfile.ReadInteger('General','sid',0);
+end;
+
+procedure TMyData.tbttable1_CalcFields(DataSet: TDataSet);
+begin
+//tbttable1dname.Value:=dnm[tbttable1Day.asinteger];
+end;
+
+procedure TMyData.tbTabsent_AfterInsert(DataSet: TDataSet);
+begin
+tbTabsentDte.Value:=date;
+end;
+
+procedure TMyData.dsInsExecute(Sender: TObject);
+begin
+ actlstds.Insert;
+end;
+
+procedure TMyData.dsSavExecute(Sender: TObject);
+begin
+ actlstds.Post;
+end;
+
+procedure TMyData.tbfeeAfterEdit(DataSet: TDataSet);
+begin
+        //APPLIES TO CANCEL, DELETE, OPEN, POST
+ EnDisControls(actlstds,dsIns,dsSav);
+
+end;
+
+procedure TMyData.TcDataAfterInsert(DataSet: TDataSet);
+var
+  orgfilt:string;
+  filtflg:Boolean;
+begin
+{if MyData.StudMast.Filtered then filtflg:=True;
+orgfilt:=MyData.StudMast.Filter;
+if orgfilt<>'' then
+MyData.StudMast.Filter:=orgfilt+' AND CatCode<>0 AND ClCode<>0'
+else
+MyData.StudMast.Filter:='CatCode<>0 AND ClCode<>0';
+MyData.StudMast.Filtered:=True;  showmessage(MyData.StudMast.Filter);}
+end;
+
+procedure TMyData.AcdTBeforePost(DataSet: TDataSet);
+begin
+ AcdTFlag.Value:='a';
+end;
+
+procedure TMyData.ProTBeforePost(DataSet: TDataSet);
+begin
+ ProTFlag.Value:='p';
+end;
+
+procedure TMyData.Lang1TBeforePost(DataSet: TDataSet);
+begin
+ Lang1Ttb_flag.Value:='p';
+end;
+
+procedure TMyData.Lang2TBeforePost(DataSet: TDataSet);
+begin
+ Lang2Ttb_flag.Value:='h';
+end;
+
+procedure TMyData.StfApplnTAfterInsert(DataSet: TDataSet);
+begin
+ EnDisControls(actlstds,dsIns,dsSav);
+end;
+
+procedure TMyData.StfApplnTAfterEdit(DataSet: TDataSet);
+begin
+// APPLIES TO CANCEL, DELETE, POST & OPEN ALSO \\
+ EnDisControls(actlstds,dsIns,dsSav);            
+end;
+
+procedure TMyData.StfApplnTBeforeCancel(DataSet: TDataSet);
+begin
+if StfApplnT.State in[dsInsert] then
+ StfApplnTBeforeDelete(StfApplnT);
+end;
+
+procedure TMyData.StfApplnTBeforeDelete(DataSet: TDataSet);
+begin
+  AcdT.First;  while not AcdT.Eof do   AcdT.Delete;
+  ProT.First;  while not ProT.Eof do   ProT.Delete;
+  Lang1T.First;  while not Lang1T.Eof do   Lang1T.Delete;
+  Lang2T.First;  while not Lang2T.Eof do   Lang2T.Delete;
+  WorkExT.First;  while not WorkExT.Eof do   WorkExT.Delete;
+  RefsT.First;  while not RefsT.Eof do   RefsT.Delete;
+  BooksT.First;  while not BooksT.Eof do   BooksT.Delete;
+  SemCorT.First;  while not SemCorT.Eof do   SemCorT.Delete;
+end;
+
+procedure TMyData.studmastCalcFields(DataSet: TDataSet);
+var
+mdte:extended;
+yr,mn,dy:word;
+begin
+if StudMastDOB.value<date then
+begin
+mdte:=date-StudMastDOB.value;
+yr:=trunc(mdte/365);
+mdte:=trunc(mdte) mod 365;
+mn:=trunc(mdte/30);
+mdte:=trunc(mdte) mod 30;
+dy:=trunc(mdte);
+if yr<100 then
+StudMastCage.value:=format('%d Yrs %d Mn %d Days',[yr,mn,dy]);
+end;
+end;
+
+procedure TMyData.studmastAfterEdit(DataSet: TDataSet);
+begin
+        //APPLIES TO CANCEL, DELETE, OPEN, POST
+ EnDisControls(actlstds,dsIns,dsSav);
+end;
+
+procedure TMyData.studmastAfterInsert(DataSet: TDataSet);
+begin
+stid:=mfile.ReadInteger('General','laststid',1);
+mydata.StudMastStudID.Value:=stid;
+ EnDisControls(actlstds,dsIns,dsSav);
+//StudMaststudid.value:=mfile.ReadInteger('General','laststid',1);
+end;
+
+procedure TMyData.studmastBeforePost(DataSet: TDataSet);
+begin
+if studmast.state in [dsinsert] then
+begin
+mfile.WriteInteger('General','laststid',stid+1);
+mydata.StudMastNOTERMS.Value :=-1;
+end
+end;
+
+procedure TMyData.studmastDOBValidate(Sender: TField);
+begin
+if StudMastDOB.Value>date then
+Raise exception.Create('Invalid Value for date');
+end;
+
+procedure TMyData.tbTeacherCalcFields(DataSet: TDataSet);
+var tmp:integer;
+begin
+tmp:=tbttableDay.asinteger;
+if ((tmp>0) and (tmp<8)) then
+tbttabledname.Value:=dnm[tbttableDay.asinteger];
+end;
+
+procedure TMyData.tbfeeDetailAC_AMTValidate(Sender: TField);
+begin
+mydata.tbfeeDetailAC_AMTPAID.Value:=mydata.tbfeeDetailAC_AMT.Value;
+end;
+
+end.

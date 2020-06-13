@@ -1,0 +1,80 @@
+unit frmTCu;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, DBCtrls, Mask, ExtCtrls, Buttons;
+
+type
+  TfrmTC = class(TForm)
+    Label15: TLabel;
+    Label1: TLabel;
+    DBEdit1: TDBEdit;
+    Label2: TLabel;
+    DBEdit2: TDBEdit;
+    Label3: TLabel;
+    DBEdit3: TDBEdit;
+    Label4: TLabel;
+    DBEdit4: TDBEdit;
+    Label5: TLabel;
+    DBEdit5: TDBEdit;
+    Label6: TLabel;
+    DBEdit6: TDBEdit;
+    Label7: TLabel;
+    DBEdit7: TDBEdit;
+    Label8: TLabel;
+    DBEdit8: TDBEdit;
+    Label9: TLabel;
+    Label10: TLabel;
+    DBLookupComboBox1: TDBLookupComboBox;
+    DBNavigator1: TDBNavigator;
+    BitBtn1: TBitBtn;
+    btnPreview: TBitBtn;
+    btnPrint: TBitBtn;
+    DBMemo1: TDBMemo;
+    Label12: TLabel;
+    DBComboBox1: TDBComboBox;
+    procedure btnPreviewClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmTC: TfrmTC;
+
+implementation
+
+uses MyDataU, qrpTCu,db;
+
+{$R *.dfm}
+
+procedure TfrmTC.btnPreviewClick(Sender: TObject);
+var bmark:Tbookmark;
+begin
+mydata.TcData.DisableControls;
+bmark:=mydata.TcData.GetBookmark;
+mydata.TcData.Filter:='Slno='+dbedit1.text;
+mydata.TcData.Filtered:=true;
+qrpTC.preview;
+mydata.TcData.Filtered:=false;
+mydata.TcData.GotoBookmark(bmark); 
+mydata.TcData.EnableControls;
+
+end;
+
+procedure TfrmTC.FormActivate(Sender: TObject);
+begin
+mydata.TcData.open;
+end;
+
+procedure TfrmTC.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+mydata.TcData.close;
+end;
+
+end.

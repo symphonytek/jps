@@ -1,0 +1,1382 @@
+object exmdata: Texmdata
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
+  Left = 532
+  Top = 179
+  Height = 421
+  Width = 586
+  object CLMast: TMyTable
+    TableName = 'clmast'
+    Connection = MyData.myconn
+    Left = 190
+    Top = 200
+    object CLMastClCode: TSmallintField
+      FieldName = 'CLCODE'
+    end
+    object CLMastClcaption: TStringField
+      FieldName = 'CLCAPTION'
+      Size = 10
+    end
+    object CLMastDesc: TStringField
+      FieldName = 'DESCR'
+      Size = 15
+    end
+    object CLMastMfee: TCurrencyField
+      FieldName = 'MFEE'
+    end
+    object CLMastUPClass: TSmallintField
+      FieldName = 'UPCLASS'
+    end
+    object CLMastAdfee: TCurrencyField
+      FieldName = 'ADFEE'
+    end
+  end
+  object CLMastS: TDataSource
+    DataSet = CLMast
+    Left = 134
+    Top = 200
+  end
+  object StudMast: TMyTable
+    TableName = 'studmast'
+    Connection = MyData.myconn
+    Left = 71
+    Top = 6
+    object StudMastStudID: TFloatField
+      FieldName = 'STUDID'
+    end
+    object StudMastName: TStringField
+      FieldName = 'NAME'
+      Size = 40
+    end
+    object StudMastRollNo: TFloatField
+      FieldName = 'ROLLNO'
+    end
+    object StudMastSection: TStringField
+      FieldName = 'SECTION'
+      Size = 2
+    end
+    object StudMastDOB: TDateField
+      FieldName = 'DOB'
+    end
+    object StudMastSex: TStringField
+      FieldName = 'SEX'
+      Size = 1
+    end
+    object StudMastGName: TStringField
+      FieldName = 'GNAME'
+      Size = 40
+    end
+    object StudMastFname: TStringField
+      FieldName = 'FNAME'
+      Size = 40
+    end
+    object StudMastLAddr: TMemoField
+      FieldName = 'LADDR'
+      BlobType = ftMemo
+      Size = 20
+    end
+    object StudMastPAddr: TMemoField
+      FieldName = 'PADDR'
+      BlobType = ftMemo
+      Size = 20
+    end
+    object StudMastCatCode: TFloatField
+      FieldName = 'CATCODE'
+    end
+    object StudMastDOA: TDateField
+      FieldName = 'DOA'
+    end
+    object StudMastAge: TStringField
+      FieldName = 'AGE'
+    end
+    object StudMastPhoto: TGraphicField
+      FieldName = 'PHOTO'
+      BlobType = ftGraphic
+    end
+    object StudMaststCLDESC: TStringField
+      FieldKind = fkLookup
+      FieldName = 'stCLDESC'
+      LookupDataSet = CLMast
+      LookupKeyFields = 'CLCODE'
+      LookupResultField = 'Descr'
+      KeyFields = 'CLCODE'
+      Lookup = True
+    end
+    object StudMaststMfee: TCurrencyField
+      FieldKind = fkLookup
+      FieldName = 'STMFEE'
+      LookupDataSet = CLMast
+      LookupKeyFields = 'CLCODE'
+      LookupResultField = 'MFEE'
+      KeyFields = 'CLCODE'
+      Lookup = True
+    end
+    object StudMastPhone: TStringField
+      DisplayWidth = 20
+      FieldName = 'PHONE'
+    end
+    object StudMastEml: TStringField
+      DisplayWidth = 35
+      FieldName = 'EML'
+      Size = 35
+    end
+    object StudMastClCode: TSmallintField
+      FieldName = 'CLCODE'
+    end
+    object StudMastNOTERMS: TFloatField
+      FieldName = 'NOTERMS'
+    end
+    object StudMastM_Phone: TStringField
+      FieldName = 'M_PHONE'
+    end
+    object StudMastAdm_Cl: TSmallintField
+      FieldName = 'ADM_CL'
+    end
+    object StudMastReligion: TStringField
+      FieldName = 'RELIGION'
+      Size = 15
+    end
+    object StudMastCast: TStringField
+      FieldName = 'CASTE'
+      Size = 15
+    end
+    object StudMastF_occp: TStringField
+      FieldName = 'F_OCCP'
+    end
+    object StudMastF_qual: TStringField
+      FieldName = 'F_QUAL'
+    end
+    object StudMastM_qual: TStringField
+      FieldName = 'M_QUAL'
+    end
+    object StudMastM_occp: TStringField
+      FieldName = 'M_OCCP'
+    end
+    object StudMastSchLast: TStringField
+      FieldName = 'SCHLAST'
+      Size = 30
+    end
+    object StudMastBloodGroup: TStringField
+      FieldName = 'BLOODGROUP'
+      Size = 15
+    end
+    object StudMastMname: TStringField
+      FieldName = 'MNAME'
+      Size = 40
+    end
+    object StudMastclCaption: TStringField
+      FieldKind = fkLookup
+      FieldName = 'CLCAPTION'
+      LookupDataSet = CLMast
+      LookupKeyFields = 'CLCODE'
+      LookupResultField = 'CLCAPTION'
+      KeyFields = 'CLCODE'
+      Lookup = True
+    end
+    object StudMastHouse: TStringField
+      FieldName = 'HOUSE'
+      Size = 25
+    end
+    object StudMastMtounge: TStringField
+      FieldName = 'MTOUNGE'
+      Size = 15
+    end
+    object StudMastRemark: TMemoField
+      FieldName = 'REMARK'
+      BlobType = ftMemo
+      Size = 20
+    end
+    object StudMastByBus: TBooleanField
+      FieldName = 'BYBUS'
+    end
+    object StudMastAmd_cl_desc: TStringField
+      FieldKind = fkLookup
+      FieldName = 'AMD_CL_DESC'
+      LookupDataSet = CLMast
+      LookupKeyFields = 'CLCODE'
+      LookupResultField = 'DESCR'
+      KeyFields = 'ADM_CL'
+      Lookup = True
+    end
+    object StudMastUpGrdyr: TStringField
+      FieldName = 'UPGRDYR'
+      Size = 2
+    end
+    object StudMastAdmNo: TStringField
+      FieldName = 'ADMNO'
+      Size = 10
+    end
+    object StudMastPath: TStringField
+      FieldName = 'PATH'
+      Size = 30
+    end
+  end
+  object StudMastS: TDataSource
+    DataSet = StudMast
+    Left = 12
+    Top = 6
+  end
+  object exsubmast: TMyTable
+    TableName = 'exsubmast'
+    MasterFields = 'CLCODE'
+    DetailFields = 'CLCODE'
+    MasterSource = CLMastS
+    Connection = MyData.myconn
+    Left = 190
+    Top = 248
+    object exsubmastSUBJID: TIntegerField
+      FieldName = 'SUBJID'
+    end
+    object exsubmastCLCODE: TSmallintField
+      FieldName = 'CLCODE'
+    end
+    object exsubmastSUBJDESC: TStringField
+      FieldName = 'SUBJDESC'
+      Size = 15
+    end
+    object exsubmastFMARKS: TSmallintField
+      FieldName = 'FMARKS'
+    end
+    object exsubmastPMARKS: TSmallintField
+      FieldName = 'PMARKS'
+    end
+    object exsubmastCONT: TBooleanField
+      FieldName = 'CONT'
+    end
+    object exsubmastSUBGRPID: TSmallintField
+      FieldName = 'SUBGRPID'
+    end
+    object exsubmastSUBGROUP: TStringField
+      FieldKind = fkLookup
+      FieldName = 'SUBGROUP'
+      LookupDataSet = exsubgroup
+      LookupKeyFields = 'SUBGRPID'
+      LookupResultField = 'SUBGROUP'
+      KeyFields = 'SUBGRPID'
+      Lookup = True
+    end
+  end
+  object exsubmastS: TDataSource
+    DataSet = exsubmast
+    Left = 134
+    Top = 248
+  end
+  object marksdet: TMyTable
+    TableName = 'marksdet'
+    Connection = MyData.myconn
+    Left = 71
+    Top = 152
+    object marksdetSlno: TAutoIncField
+      FieldName = 'SLNO'
+      ReadOnly = True
+    end
+    object marksdetStudid: TFloatField
+      FieldName = 'STUDID'
+    end
+    object marksdetExmid: TSmallintField
+      FieldName = 'EXMID'
+    end
+    object marksdetSubid: TSmallintField
+      FieldName = 'SUBID'
+    end
+    object marksdetMarks: TFloatField
+      FieldName = 'MARKS'
+    end
+  end
+  object marksdetS: TDataSource
+    DataSet = marksdet
+    Left = 12
+    Top = 152
+  end
+  object exmmast: TMyTable
+    TableName = 'exmmast'
+    Connection = MyData.myconn
+    Filter = 'SLCT='#39'True'#39
+    Left = 71
+    Top = 200
+    object exmmastExmid: TAutoIncField
+      FieldName = 'EXMID'
+      ReadOnly = True
+    end
+    object exmmastExmdesc: TStringField
+      FieldName = 'EXMDESC'
+      Size = 10
+    end
+    object exmmastExmdate: TDateField
+      FieldName = 'EXMDATE'
+    end
+    object exmmastSlct: TBooleanField
+      FieldName = 'SLCT'
+    end
+    object exmmastOINFO: TStringField
+      FieldName = 'OINFO'
+      Size = 40
+    end
+    object exmmastEXDT: TStringField
+      FieldName = 'EXDT'
+      Size = 12
+    end
+  end
+  object exmmastS: TDataSource
+    DataSet = exmmast
+    Left = 12
+    Top = 200
+  end
+  object exsubmast1: TMyTable
+    TableName = 'exsubmast'
+    Connection = MyData.myconn
+    Left = 71
+    Top = 56
+    object exsubmast1Subjid: TAutoIncField
+      FieldName = 'SUBJID'
+      ReadOnly = True
+    end
+    object exsubmast1Clcode: TSmallintField
+      FieldName = 'CLCODE'
+    end
+    object exsubmast1Subjdesc: TStringField
+      FieldName = 'SUBJDESC'
+      Size = 15
+    end
+    object exsubmast1Fmarks: TSmallintField
+      FieldName = 'FMARKS'
+    end
+    object exsubmast1Pmarks: TSmallintField
+      FieldName = 'PMARKS'
+    end
+    object exsubmast1Cont: TBooleanField
+      FieldName = 'CONT'
+    end
+  end
+  object exsubmast1S: TDataSource
+    DataSet = exsubmast1
+    Left = 12
+    Top = 56
+  end
+  object ActionList1: TActionList
+    Left = 364
+    Top = 6
+    object dsins: TDataSetInsert
+      Category = 'Dataset'
+      Caption = '&New'
+    end
+    object dspost: TDataSetPost
+      Category = 'Dataset'
+      Caption = '&Save'
+    end
+  end
+  object excldet: TMyTable
+    TableName = 'excldet'
+    MasterFields = 'EXMID'
+    DetailFields = 'EXID'
+    MasterSource = exmmastS
+    Connection = MyData.myconn
+    Left = 190
+    Top = 152
+    object excldetExid: TFloatField
+      FieldName = 'EXID'
+    end
+    object excldetClid: TFloatField
+      FieldName = 'CLID'
+    end
+    object excldetcldescr: TStringField
+      FieldKind = fkLookup
+      FieldName = 'CLDESCR'
+      LookupDataSet = CLMast
+      LookupKeyFields = 'CLCODE'
+      LookupResultField = 'CLCAPTION'
+      KeyFields = 'CLID'
+      Lookup = True
+    end
+  end
+  object excldetS: TDataSource
+    DataSet = excldet
+    Left = 134
+    Top = 152
+  end
+  object sheet: TMyTable
+    TableName = 'sheet'
+    Connection = MyData.myconn
+    RefreshOptions = [roBeforeEdit]
+    Left = 190
+    Top = 6
+    object sheetSHEETID: TIntegerField
+      FieldName = 'SHEETID'
+    end
+    object sheetClcode: TSmallintField
+      FieldName = 'CLCODE'
+    end
+    object sheetExmid: TSmallintField
+      FieldName = 'EXMID'
+    end
+    object sheetSubid: TSmallintField
+      FieldName = 'SUBID'
+    end
+    object sheetSection: TStringField
+      FieldName = 'SECTION'
+      Size = 2
+    end
+    object sheetlocked: TLargeintField
+      FieldName = 'locked'
+    end
+    object sheetpasswd: TStringField
+      FieldName = 'passwd'
+      Size = 15
+    end
+    object sheetexdescr: TStringField
+      FieldKind = fkLookup
+      FieldName = 'exdescr'
+      LookupDataSet = exmmast
+      LookupKeyFields = 'EXMID'
+      LookupResultField = 'EXMDESC'
+      KeyFields = 'EXMID'
+      Lookup = True
+    end
+    object sheetcldescr: TStringField
+      FieldKind = fkLookup
+      FieldName = 'CLDESCR'
+      LookupDataSet = excldet
+      LookupKeyFields = 'CLID'
+      LookupResultField = 'CLDESCR'
+      KeyFields = 'CLCODE'
+      Lookup = True
+    end
+    object sheetsubdescr: TStringField
+      FieldKind = fkLookup
+      FieldName = 'subdescr'
+      LookupDataSet = exsubmast
+      LookupKeyFields = 'SUBJID'
+      LookupResultField = 'SUBJDESC'
+      KeyFields = 'SUBID'
+      Lookup = True
+    end
+    object sheetcldes: TStringField
+      FieldKind = fkLookup
+      FieldName = 'CLDES'
+      LookupDataSet = CLMast
+      LookupKeyFields = 'CLCODE'
+      LookupResultField = 'CLCAPTION'
+      KeyFields = 'CLCODE'
+      Lookup = True
+    end
+    object sheetsubdes: TStringField
+      FieldKind = fkLookup
+      FieldName = 'SUBDES'
+      LookupDataSet = exsubmast1
+      LookupKeyFields = 'SUBJID'
+      LookupResultField = 'SUBJDESC'
+      KeyFields = 'SUBID'
+      Lookup = True
+    end
+  end
+  object sheetS: TDataSource
+    DataSet = sheet
+    Left = 134
+    Top = 6
+  end
+  object sheetdet: TMyTable
+    TableName = 'sheetdet'
+    MasterFields = 'SHEETID'
+    DetailFields = 'SHEETID'
+    MasterSource = sheetS
+    Connection = MyData.myconn
+    FetchAll = False
+    Left = 190
+    Top = 56
+    object sheetdetSHEETID: TIntegerField
+      FieldName = 'SHEETID'
+    end
+    object sheetdetStudId: TFloatField
+      FieldName = 'STUDID'
+    end
+    object sheetdetMarks: TFloatField
+      FieldName = 'MARKS'
+      MaxValue = 100.000000000000000000
+      MinValue = -26.000000000000000000
+    end
+    object sheetdetstudName: TStringField
+      FieldKind = fkLookup
+      FieldName = 'STUDNAME'
+      LookupDataSet = StudMast
+      LookupKeyFields = 'STUDID'
+      LookupResultField = 'NAME'
+      KeyFields = 'STUDID'
+      Lookup = True
+    end
+    object sheetdetAdmNo: TStringField
+      FieldName = 'ADMNO'
+      Size = 10
+    end
+    object sheetdetRlNo: TFloatField
+      FieldName = 'RLNO'
+    end
+  end
+  object sheetdetS: TDataSource
+    DataSet = sheetdet
+    Left = 134
+    Top = 56
+  end
+  object qryCllist: TMyQuery
+    Connection = MyData.myconn
+    SQL.Strings = (
+      'SELECT ClCode, Section, Name, RollNo, Fname, DOB,Phone,StudId'
+      'FROM studmast'
+      ' where ClCode=:ccode and UPPER(Section)=:sec and CATCODE<>0'
+      'ORDER BY ClCode, Section, RollNo')
+    Left = 315
+    Top = 56
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'ccode'
+      end
+      item
+        DataType = ftString
+        Name = 'sec'
+      end>
+    object qryCllistClCode: TWordField
+      FieldName = 'ClCode'
+    end
+    object qryCllistSection: TStringField
+      FieldName = 'Section'
+      Size = 2
+    end
+    object qryCllistName: TStringField
+      FieldName = 'Name'
+      Size = 40
+    end
+    object qryCllistRollNo: TFloatField
+      FieldName = 'RollNo'
+    end
+    object qryCllistFname: TStringField
+      FieldName = 'Fname'
+      Size = 40
+    end
+    object qryCllistDOB: TDateField
+      FieldName = 'DOB'
+    end
+    object qryCllistPhone: TStringField
+      FieldName = 'Phone'
+    end
+    object qryCllistStudId: TFloatField
+      FieldName = 'StudId'
+    end
+  end
+  object QrByBus: TMyQuery
+    Connection = MyData.myconn
+    SQL.Strings = (
+      
+        'SELECT shtdet.SheetId,Clcaption,studmast.Section,Name,Subjdesc,M' +
+        'arks,DoB,'
+      
+        'studmast.AdmNo, RlNo,studmast.ClCode,studmast.StudId,SubId,sht.E' +
+        'xmId'
+      'FROM sheetdet shtdet'
+      'INNER JOIN sheet sht'
+      'ON(sht.SheetId=shtdet.SheetId)'
+      'LEFT OUTER JOIN exsubmast SubMast'
+      'ON(SubMast.SubjId=sht.SubId)'
+      'INNER JOIN  studmast'
+      'ON(studmast.StudId=shtdet.StudId)'
+      'INNER JOIN clmast'
+      'ON(clmast.ClCode=sht.ClCode)'
+      'INNER JOIN exmmast xmmst'
+      'ON(xmmst.ExmId=sht.ExmId)'
+      'WHERE Slct=True'
+      ''
+      'ORDER BY  ClCode,Section,RlNo,SubId,ExmId')
+    Filtered = True
+    Left = 234
+    Top = 56
+    object QrByBusSheetId: TIntegerField
+      FieldName = 'SheetId'
+    end
+    object QrByBusClcaption: TStringField
+      FieldName = 'CLCAPTION'
+      Size = 10
+    end
+    object QrByBusSection: TStringField
+      FieldName = 'SECTION'
+      Size = 2
+    end
+    object QrByBusName: TStringField
+      FieldName = 'NAME'
+      Size = 40
+    end
+    object QrByBusSubjdesc: TStringField
+      FieldName = 'SUBJDESC'
+      Size = 15
+    end
+    object QrByBusMarks: TFloatField
+      FieldName = 'MARKS'
+    end
+    object QrByBusAdmNo: TStringField
+      FieldName = 'ADMNO'
+      Size = 10
+    end
+    object QrByBusRlNo: TFloatField
+      FieldName = 'RLNO'
+    end
+    object QrByBusClCode: TSmallintField
+      FieldName = 'CLCODE'
+    end
+    object QrByBusStudId: TFloatField
+      FieldName = 'STUDID'
+    end
+    object QrByBusSubId: TSmallintField
+      FieldName = 'SUBID'
+    end
+    object QrByBusExmId: TSmallintField
+      FieldName = 'EXMID'
+    end
+    object QrByBusDoB: TDateField
+      FieldName = 'DOB'
+    end
+  end
+  object DS1: TDataSource
+    Left = 233
+    Top = 6
+  end
+  object Query1: TMyQuery
+    Connection = MyData.myconn
+    SQL.Strings = (
+      'select max(rollno) maxm from studmast '
+      'where clcode<>59')
+    Left = 234
+    Top = 104
+    object Query1maxm: TFloatField
+      FieldName = 'maxm'
+    end
+  end
+  object Query2: TMyQuery
+    Connection = MyData.myconn
+    SQL.Strings = (
+      'select max(ExmId) maxm, min(ExmId) minm from exmmast'
+      'where Slct=True')
+    Left = 274
+    Top = 104
+    object Query2maxm: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'MAXM'
+    end
+    object Query2minm: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'MINM'
+    end
+  end
+  object Query3: TMyQuery
+    Connection = MyData.myconn
+    SQL.Strings = (
+      'select max(SubjId) maxS, min(SubjId) minS, max(ClCode) maxC'
+      'from exsubmast'
+      'WHERE')
+    Left = 314
+    Top = 104
+    object Query3maxS: TIntegerField
+      FieldName = 'MAXS'
+    end
+    object Query3minS: TIntegerField
+      FieldName = 'MINS'
+    end
+    object Query3maxC: TSmallintField
+      FieldName = 'MAXC'
+    end
+  end
+  object Query4: TMyQuery
+    Connection = MyData.myconn
+    SQL.Strings = (
+      'select distinct studid,ClCode,Section,RlNo'
+      'FROM sheetdet shtdet'
+      'INNER JOIN sheet sht'
+      'ON(sht.SheetId=shtdet.SheetId)'
+      'INNER JOIN exmmast xmmst'
+      'ON(xmmst.ExmId=sht.ExmId)'
+      'WHERE Slct=True'
+      ''
+      'ORDER BY  ClCode,Section,RlNo')
+    Filtered = True
+    OnCalcFields = Query4CalcFields
+    Left = 274
+    Top = 56
+    object Query4studid: TFloatField
+      DisplayWidth = 4
+      FieldName = 'STUDID'
+    end
+    object Query4cnt: TIntegerField
+      DisplayWidth = 3
+      FieldKind = fkCalculated
+      FieldName = 'cnt'
+      Calculated = True
+    end
+    object Query4ClCode: TSmallintField
+      DisplayWidth = 3
+      FieldName = 'CLCODE'
+    end
+    object Query4Section: TStringField
+      DisplayWidth = 3
+      FieldName = 'SECTION'
+      Size = 2
+    end
+    object Query4RlNo: TFloatField
+      DisplayWidth = 3
+      FieldName = 'RLNO'
+    end
+  end
+  object Query5: TMyQuery
+    Connection = MyData.myconn
+    SQL.Strings = (
+      'select Name,AdmNo,clCaption,Section,StudId,RollNo,DoB'
+      'from studmast stud'
+      'inner join clmast cl'
+      'on(cl.clcode=stud.clcode)'
+      ''
+      ''
+      ''
+      ''
+      ''
+      '--')
+    Left = 234
+    Top = 152
+    object Query5Name: TStringField
+      FieldName = 'NAME'
+      Size = 40
+    end
+    object Query5AdmNo: TStringField
+      FieldName = 'AdmNo'
+      Size = 10
+    end
+    object Query5clCaption: TStringField
+      FieldName = 'CLCAPTION'
+      Size = 10
+    end
+    object Query5Section: TStringField
+      FieldName = 'SECTION'
+      Size = 2
+    end
+    object Query5StudId: TFloatField
+      FieldName = 'STUDID'
+    end
+    object Query5RollNo: TFloatField
+      FieldName = 'ROLLNO'
+    end
+    object Query5DoB: TDateField
+      FieldName = 'DOB'
+    end
+  end
+  object Query6: TMyQuery
+    Connection = MyData.myconn
+    SQL.Strings = (
+      'select * from exmmast'
+      'where Slct=True')
+    Left = 274
+    Top = 152
+    object Query6Exmid: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'EXMID'
+    end
+    object Query6Exmdesc: TStringField
+      FieldName = 'EXMDESC'
+      Size = 30
+    end
+    object Query6Exmdate: TDateField
+      FieldName = 'Exmdate'
+    end
+  end
+  object Query7: TMyQuery
+    Connection = MyData.myconn
+    SQL.Strings = (
+      'select SUBJID,CLCODE,SUBJDESC,FMARKS,PMARKS,CONT,SUBGROUP '
+      
+        'from exsubmast s inner join exsubgroup e on (e.subgrpid=s.subgrp' +
+        'id)'
+      'WHERE true'
+      'order by subgroup,subjid')
+    Left = 314
+    Top = 152
+    object Query7Subjid: TIntegerField
+      FieldName = 'SUBJID'
+      Origin = 'exsubmast.SUBJID'
+    end
+    object Query7Clcode: TSmallintField
+      FieldName = 'CLCODE'
+      Origin = 'exsubmast.CLCODE'
+    end
+    object Query7Subjdesc: TStringField
+      FieldName = 'SUBJDESC'
+      Origin = 'exsubmast.SUBJDESC'
+      Size = 15
+    end
+    object Query7Fmarks: TSmallintField
+      FieldName = 'FMARKS'
+      Origin = 'exsubmast.FMARKS'
+    end
+    object Query7Pmarks: TSmallintField
+      FieldName = 'PMARKS'
+      Origin = 'exsubmast.PMARKS'
+    end
+    object Query7Cont: TBooleanField
+      FieldName = 'CONT'
+      Origin = 'exsubmast.CONT'
+    end
+    object Query7SUBGROUP: TStringField
+      FieldName = 'SUBGROUP'
+      Origin = 'e.SUBGROUP'
+    end
+  end
+  object RdBtnValD: TDataSource
+    DataSet = RdBtnValT
+    Left = 12
+    Top = 104
+  end
+  object RdBtnValT: TMyTable
+    TableName = 'rdbtnval'
+    Connection = MyData.myconn
+    Left = 71
+    Top = 104
+    object RdBtnValTFieldName: TStringField
+      FieldName = 'FIELDNAME'
+      Size = 30
+    end
+  end
+  object Query8: TMyQuery
+    Connection = MyData.myconn
+    SQL.Strings = (
+      'select shtdet.studid,rollno,subid,sum(marks) ucTot'
+      'FROM sheetdet shtdet'
+      
+        'INNER JOIN studmast ON (studmast.studid=shtdet.studid) INNER JOI' +
+        'N sheet sht '
+      'ON(sht.SheetId=shtdet.SheetId)'
+      'INNER JOIN exmmast xmmst'
+      'ON(xmmst.ExmId=sht.ExmId)'
+      'WHERE Slct=True'
+      ''
+      'GROUP BY studid,subid')
+    Filtered = True
+    OnCalcFields = Query8CalcFields
+    Left = 234
+    Top = 200
+    object Query8subid: TSmallintField
+      FieldName = 'SUBID'
+    end
+    object Query8studid: TFloatField
+      FieldName = 'STUDID'
+    end
+    object Query8ucTot: TFloatField
+      FieldName = 'UCTOT'
+    end
+    object Query8tot: TIntegerField
+      FieldKind = fkCalculated
+      FieldName = 'tot'
+      Calculated = True
+    end
+    object Query8rollno: TFloatField
+      FieldName = 'rollno'
+    end
+  end
+  object qrySrch: TMyQuery
+    Connection = MyData.myconn
+    SQL.Strings = (
+      'SELECT *'
+      'FROM sheet sht'
+      '   INNER JOIN exmmast xm'
+      '   ON  (xm.ExmId = sht.ExmId)  '
+      '   INNER JOIN clmast cls'
+      '   ON  (cls.ClCode = sht.ClCode)'
+      '   INNER JOIN exsubmast sbj'
+      '   ON  (sbj.SubjId = sht.SubId)')
+    Left = 315
+    Top = 6
+    object qrySrchSheetId: TFloatField
+      FieldName = 'SHEETID'
+    end
+    object qrySrchExmdesc: TStringField
+      DisplayLabel = '      Examination'
+      DisplayWidth = 15
+      FieldName = 'EXMDESC'
+      Size = 30
+    end
+    object qrySrchExmdate: TDateField
+      DisplayLabel = '      Date'
+      FieldName = 'EXMDATE'
+    end
+    object qrySrchClcaption: TStringField
+      DisplayLabel = '      Class'
+      FieldName = 'CLCAPTION'
+      Size = 10
+    end
+    object qrySrchSection: TStringField
+      FieldName = 'SECTION'
+      Size = 2
+    end
+    object qrySrchSubjdesc: TStringField
+      DisplayLabel = '       Subject'
+      FieldName = 'SUBJDESC'
+      Size = 15
+    end
+  end
+  object qrySrchS: TDataSource
+    DataSet = qrySrch
+    Left = 273
+    Top = 6
+  end
+  object Query9: TMyQuery
+    Connection = MyData.myconn
+    SQL.Strings = (
+      'select shtdet.studid,rollno,sht.ExmId,sum(marks) ucTot'
+      'FROM sheetdet shtdet'
+      
+        'INNER JOIN studmast ON (studmast.studid=shtdet.studid) INNER JOI' +
+        'N sheet sht'
+      'ON(sht.SheetId=shtdet.SheetId)'
+      'INNER JOIN exmmast xmmst'
+      'ON(xmmst.ExmId=sht.ExmId)'
+      'WHERE Slct=True AND (marks>=0 OR marks is NULL)'
+      ''
+      'GROUP BY studid,exmid')
+    OnCalcFields = Query9CalcFields
+    Left = 275
+    Top = 200
+    object Query9studid: TFloatField
+      FieldName = 'STUDID'
+    end
+    object Query9ExmId: TSmallintField
+      FieldName = 'EXMID'
+    end
+    object Query9ucTot: TFloatField
+      FieldName = 'UCTOT'
+    end
+    object Query9tot: TIntegerField
+      FieldKind = fkCalculated
+      FieldName = 'tot'
+      Calculated = True
+    end
+    object Query9rollno: TFloatField
+      FieldName = 'rollno'
+    end
+  end
+  object Query10: TMyQuery
+    Connection = MyData.myconn
+    SQL.Strings = (
+      'select shtdet.studid,rollno,sum(marks) ucTot'
+      'FROM sheetdet shtdet'
+      
+        'INNER JOIN studmast ON (studmast.studid=shtdet.studid) INNER JOI' +
+        'N sheet sht'
+      'ON(sht.SheetId=shtdet.SheetId)'
+      'INNER JOIN exmmast xmmst'
+      'ON(xmmst.ExmId=sht.ExmId)'
+      'WHERE Slct=True AND (marks>=0 OR marks is NULL)'
+      ''
+      'GROUP BY studid')
+    OnCalcFields = Query10CalcFields
+    Left = 315
+    Top = 200
+    object Query10studid: TFloatField
+      FieldName = 'STUDID'
+    end
+    object Query10ucTot: TFloatField
+      FieldName = 'UCTOT'
+    end
+    object Query10tot: TIntegerField
+      FieldKind = fkCalculated
+      FieldName = 'tot'
+      Calculated = True
+    end
+    object Query10rollno: TFloatField
+      FieldName = 'rollno'
+    end
+  end
+  object Query11: TMyQuery
+    Connection = MyData.myconn
+    SQL.Strings = (
+      'select count(ExmId) maxm from exmmast'
+      'where Slct=True')
+    Left = 234
+    Top = 248
+    object Query11maxm: TLargeintField
+      FieldName = 'MAXM'
+    end
+  end
+  object qrytemp: TMyQuery
+    Connection = MyData.myconn
+    SQL.Strings = (
+      'select sheetid from sheet')
+    Left = 416
+    Top = 8
+  end
+  object qryMsheet: TMyQuery
+    Connection = MyData.myconn
+    SQL.Strings = (
+      'select name,rlno,exsubmast.subjdesc,marks'
+      'FROM sheetdet shtdet'
+      
+        'INNER JOIN studmast ON (studmast.studid=shtdet.studid) INNER JOI' +
+        'N sheet sht'
+      'ON(sht.SheetId=shtdet.SheetId)'
+      'INNER JOIN exmmast xmmst'
+      
+        'ON(xmmst.ExmId=sht.ExmId) INNER JOIN exsubmast ON(exsubmast.SUBJ' +
+        'ID=sht.SUBID)'
+      'WHERE Slct=True AND (marks>=0 OR marks is NULL)'
+      'AND true')
+    OnCalcFields = Query10CalcFields
+    Left = 307
+    Top = 248
+    object qryMsheetname: TStringField
+      FieldName = 'name'
+      Origin = 'studmast.NAME'
+      Size = 40
+    end
+    object qryMsheetrlno: TFloatField
+      FieldName = 'rlno'
+      Origin = 'sheetdet.rlno'
+    end
+    object qryMsheetsubjdesc: TStringField
+      FieldName = 'subjdesc'
+      Origin = 'exsubmast.SUBJDESC'
+      Size = 15
+    end
+    object qryMsheetmarks: TFloatField
+      FieldName = 'marks'
+      Origin = 'sheetdet.marks'
+    end
+  end
+  object frxRpt: TfrxReport
+    Version = '4.9.32'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 40412.102724421300000000
+    ReportOptions.LastChange = 40777.313239826390000000
+    ScriptLanguage = 'PascalScript'
+    StoreInDFM = False
+    OnGetValue = frxRptGetValue
+    Left = 256
+    Top = 320
+  end
+  object frxDBqryMsheet: TfrxDBDataset
+    UserName = 'frxDBMsheet'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'name=name'
+      'rlno=rlno'
+      'subjdesc=subjdesc'
+      'marks=marks')
+    DataSet = qryMsheet
+    BCDToCurrency = False
+    Left = 320
+    Top = 320
+  end
+  object frxRepcard: TfrxReport
+    Version = '4.9.32'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 40407.687026909700000000
+    ReportOptions.LastChange = 40411.315939108800000000
+    ScriptLanguage = 'PascalScript'
+    StoreInDFM = False
+    OnGetValue = frxRepcardGetValue
+    Left = 184
+    Top = 320
+  end
+  object frxUDSslist: TfrxUserDataSet
+    UserName = 'frxUDSslist'
+    Left = 128
+    Top = 320
+  end
+  object qryStudlist: TMyQuery
+    Connection = MyData.myconn
+    SQL.Strings = (
+      'select Name,AdmNo,clCaption,Section,StudId,RollNo,DoB'
+      'from studmast'
+      'inner join clmast on(clmast.clcode=studmast.clcode)'
+      
+        'where studmast.catcode<>0 and studmast.clcode=:cl and section=:s' +
+        'ec'
+      'order by rollno')
+    Left = 364
+    Top = 56
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'cl'
+        ParamType = ptInput
+        Value = 13
+      end
+      item
+        DataType = ftString
+        Name = 'sec'
+        ParamType = ptInput
+        Value = 'D'
+      end>
+    object qryStudlistName: TStringField
+      FieldName = 'Name'
+      Origin = 'studmast.NAME'
+      Size = 40
+    end
+    object qryStudlistAdmNo: TStringField
+      FieldName = 'AdmNo'
+      Origin = 'studmast.ADMNO'
+      Size = 10
+    end
+    object qryStudlistclCaption: TStringField
+      FieldName = 'clCaption'
+      Origin = 'clmast.CLCAPTION'
+      Size = 10
+    end
+    object qryStudlistSection: TStringField
+      FieldName = 'Section'
+      Origin = 'studmast.SECTION'
+      Size = 2
+    end
+    object qryStudlistStudId: TFloatField
+      FieldName = 'StudId'
+      Origin = 'studmast.STUDID'
+    end
+    object qryStudlistRollNo: TFloatField
+      FieldName = 'RollNo'
+      Origin = 'studmast.ROLLNO'
+    end
+    object qryStudlistDoB: TDateField
+      FieldName = 'DoB'
+      Origin = 'studmast.DOB'
+    end
+  end
+  object qryMarks: TMyQuery
+    Connection = MyData.myconn
+    SQL.Strings = (
+      'select * from studmrks')
+    MasterSource = dsStudlist
+    MasterFields = 'StudId'
+    DetailFields = 'STUDID'
+    Left = 364
+    Top = 152
+    ParamData = <
+      item
+        DataType = ftFloat
+        Name = 'StudId'
+        ParamType = ptInput
+        Value = 10099.000000000000000000
+      end>
+    object qryMarksSTUDID: TFloatField
+      FieldName = 'STUDID'
+      Origin = 'studmrks.STUDID'
+    end
+    object qryMarksSUBGRPID: TLargeintField
+      FieldName = 'SUBGRPID'
+      Origin = 'studmrks.SUBGRPID'
+    end
+    object qryMarksSUBID: TLargeintField
+      FieldName = 'SUBID'
+      Origin = 'studmrks.SUBID'
+    end
+    object qryMarksSUBJDESC: TStringField
+      FieldName = 'SUBJDESC'
+      Origin = 'studmrks.SUBJDESC'
+      Size = 30
+    end
+    object qryMarksFMARKS: TSmallintField
+      FieldName = 'FMARKS'
+    end
+    object qryMarksEXMDESC: TStringField
+      FieldName = 'EXMDESC'
+      Origin = 'studmrks.EXMDESC'
+      Size = 30
+    end
+    object qryMarksMARKS: TStringField
+      FieldName = 'MARKS'
+      Origin = 'studmrks.MARKS'
+      Size = 53
+    end
+  end
+  object dsStudlist: TMyDataSource
+    DataSet = qryStudlist
+    Left = 416
+    Top = 56
+  end
+  object dsMarks: TMyDataSource
+    DataSet = qryMarks
+    Left = 416
+    Top = 152
+  end
+  object frxDBstudlist: TfrxDBDataset
+    UserName = 'frxDBstudlist'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'Name=Name'
+      'AdmNo=AdmNo'
+      'clCaption=clCaption'
+      'Section=Section'
+      'StudId=StudId'
+      'RollNo=RollNo'
+      'DoB=DoB')
+    OpenDataSource = False
+    DataSet = qryStudlist
+    BCDToCurrency = False
+    Left = 364
+    Top = 248
+  end
+  object frxDBMarks: TfrxDBDataset
+    UserName = 'frxDBMarks'
+    CloseDataSource = False
+    OpenDataSource = False
+    DataSet = qryMarks
+    BCDToCurrency = False
+    Left = 400
+    Top = 312
+  end
+  object qrySubgroup: TMyQuery
+    Connection = MyData.myconn
+    SQL.Strings = (
+      'select studid,subgrpid,subgroup,grdmsg from studmast s'
+      'inner join  v_subgrp v on s.clcode=v.clcode')
+    MasterSource = dsStudlist
+    MasterFields = 'StudId'
+    DetailFields = 'studid'
+    Left = 364
+    Top = 104
+    ParamData = <
+      item
+        DataType = ftFloat
+        Name = 'StudId'
+        ParamType = ptInput
+        Value = 10099.000000000000000000
+      end>
+    object qrySubgroupstudid: TFloatField
+      FieldName = 'studid'
+      Origin = 'studmast.studid'
+    end
+    object qrySubgroupSUBGROUP: TStringField
+      FieldName = 'SUBGROUP'
+      Origin = 'v.subgroup'
+      Size = 30
+    end
+    object qrySubgroupgrdmsg: TStringField
+      FieldName = 'grdmsg'
+      Origin = 'v.grdmsg'
+      Size = 85
+    end
+    object qrySubgroupsubgrpid: TSmallintField
+      FieldName = 'subgrpid'
+      Origin = 'v.subgrpid'
+    end
+  end
+  object dsSubgroup: TMyDataSource
+    DataSet = qrySubgroup
+    Left = 416
+    Top = 104
+  end
+  object frxDBSubgroup: TfrxDBDataset
+    UserName = 'frxDBSubgroup'
+    CloseDataSource = False
+    OpenDataSource = False
+    DataSet = qrySubgroup
+    BCDToCurrency = False
+    Left = 418
+    Top = 248
+  end
+  object exsubgroup: TMyTable
+    TableName = 'exsubgroup'
+    Connection = MyData.myconn
+    Left = 190
+    Top = 104
+    object exsubgroupSUBGRPID: TSmallintField
+      FieldName = 'SUBGRPID'
+    end
+    object exsubgroupSUBGROUP: TStringField
+      FieldName = 'SUBGROUP'
+    end
+    object exsubgroupGRDMSG: TStringField
+      FieldName = 'GRDMSG'
+      Size = 40
+    end
+  end
+  object exsubgroupS: TDataSource
+    DataSet = exsubgroup
+    Left = 134
+    Top = 104
+  end
+  object qryMarksGrd: TMyQuery
+    Connection = MyData.myconn
+    SQL.Strings = (
+      'select * from studmrksgrd')
+    MasterSource = dsSubgroup
+    MasterFields = 'studid;subgrpid'
+    DetailFields = 'STUDID;SUBGRPID'
+    Left = 364
+    Top = 200
+    ParamData = <
+      item
+        DataType = ftFloat
+        Name = 'studid'
+        ParamType = ptInput
+        Value = 10099.000000000000000000
+      end
+      item
+        DataType = ftSmallint
+        Name = 'subgrpid'
+        ParamType = ptInput
+        Value = 0
+      end>
+    object qryMarksGrdSTUDID: TFloatField
+      FieldName = 'STUDID'
+      Origin = 'studmrksgrd.STUDID'
+    end
+    object qryMarksGrdSUBGRPID: TSmallintField
+      FieldName = 'SUBGRPID'
+      Origin = 'studmrksgrd.SUBGRPID'
+    end
+    object qryMarksGrdsubid: TIntegerField
+      FieldName = 'subid'
+      Origin = 'studmrksgrd.subid'
+    end
+    object qryMarksGrdSUBJDESC: TStringField
+      FieldName = 'SUBJDESC'
+      Origin = 'studmrksgrd.SUBJDESC'
+      Size = 30
+    end
+    object qryMarksGrdFMARKS: TStringField
+      FieldName = 'FMARKS'
+      Origin = '.FMARKS'
+      ReadOnly = True
+      Size = 65535
+    end
+    object qryMarksGrdEXMDESC: TStringField
+      FieldName = 'EXMDESC'
+      Origin = 'studmrksgrd.EXMDESC'
+      Size = 30
+    end
+    object qryMarksGrdMARKS: TStringField
+      FieldName = 'MARKS'
+      Origin = 'studmrksgrd.MARKS'
+      FixedChar = True
+      Size = 2
+    end
+  end
+  object frxDBMarksGrd: TfrxDBDataset
+    UserName = 'frxDBMarksGrd'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'STUDID=STUDID'
+      'SUBGRPID=SUBGRPID'
+      'subid=subid'
+      'SUBJDESC=SUBJDESC'
+      'FMARKS=FMARKS'
+      'EXMDESC=EXMDESC'
+      'MARKS=MARKS')
+    OpenDataSource = False
+    DataSet = qryMarksGrd
+    BCDToCurrency = False
+    Left = 480
+    Top = 312
+  end
+end

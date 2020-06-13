@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="4.12.6" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="4095" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="39354.6615827546" ReportOptions.Description.Text="" ReportOptions.LastChange="41400.4247384375" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end." PropData="044C65667403800103546F7003F0010844617461736574730101063620446174615365743D226672784442717279636C6C6973742220446174615365744E616D653D226672784442717279636C6C697374220000095661726961626C65730100055374796C650100">
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" Orientation="poLandscape" PaperWidth="279.4" PaperHeight="215.9" PaperSize="1" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" Height="64.25201" Left="0" Top="18.89765" Width="980.410082">
+      <TfrxMemoView Name="hdmemo" Align="baWidth" Left="0" Top="37.01577" Width="980.410082" Height="18.89765" ShowHint="False" Font.Charset="1" Font.Color="0" Font.Height="-19" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Cast Report"/>
+      <TfrxMemoView Name="orgnm_memo" Align="baWidth" Left="0" Top="3.77953" Width="980.410082" Height="22.67718" ShowHint="False" Font.Charset="0" Font.Color="0" Font.Height="-24" Font.Name="Arial Narrow" Font.Style="1" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="SACRED HEART CONVENT SCHOOL"/>
+    </TfrxReportTitle>
+    <TfrxColumnHeader Name="ColumnHeader1" Font.Charset="0" Font.Color="0" Font.Height="-12" Font.Name="Arial Narrow" Font.Style="1" Height="22.67718" Left="0" ParentFont="False" Top="105.82684" Width="980.410082">
+      <TfrxLineView Name="Line1" Left="0" Top="18.89765" Width="978.89827" Height="0" ShowHint="False" Frame.Typ="4"/>
+      <TfrxMemoView Name="Memo2" Left="49.13389" Top="0" Width="45.35436" Height="18.89765" ShowHint="False" Text="Adm. No"/>
+      <TfrxMemoView Name="Memo3" Left="139.84261" Top="0" Width="45.35436" Height="18.89765" ShowHint="False" Text="Name"/>
+      <TfrxMemoView Name="Memo4" Left="366.61441" Top="0" Width="45.35436" Height="18.89765" ShowHint="False" Text="Roll no"/>
+      <TfrxMemoView Name="Memo5" Left="423.30736" Top="0" Width="75.5906" Height="18.89765" ShowHint="False" Text="Father's Name"/>
+      <TfrxMemoView Name="Memo6" Left="600.94527" Top="0" Width="75.5906" Height="18.89765" ShowHint="False" Text="Mother's Name"/>
+      <TfrxMemoView Name="Memo7" Left="805.03989" Top="0" Width="56.69295" Height="18.89765" ShowHint="False" Text="Caste"/>
+      <TfrxMemoView Name="Memo8" Left="876.85096" Top="0" Width="79.37013" Height="18.89765" ShowHint="False" Text="Fee Category"/>
+      <TfrxMemoView Name="Memo1" Left="3.77953" Top="0" Width="18.89765" Height="18.89765" ShowHint="False" Text="Sl."/>
+    </TfrxColumnHeader>
+    <TfrxMasterData Name="MasterData1" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Height="18.89765" Left="0" ParentFont="False" Top="188.9765" Width="980.410082" ColumnWidth="0" ColumnGap="0" DataSet="frxDBqrycllist" DataSetName="frxDBqrycllist" RowCount="0">
+      <TfrxSysMemoView Name="SysMemo1" Left="3.77953" Top="0" Width="34.01577" Height="18.89765" ShowHint="False" Text="[LINE#]"/>
+      <TfrxMemoView Name="frxDBqrycllistAdmNo" Left="49.13389" Top="0" Width="79.37013" Height="18.89765" ShowHint="False" DataField="AdmNo" DataSet="frxDBqrycllist" DataSetName="frxDBqrycllist" Text="[frxDBqrycllist.&#34;AdmNo&#34;]"/>
+      <TfrxMemoView Name="frxDBqrycllistName" Left="139.84261" Top="0" Width="219.21274" Height="18.89765" ShowHint="False" DataField="Name" DataSet="frxDBqrycllist" DataSetName="frxDBqrycllist" Text="[frxDBqrycllist.&#34;Name&#34;]"/>
+      <TfrxMemoView Name="frxDBqrycllistRollNo" Left="366.61441" Top="0" Width="49.13389" Height="18.89765" ShowHint="False" DataField="RollNo" DataSet="frxDBqrycllist" DataSetName="frxDBqrycllist" Text="[frxDBqrycllist.&#34;RollNo&#34;]"/>
+      <TfrxMemoView Name="frxDBqrycllistFname" Left="423.30736" Top="0" Width="166.29932" Height="18.89765" ShowHint="False" DataField="Fname" DataSet="frxDBqrycllist" DataSetName="frxDBqrycllist" Text="[frxDBqrycllist.&#34;Fname&#34;]"/>
+      <TfrxMemoView Name="frxDBqrycllistMNAME" Left="600.94527" Top="0" Width="192.75603" Height="18.89765" ShowHint="False" DataField="MNAME" DataSet="frxDBqrycllist" DataSetName="frxDBqrycllist" Text="[frxDBqrycllist.&#34;MNAME&#34;]"/>
+      <TfrxMemoView Name="frxDBqrycllistCASTE" Left="805.03989" Top="0" Width="60.47248" Height="18.89765" ShowHint="False" DataField="CASTE" DataSet="frxDBqrycllist" DataSetName="frxDBqrycllist" Text="[frxDBqrycllist.&#34;CASTE&#34;]"/>
+      <TfrxMemoView Name="frxDBqrycllistfee_type" Left="876.85096" Top="0" Width="102.04731" Height="18.89765" ShowHint="False" DataField="fee_type" DataSet="frxDBqrycllist" DataSetName="frxDBqrycllist" Text="[frxDBqrycllist.&#34;fee_type&#34;]"/>
+    </TfrxMasterData>
+  </TfrxReportPage>
+</TfrxReport>

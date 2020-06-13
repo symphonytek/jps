@@ -1,0 +1,2 @@
+0 * * * *       /root/getdata.py
+1 * * * *       /root/putdata.py

@@ -1,0 +1,120 @@
+unit frmReplaceU;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Buttons, ExtCtrls,dateUtils;
+
+type
+  TfrmReplace = class(TForm)
+    Label1: TLabel;
+    Label15: TLabel;
+    edtperiod: TEdit;
+    Label2: TLabel;
+    edtClass: TEdit;
+    Memo1: TMemo;
+    Label3: TLabel;
+    Bevel1: TBevel;
+    btnSearch: TBitBtn;
+    btnPrint: TBitBtn;
+    procedure btnSearchClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnPrintClick(Sender: TObject);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmReplace: TfrmReplace;
+
+implementation
+
+uses MyDataU;
+
+{$R *.dfm}
+
+procedure TfrmReplace.btnSearchClick(Sender: TObject);
+var dt,flag:integer;
+begin
+memo1.Lines.Clear;
+dt:=dayoftheweek(date);flag:=0;
+ with mydata do
+ begin
+ tbttable.First;
+    if tbttable.Locate('Period;Day;CCode',vararrayof([strtoint(edtperiod.Text),dt,strtoint(edtclass.Text)]),[]) then
+    begin
+    memo1.Lines.Add('Replacement Found for   :');
+    memo1.Lines.Add('------------------------');memo1.Lines.Add('');
+    memo1.Lines.Add('Name of the teacher     : '+tbttabletchName.Value);
+    memo1.Lines.Add('Class Description       : '+tbttableclDesc.Value);
+    memo1.Lines.Add('Period                  : '+tbttablePeriod.AsString);memo1.Lines.Add('');
+    memo1.Lines.Add('Details of Replacements :');memo1.Lines.Add('-----------------------------');memo1.Lines.Add('');
+    tbTeacher1.First;
+        while not tbTeacher1.Eof do
+        begin
+          if (tbTeacher1TID.Value<>tbttableTeacher.Value) then
+          begin
+          tbSubDet1.First;
+            if tbSubDet1.locate('SID;TID',vararrayof([tbttableSID.Value,tbTeacher1TID.Value]),[]) then
+            begin
+            tbClassDet1.First;
+              if tbClassDet1.Locate('Slno;CID',vararrayof([tbSubDet1Slno.Value,strtoint(edtClass.Text)]),[]) then
+                  if not tbttable.Locate('Period;Day;Teacher',vararrayof([strtoint(edtperiod.Text),dt,tbTeacher1TID.Value]),[]) then
+                  begin
+                      //memo1.Lines.Add('Teacher found'+tbTeacher1Desc.AsString+'For the subject'+tbSubDet1subdesc.Value)
+                      memo1.Lines.Add('Name of the Teacher     : '+tbTeacher1Desc.AsString);
+                      memo1.Lines.Add('Subject                 : '+tbSubDet1subdesc.Value);memo1.Lines.Add('');
+                      flag:=1;
+                  end;
+            end;
+          end;
+        tbTeacher1.Next;
+        end;
+    end;
+  end;
+if flag=0 then memo1.Lines.Add('No teacher is free'); 
+end;
+
+procedure TfrmReplace.FormActivate(Sender: TObject);
+begin
+mydata.tbttable.open;
+mydata.tbsubdet1.open;
+mydata.tbClassDet1.open;
+mydata.tbTeacher1.open;
+mydata.tbSubMast.Open;
+edtperiod.Text:='';edtclass.Text:='';memo1.Lines.Clear; 
+end;
+
+procedure TfrmReplace.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+mydata.tbttable.close;
+mydata.tbsubdet1.Close;
+mydata.tbClassDet1.Close;
+mydata.tbTeacher1.close;
+mydata.tbSubMast.close;
+end;
+
+
+
+procedure TfrmReplace.btnPrintClick(Sender: TObject);
+begin
+try
+  if Memo1.GetTextLen>1 then
+  begin
+  memo1.Lines.SaveToFile('PRN');
+  end
+  else
+  showmessage('Nothing to print');
+except
+  ShowMessage('Printer not responding');
+end;
+end;
+
+
+
+end.

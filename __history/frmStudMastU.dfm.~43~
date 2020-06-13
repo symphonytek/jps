@@ -1,0 +1,1369 @@
+object frmStudMast: TfrmStudMast
+  Left = 459
+  Top = 90
+  BorderStyle = bsDialog
+  Caption = 'Student Profile'
+  ClientHeight = 489
+  ClientWidth = 648
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnActivate = FormActivate
+  OnClose = FormClose
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label15: TLabel
+    Left = 248
+    Top = 8
+    Width = 149
+    Height = 28
+    Caption = ' Student Profile '
+    Color = clHighlight
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -23
+    Font.Name = 'Impact'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+    Transparent = False
+  end
+  object Label42: TLabel
+    Left = 391
+    Top = 209
+    Width = 44
+    Height = 13
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    Caption = 'Pers. No.'
+  end
+  object DBNavigator1: TDBNavigator
+    Left = 64
+    Top = 448
+    Width = 192
+    Height = 33
+    DataSource = MyData.studmastS
+    VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbDelete, nbCancel]
+    Kind = dbnHorizontal
+    TabOrder = 0
+    OnClick = DBNavigator1Click
+  end
+  object btnSave: TBitBtn
+    Left = 461
+    Top = 448
+    Width = 76
+    Height = 33
+    Action = MyData.dsSav
+    Caption = '&Save'
+    Glyph.Data = {
+      76010000424D7601000000000000760000002800000020000000100000000100
+      04000000000000010000120B0000120B00001000000000000000000000000000
+      800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+      FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+      333333FFFFFFFFFFFFF33000077777770033377777777777773F000007888888
+      00037F3337F3FF37F37F00000780088800037F3337F77F37F37F000007800888
+      00037F3337F77FF7F37F00000788888800037F3337777777337F000000000000
+      00037F3FFFFFFFFFFF7F00000000000000037F77777777777F7F000FFFFFFFFF
+      00037F7F333333337F7F000FFFFFFFFF00037F7F333333337F7F000FFFFFFFFF
+      00037F7F333333337F7F000FFFFFFFFF00037F7F333333337F7F000FFFFFFFFF
+      00037F7F333333337F7F000FFFFFFFFF07037F7F33333333777F000FFFFFFFFF
+      0003737FFFFFFFFF7F7330099999999900333777777777777733}
+    NumGlyphs = 2
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 1
+  end
+  object btnNew: TBitBtn
+    Left = 537
+    Top = 448
+    Width = 76
+    Height = 33
+    Action = MyData.dsIns
+    Caption = '&New'
+    Glyph.Data = {
+      76010000424D7601000000000000760000002800000020000000100000000100
+      04000000000000010000130B0000130B00001000000000000000000000000000
+      800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+      FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF0033333333B333
+      333B33FF33337F3333F73BB3777BB7777BB3377FFFF77FFFF77333B000000000
+      0B3333777777777777333330FFFFFFFF07333337F33333337F333330FFFFFFFF
+      07333337F33333337F333330FFFFFFFF07333337F33333337F333330FFFFFFFF
+      07333FF7F33333337FFFBBB0FFFFFFFF0BB37777F3333333777F3BB0FFFFFFFF
+      0BBB3777F3333FFF77773330FFFF000003333337F333777773333330FFFF0FF0
+      33333337F3337F37F3333330FFFF0F0B33333337F3337F77FF333330FFFF003B
+      B3333337FFFF77377FF333B000000333BB33337777777F3377FF3BB3333BB333
+      3BB33773333773333773B333333B3333333B7333333733333337}
+    NumGlyphs = 2
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 2
+  end
+  object PageControl1: TPageControl
+    Left = 12
+    Top = 48
+    Width = 625
+    Height = 393
+    ActivePage = TabSheet1
+    TabOrder = 3
+    object TabSheet1: TTabSheet
+      Caption = 'Student'#39's Information'
+      object Bevel1: TBevel
+        Left = 8
+        Top = 8
+        Width = 601
+        Height = 345
+        Shape = bsFrame
+      end
+      object Label1: TLabel
+        Left = 24
+        Top = 68
+        Width = 29
+        Height = 13
+        Caption = 'Sl No.'
+      end
+      object Label2: TLabel
+        Left = 24
+        Top = 100
+        Width = 28
+        Height = 13
+        Caption = 'Name'
+        FocusControl = DBEdit2
+      end
+      object Label5: TLabel
+        Left = 24
+        Top = 129
+        Width = 58
+        Height = 13
+        Caption = 'Date of birth'
+        FocusControl = DBEdit5
+      end
+      object Label11: TLabel
+        Left = 224
+        Top = 129
+        Width = 19
+        Height = 13
+        Caption = 'Age'
+        FocusControl = DBEdit9
+      end
+      object Label14: TLabel
+        Left = 485
+        Top = 17
+        Width = 55
+        Height = 13
+        Caption = 'Photograph'
+        FocusControl = DBImage1
+      end
+      object Label13: TLabel
+        Left = 190
+        Top = 33
+        Width = 42
+        Height = 13
+        Caption = 'Category'
+        FocusControl = DBEdit9
+      end
+      object Label3: TLabel
+        Left = 296
+        Top = 228
+        Width = 35
+        Height = 13
+        Caption = 'Roll No'
+        FocusControl = DBEdit3
+      end
+      object Label4: TLabel
+        Left = 224
+        Top = 228
+        Width = 36
+        Height = 13
+        Caption = 'Section'
+        FocusControl = DBEdit4
+      end
+      object Label10: TLabel
+        Left = 24
+        Top = 164
+        Width = 73
+        Height = 13
+        Caption = 'Admission Date'
+        FocusControl = DBEdit8
+      end
+      object Label6: TLabel
+        Left = 24
+        Top = 228
+        Width = 52
+        Height = 13
+        Caption = 'Currently in'
+        FocusControl = DBEdit8
+      end
+      object Label23: TLabel
+        Left = 24
+        Top = 260
+        Width = 38
+        Height = 13
+        Caption = 'Religion'
+      end
+      object Label24: TLabel
+        Left = 224
+        Top = 260
+        Width = 27
+        Height = 13
+        Caption = 'Caste'
+      end
+      object Label29: TLabel
+        Left = 24
+        Top = 292
+        Width = 31
+        Height = 13
+        Caption = 'House'
+      end
+      object Label30: TLabel
+        Left = 224
+        Top = 292
+        Width = 73
+        Height = 13
+        Caption = 'Mother Tongue'
+      end
+      object Label31: TLabel
+        Left = 437
+        Top = 213
+        Width = 42
+        Height = 13
+        Caption = 'Remarks'
+        FocusControl = DBEdit3
+      end
+      object Label32: TLabel
+        Left = 24
+        Top = 196
+        Width = 53
+        Height = 13
+        Caption = 'Admitted to'
+        FocusControl = DBLookupComboBox3
+      end
+      object Label33: TLabel
+        Left = 24
+        Top = 36
+        Width = 47
+        Height = 13
+        Caption = 'Admn. No'
+      end
+      object Label48: TLabel
+        Left = 24
+        Top = 324
+        Width = 23
+        Height = 13
+        Caption = 'Form'
+      end
+      object btnPrevCont: TSpeedButton
+        Left = 188
+        Top = 320
+        Width = 21
+        Height = 21
+        Hint = 'Preview contents'
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000130B0000130B00001000000000000000000000000000
+          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF0033333333B333
+          333B33FF33337F3333F73BB3777BB7777BB3377FFFF77FFFF77333B000000000
+          0B3333777777777777333330FFFFFFFF07333337F33333337F333330FFFFFFFF
+          07333337F3FF3FFF7F333330F00F000F07333337F77377737F333330FFFFFFFF
+          07333FF7F3FFFF3F7FFFBBB0F0000F0F0BB37777F7777373777F3BB0FFFFFFFF
+          0BBB3777F3FF3FFF77773330F00F000003333337F773777773333330FFFF0FF0
+          33333337F3FF7F37F3333330F08F0F0B33333337F7737F77FF333330FFFF003B
+          B3333337FFFF77377FF333B000000333BB33337777777F3377FF3BB3333BB333
+          3BB33773333773333773B333333B3333333B7333333733333337}
+        NumGlyphs = 2
+        ParentShowHint = False
+        ShowHint = True
+        OnClick = btnPrevContClick
+      end
+      object btnRpCrd: TSpeedButton
+        Left = 572
+        Top = 187
+        Width = 21
+        Height = 21
+        Hint = 'Preview report card'
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000120B0000120B00001000000000000000000000000000
+          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00555555000000
+          000055555F77777777775555000FFFFFFFF0555F777F5FFFF55755000F0F0000
+          FFF05F777F7F77775557000F0F0FFFFFFFF0777F7F7F5FFFFFF70F0F0F0F0000
+          00F07F7F7F7F777777570F0F0F0FFFFFFFF07F7F7F7F5FFFFFF70F0F0F0F0000
+          00F07F7F7F7F777777570F0F0F0FFFFFFFF07F7F7F7F5FFF55570F0F0F0F000F
+          FFF07F7F7F7F77755FF70F0F0F0FFFFF00007F7F7F7F5FF577770F0F0F0F00FF
+          0F057F7F7F7F77557F750F0F0F0FFFFF00557F7F7F7FFFFF77550F0F0F000000
+          05557F7F7F77777775550F0F0000000555557F7F7777777555550F0000000555
+          55557F7777777555555500000005555555557777777555555555}
+        NumGlyphs = 2
+        ParentShowHint = False
+        ShowHint = True
+        OnClick = btnRpCrdClick
+      end
+      object Label34: TLabel
+        Left = 190
+        Top = 62
+        Width = 49
+        Height = 13
+        Caption = 'Fee profile'
+        FocusControl = DBLookupComboBox4
+      end
+      object Label47: TLabel
+        Left = 437
+        Top = 170
+        Width = 65
+        Height = 13
+        Caption = 'Current status'
+      end
+      object Label49: TLabel
+        Left = 222
+        Top = 191
+        Width = 19
+        Height = 13
+        Caption = 'UID'
+        FocusControl = DBEdit28
+      end
+      object DBEdit2: TDBEdit
+        Left = 112
+        Top = 96
+        Width = 307
+        Height = 21
+        DataField = 'Name'
+        DataSource = MyData.studmastS
+        TabOrder = 4
+      end
+      object DBEdit5: TDBEdit
+        Left = 112
+        Top = 125
+        Width = 97
+        Height = 21
+        DataField = 'DOB'
+        DataSource = MyData.studmastS
+        TabOrder = 5
+      end
+      object DBEdit9: TDBEdit
+        Left = 254
+        Top = 125
+        Width = 165
+        Height = 21
+        TabStop = False
+        Color = clInfoBk
+        DataField = 'cage'
+        DataSource = MyData.studmastS
+        TabOrder = 6
+      end
+      object DBLookupComboBox2: TDBLookupComboBox
+        Left = 254
+        Top = 29
+        Width = 165
+        Height = 21
+        DataField = 'catDesc'
+        DataSource = MyData.studmastS
+        TabOrder = 1
+      end
+      object DBImage1: TDBImage
+        Left = 461
+        Top = 36
+        Width = 105
+        Height = 105
+        DataField = 'PHOTO'
+        DataSource = MyData.studmastS
+        TabOrder = 19
+      end
+      object DBRadioGroup1: TDBRadioGroup
+        Left = 254
+        Top = 144
+        Width = 165
+        Height = 37
+        Caption = ' Gender '
+        Columns = 2
+        DataField = 'Sex'
+        DataSource = MyData.studmastS
+        Items.Strings = (
+          '&Male'
+          '&Female')
+        ParentBackground = True
+        TabOrder = 8
+        TabStop = True
+        Values.Strings = (
+          'M'
+          'F')
+      end
+      object DBEdit3: TDBEdit
+        Left = 336
+        Top = 224
+        Width = 83
+        Height = 21
+        DataField = 'RollNo'
+        DataSource = MyData.studmastS
+        TabOrder = 13
+      end
+      object DBEdit4: TDBEdit
+        Left = 264
+        Top = 224
+        Width = 25
+        Height = 21
+        CharCase = ecUpperCase
+        DataField = 'Section'
+        DataSource = MyData.studmastS
+        TabOrder = 12
+      end
+      object DBEdit8: TDBEdit
+        Left = 112
+        Top = 160
+        Width = 97
+        Height = 21
+        DataField = 'DOA'
+        DataSource = MyData.studmastS
+        TabOrder = 7
+      end
+      object DBLookupComboBox1: TDBLookupComboBox
+        Left = 112
+        Top = 224
+        Width = 97
+        Height = 21
+        DataField = 'stCLDESC'
+        DataSource = MyData.studmastS
+        TabOrder = 11
+      end
+      object DBComboBox1: TDBComboBox
+        Left = 112
+        Top = 256
+        Width = 97
+        Height = 21
+        DataField = 'Religion'
+        DataSource = MyData.studmastS
+        Items.Strings = (
+          'Christian'
+          'Hindu'
+          'Muslim'
+          'Sikh'
+          'Other')
+        TabOrder = 14
+      end
+      object DBComboBox2: TDBComboBox
+        Left = 304
+        Top = 256
+        Width = 115
+        Height = 21
+        DataField = 'CASTE'
+        DataSource = MyData.studmastS
+        Items.Strings = (
+          'General'
+          'SC'
+          'ST'
+          'BC'
+          'OBC'
+          'Others')
+        TabOrder = 16
+      end
+      object DBComboBox3: TDBComboBox
+        Left = 112
+        Top = 288
+        Width = 97
+        Height = 21
+        DataField = 'House'
+        DataSource = MyData.studmastS
+        TabOrder = 15
+      end
+      object DBComboBox4: TDBComboBox
+        Left = 304
+        Top = 288
+        Width = 115
+        Height = 21
+        DataField = 'Mtounge'
+        DataSource = MyData.studmastS
+        Items.Strings = (
+          'English'
+          'Hindi'
+          'Punjabi'
+          'Bengali'
+          'Other')
+        TabOrder = 17
+      end
+      object DBMemo4: TDBMemo
+        Left = 437
+        Top = 228
+        Width = 156
+        Height = 79
+        DataField = 'Remark'
+        DataSource = MyData.studmastS
+        TabOrder = 18
+      end
+      object DBEdit1: TDBEdit
+        Left = 112
+        Top = 64
+        Width = 64
+        Height = 21
+        DataField = 'StudID'
+        DataSource = MyData.studmastS
+        TabOrder = 2
+      end
+      object DBLookupComboBox3: TDBLookupComboBox
+        Left = 112
+        Top = 192
+        Width = 97
+        Height = 21
+        DataField = 'Amd_cl_desc'
+        DataSource = MyData.studmastS
+        TabOrder = 9
+      end
+      object DBEdit19: TDBEdit
+        Left = 112
+        Top = 32
+        Width = 64
+        Height = 21
+        DataField = 'AdmNo'
+        DataSource = MyData.studmastS
+        TabOrder = 0
+      end
+      object DBEdit21: TDBEdit
+        Left = 112
+        Top = 320
+        Width = 73
+        Height = 21
+        DataField = 'Path'
+        DataSource = MyData.studmastS
+        TabOrder = 20
+      end
+      object RdGp2: TDBRadioGroup
+        Left = 224
+        Top = 308
+        Width = 369
+        Height = 34
+        Caption = ' &Look For : '
+        Columns = 5
+        DataField = 'FieldName'
+        DataSource = MyData.RdBtnValD
+        Items.Strings = (
+          'Admn. No.'
+          'Name')
+        ParentBackground = True
+        TabOrder = 21
+        Values.Strings = (
+          'AdmNo'
+          'Name')
+        OnChange = edtSearchChange
+      end
+      object CBx1: TComboBox
+        Left = 360
+        Top = 318
+        Width = 49
+        Height = 21
+        TabOrder = 22
+        Text = '='
+        OnChange = edtSearchChange
+        Items.Strings = (
+          '='
+          'Like')
+      end
+      object edtSearch: TEdit
+        Left = 408
+        Top = 318
+        Width = 132
+        Height = 21
+        TabStop = False
+        Color = clInfoBk
+        TabOrder = 23
+        OnChange = edtSearchChange
+      end
+      object btnSearch: TBitBtn
+        Left = 542
+        Top = 316
+        Width = 48
+        Height = 23
+        Hint = 'Search'
+        Caption = '&Find'
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000130B0000130B00001000000000000000000000000000
+          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+          33033333333333333F7F3333333333333000333333333333F777333333333333
+          000333333333333F777333333333333000333333333333F77733333333333300
+          033333333FFF3F777333333700073B703333333F7773F77733333307777700B3
+          33333377333777733333307F8F8F7033333337F333F337F3333377F8F9F8F773
+          3333373337F3373F3333078F898F870333337F33F7FFF37F333307F99999F703
+          33337F377777337F3333078F898F8703333373F337F33373333377F8F9F8F773
+          333337F3373337F33333307F8F8F70333333373FF333F7333333330777770333
+          333333773FF77333333333370007333333333333777333333333}
+        NumGlyphs = 2
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 24
+        TabStop = False
+        OnClick = btnSearchClick
+      end
+      object DBLookupComboBox4: TDBLookupComboBox
+        Left = 254
+        Top = 62
+        Width = 165
+        Height = 21
+        DataField = 'FEE_PROF_DESCR'
+        DataSource = MyData.studmastS
+        TabOrder = 3
+      end
+      object DBEdit28: TDBEdit
+        Left = 252
+        Top = 187
+        Width = 167
+        Height = 21
+        TabStop = False
+        Color = clInfoBk
+        DataField = 'uidno'
+        DataSource = MyData.studmastS
+        TabOrder = 10
+      end
+      object dbcNso: TDBCheckBox
+        Left = 425
+        Top = 147
+        Width = 46
+        Height = 17
+        Alignment = taLeftJustify
+        Caption = 'NSO'
+        Color = clBtnFace
+        DataField = 'NSO'
+        DataSource = MyData.studmastS
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clRed
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 25
+        ValueChecked = 'True'
+        ValueUnchecked = 'False'
+        OnClick = dbcNsoClick
+      end
+      object DBLookupComboBox8: TDBLookupComboBox
+        Left = 437
+        Top = 186
+        Width = 129
+        Height = 21
+        DataField = 'tcStatDescr'
+        DataSource = MyData.studmastS
+        TabOrder = 26
+      end
+      object dbDtpNSo: TDBEditDateTimePicker
+        Left = 477
+        Top = 147
+        Width = 120
+        Height = 21
+        Date = 41610.449468067130000000
+        Time = 41610.449468067130000000
+        TabOrder = 27
+        DataField = 'nso_dt'
+        DataSource = MyData.studmastS
+        ReadOnly = False
+        DefaultEditMask = '!99/99/99;1;_'
+        AutoApplyEditMask = True
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Parent'#39's Information'
+      ImageIndex = 1
+      object Bevel3: TBevel
+        Left = 3
+        Top = 3
+        Width = 602
+        Height = 345
+        Shape = bsFrame
+      end
+      object Label7: TLabel
+        Left = 24
+        Top = 64
+        Width = 68
+        Height = 13
+        Caption = 'Father'#39's Name'
+        FocusControl = DBEdit7
+      end
+      object Label19: TLabel
+        Left = 24
+        Top = 90
+        Width = 58
+        Height = 13
+        Caption = 'Qualification'
+        FocusControl = DBEdit13
+      end
+      object Label18: TLabel
+        Left = 24
+        Top = 157
+        Width = 71
+        Height = 13
+        Caption = 'Mother'#39's Name'
+        FocusControl = DBEdit12
+      end
+      object Label21: TLabel
+        Left = 24
+        Top = 181
+        Width = 58
+        Height = 13
+        Caption = 'Qualification'
+        FocusControl = DBEdit15
+      end
+      object Label8: TLabel
+        Left = 24
+        Top = 116
+        Width = 55
+        Height = 13
+        Caption = 'Occupation'
+        FocusControl = DBEdit13
+      end
+      object Label9: TLabel
+        Left = 24
+        Top = 209
+        Width = 55
+        Height = 13
+        Caption = 'Occupation'
+        FocusControl = DBEdit13
+      end
+      object Label12: TLabel
+        Left = 24
+        Top = 248
+        Width = 79
+        Height = 13
+        Caption = 'Guardians Name'
+        FocusControl = DBEdit6
+      end
+      object DBText1: TDBText
+        Left = 26
+        Top = 20
+        Width = 335
+        Height = 13
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        DataField = 'NAME'
+        DataSource = MyData.studmastS
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clMaroon
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label38: TLabel
+        Left = 411
+        Top = 39
+        Width = 107
+        Height = 13
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Caption = 'Guardian'#39's  information'
+      end
+      object Label39: TLabel
+        Left = 26
+        Top = 297
+        Width = 55
+        Height = 13
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Caption = 'Occupation'
+        FocusControl = DBEdit22
+      end
+      object Label40: TLabel
+        Left = 26
+        Top = 275
+        Width = 58
+        Height = 13
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Caption = 'Qualification'
+        FocusControl = DBEdit23
+      end
+      object Label36: TLabel
+        Left = 375
+        Top = 64
+        Width = 39
+        Height = 13
+        Caption = 'Relation'
+        FocusControl = DBEdit7
+      end
+      object Label37: TLabel
+        Left = 375
+        Top = 90
+        Width = 44
+        Height = 13
+        Caption = 'Company'
+        FocusControl = DBEdit7
+      end
+      object Label41: TLabel
+        Left = 375
+        Top = 116
+        Width = 44
+        Height = 13
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Caption = 'Pers. No.'
+        FocusControl = DBEdit24
+      end
+      object Label43: TLabel
+        Left = 375
+        Top = 139
+        Width = 26
+        Height = 13
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Caption = 'Dept.'
+        FocusControl = DBEdit24
+      end
+      object DBEdit7: TDBEdit
+        Left = 112
+        Top = 64
+        Width = 249
+        Height = 21
+        DataField = 'Fname'
+        DataSource = MyData.studmastS
+        TabOrder = 0
+      end
+      object DBEdit13: TDBEdit
+        Left = 112
+        Top = 88
+        Width = 249
+        Height = 21
+        DataField = 'F_qual'
+        DataSource = MyData.studmastS
+        TabOrder = 1
+      end
+      object DBEdit14: TDBEdit
+        Left = 112
+        Top = 112
+        Width = 249
+        Height = 21
+        DataField = 'F_occp'
+        DataSource = MyData.studmastS
+        TabOrder = 2
+      end
+      object DBEdit12: TDBEdit
+        Left = 112
+        Top = 157
+        Width = 249
+        Height = 21
+        DataField = 'Mname'
+        DataSource = MyData.studmastS
+        TabOrder = 3
+      end
+      object DBEdit15: TDBEdit
+        Left = 112
+        Top = 180
+        Width = 249
+        Height = 21
+        DataField = 'M_qual'
+        DataSource = MyData.studmastS
+        TabOrder = 4
+      end
+      object DBEdit16: TDBEdit
+        Left = 112
+        Top = 202
+        Width = 249
+        Height = 21
+        DataField = 'M_occp'
+        DataSource = MyData.studmastS
+        TabOrder = 5
+      end
+      object DBEdit6: TDBEdit
+        Left = 112
+        Top = 248
+        Width = 249
+        Height = 21
+        DataField = 'GName'
+        DataSource = MyData.studmastS
+        TabOrder = 6
+      end
+      object DBEdit22: TDBEdit
+        Left = 113
+        Top = 297
+        Width = 246
+        Height = 21
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        DataField = 'G_OCCP'
+        DataSource = MyData.studmastS
+        TabOrder = 7
+      end
+      object DBEdit23: TDBEdit
+        Left = 112
+        Top = 273
+        Width = 247
+        Height = 21
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        DataField = 'G_QUAL'
+        DataSource = MyData.studmastS
+        TabOrder = 8
+      end
+      object DBEdit24: TDBEdit
+        Left = 433
+        Top = 114
+        Width = 164
+        Height = 21
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        DataField = 'CMP_PNO'
+        DataSource = MyData.studmastS
+        TabOrder = 9
+      end
+      object DBEdit25: TDBEdit
+        Left = 433
+        Top = 138
+        Width = 164
+        Height = 21
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        DataField = 'CMP_DEPT'
+        DataSource = MyData.studmastS
+        TabOrder = 10
+      end
+      object DBLookupComboBox5: TDBLookupComboBox
+        Left = 433
+        Top = 63
+        Width = 164
+        Height = 21
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        DataField = 'RelDescr'
+        DataSource = MyData.studmastS
+        TabOrder = 11
+      end
+      object DBLookupComboBox6: TDBLookupComboBox
+        Left = 433
+        Top = 88
+        Width = 164
+        Height = 21
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        DataField = 'comp'
+        DataSource = MyData.studmastS
+        TabOrder = 12
+      end
+    end
+    object TabSheet3: TTabSheet
+      Caption = 'Other Information'
+      ImageIndex = 2
+      object Bevel2: TBevel
+        Left = 8
+        Top = 8
+        Width = 601
+        Height = 345
+        Shape = bsFrame
+      end
+      object Label25: TLabel
+        Left = 24
+        Top = 32
+        Width = 162
+        Height = 13
+        Caption = 'Name of the School Last attended'
+        FocusControl = DBEdit17
+      end
+      object Label20: TLabel
+        Left = 24
+        Top = 121
+        Width = 171
+        Height = 13
+        Caption = 'Brother/Sister studying in this school'
+        FocusControl = DBEdit17
+      end
+      object Label22: TLabel
+        Left = 24
+        Top = 233
+        Width = 93
+        Height = 13
+        Caption = 'Residential Address'
+        FocusControl = DBMemo2
+      end
+      object Label27: TLabel
+        Left = 264
+        Top = 239
+        Width = 92
+        Height = 13
+        Caption = 'Permanent Address'
+        FocusControl = DBMemo3
+      end
+      object Label26: TLabel
+        Left = 264
+        Top = 31
+        Width = 129
+        Height = 13
+        Caption = 'Blood Group of the Student'
+        FocusControl = DBEdit18
+      end
+      object DBText2: TDBText
+        Left = 24
+        Top = 13
+        Width = 335
+        Height = 13
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        DataField = 'NAME'
+        DataSource = MyData.studmastS
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clMaroon
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label44: TLabel
+        Left = 24
+        Top = 75
+        Width = 77
+        Height = 13
+        Caption = 'Handicap status'
+        FocusControl = DBMemo2
+      end
+      object Label45: TLabel
+        Left = 264
+        Top = 74
+        Width = 86
+        Height = 13
+        Caption = 'Identification mark'
+        FocusControl = btnNew
+      end
+      object Label46: TLabel
+        Left = 425
+        Top = 74
+        Width = 38
+        Height = 13
+        Caption = 'Disease'
+        FocusControl = btnNew
+      end
+      object DBEdit17: TDBEdit
+        Left = 24
+        Top = 48
+        Width = 225
+        Height = 21
+        DataField = 'SchLast'
+        DataSource = MyData.studmastS
+        TabOrder = 0
+      end
+      object DBMemo1: TDBMemo
+        Left = 24
+        Top = 140
+        Width = 225
+        Height = 93
+        DataField = 'NOFSB'
+        DataSource = MyData.studmastS
+        TabOrder = 5
+      end
+      object DBMemo2: TDBMemo
+        Left = 24
+        Top = 252
+        Width = 225
+        Height = 65
+        DataField = 'LAddr'
+        DataSource = MyData.studmastS
+        TabOrder = 6
+      end
+      object DBMemo3: TDBMemo
+        Left = 264
+        Top = 252
+        Width = 321
+        Height = 65
+        DataField = 'PAddr'
+        DataSource = MyData.studmastS
+        TabOrder = 8
+      end
+      object GroupBox1: TGroupBox
+        Left = 264
+        Top = 115
+        Width = 321
+        Height = 118
+        Caption = ' Contact Information '
+        TabOrder = 7
+        object Label17: TLabel
+          Left = 17
+          Top = 96
+          Width = 28
+          Height = 13
+          Caption = 'E-mail'
+        end
+        object Image2: TImage
+          Left = 280
+          Top = 91
+          Width = 17
+          Height = 17
+          Picture.Data = {
+            07544269746D617076010000424D760100000000000076000000280000002000
+            000010000000010004000000000000010000120B0000120B0000100000000000
+            0000000000000000800000800000008080008000000080008000808000007F7F
+            7F00BFBFBF000000FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFF
+            FF003333333333333333333333333333333333333333333333333FFFFFFFFFFF
+            FFFF000000000000000077777777777777770FFFFFFFFFFFFFF07F3333FFF333
+            33370FFFF777FFFFFFF07F333777333333370FFFFFFFFFFFFFF07F3333FFFFFF
+            33370FFFF777777FFFF07F33377777733FF70FFFFFFFFFFF99907F3FFF333333
+            77770F777FFFFFFF9CA07F77733333337F370FFFFFFFFFFF9A907FFFFFFFFFFF
+            7FF7000000000000000077777777777777773333333333333333333333333333
+            3333333333333333333333333333333333333333333333333333333333333333
+            3333333333333333333333333333333333333333333333333333333333333333
+            3333}
+        end
+        object Label16: TLabel
+          Left = 18
+          Top = 20
+          Width = 78
+          Height = 13
+          Caption = 'Off./Res. Phone'
+        end
+        object Image1: TImage
+          Left = 280
+          Top = 18
+          Width = 17
+          Height = 17
+          Picture.Data = {
+            07544269746D617076010000424D760100000000000076000000280000002000
+            000010000000010004000000000000010000120B0000120B0000100000000000
+            0000000000000000800000800000008080008000000080008000808000007F7F
+            7F00BFBFBF000000FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFF
+            FF00333000000000003333377777777777F3333091111111103333F7F3F3F3F3
+            F7F331109808080810333777F737373737F313309999999910337F373F3F3F3F
+            373313330980808903337FFF7F7373737FFF1000109999901000777777FFFFF7
+            7777701110000000111037F337777777F3373099901111109990373F37333337
+            333733099999999999033373FFFFFFFFFF733331000000000133333777777777
+            7733333333333333333333333333333333333333333333333333333333333333
+            3333333333333333333333333333333333333333333333333333333333333333
+            3333333333333333333333333333333333333333333333333333333333333333
+            3333}
+        end
+        object Label28: TLabel
+          Left = 17
+          Top = 48
+          Width = 31
+          Height = 13
+          Caption = 'Mobile'
+        end
+        object DBEdit11: TDBEdit
+          Left = 105
+          Top = 91
+          Width = 169
+          Height = 21
+          DataField = 'Eml'
+          DataSource = MyData.studmastS
+          TabOrder = 2
+        end
+        object DBEdit10: TDBEdit
+          Left = 106
+          Top = 17
+          Width = 169
+          Height = 21
+          DataField = 'Phone'
+          DataSource = MyData.studmastS
+          TabOrder = 0
+        end
+        object DBEdit20: TDBEdit
+          Left = 105
+          Top = 44
+          Width = 169
+          Height = 21
+          DataField = 'M_Phone'
+          DataSource = MyData.studmastS
+          TabOrder = 1
+        end
+        object DBEdit29: TDBEdit
+          Left = 105
+          Top = 68
+          Width = 169
+          Height = 21
+          DataField = 'M_PHONE1'
+          DataSource = MyData.studmastS
+          TabOrder = 3
+        end
+      end
+      object DBEdit18: TDBEdit
+        Left = 264
+        Top = 47
+        Width = 155
+        Height = 21
+        DataField = 'BloodGroup'
+        DataSource = MyData.studmastS
+        TabOrder = 1
+      end
+      object btnReset: TButton
+        Left = 425
+        Top = 46
+        Width = 96
+        Height = 24
+        Caption = 'Reset No Of terms'
+        TabOrder = 9
+        OnClick = btnResetClick
+      end
+      object DBLookupComboBox7: TDBLookupComboBox
+        Left = 24
+        Top = 88
+        Width = 225
+        Height = 21
+        DataField = 'handicapDescr'
+        DataSource = MyData.studmastS
+        TabOrder = 2
+      end
+      object DBEdit26: TDBEdit
+        Left = 264
+        Top = 88
+        Width = 155
+        Height = 21
+        DataField = 'idmark'
+        DataSource = MyData.studmastS
+        TabOrder = 3
+      end
+      object DBEdit27: TDBEdit
+        Left = 425
+        Top = 88
+        Width = 160
+        Height = 21
+        DataField = 'disease'
+        DataSource = MyData.studmastS
+        TabOrder = 4
+      end
+      object edtResetNoterm: TEdit
+        Left = 527
+        Top = 47
+        Width = 34
+        Height = 21
+        TabOrder = 10
+        Text = '0'
+      end
+      object UpDown1: TUpDown
+        Left = 561
+        Top = 47
+        Width = 16
+        Height = 21
+        Associate = edtResetNoterm
+        TabOrder = 11
+      end
+    end
+    object TabSheet4: TTabSheet
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
+      Caption = 'Document details'
+      ImageIndex = 3
+      object DBText3: TDBText
+        Left = 26
+        Top = 20
+        Width = 335
+        Height = 13
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        DataField = 'NAME'
+        DataSource = MyData.studmastS
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clMaroon
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label35: TLabel
+        Left = 312
+        Top = 26
+        Width = 69
+        Height = 13
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Caption = 'Scanned copy'
+      end
+      object DBGrid1: TDBGrid
+        Left = 26
+        Top = 46
+        Width = 274
+        Height = 299
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        DataSource = MyData.dsStud_docs
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'MS Sans Serif'
+        TitleFont.Style = []
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'studid'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'doc_descr'
+            Title.Caption = 'Documents submitted'
+            Width = 291
+            Visible = True
+          end>
+      end
+      object DBImage2: TDBImage
+        Left = 312
+        Top = 46
+        Width = 287
+        Height = 299
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        DataField = 'scan_copy'
+        DataSource = MyData.dsStud_docs
+        TabOrder = 1
+      end
+    end
+  end
+  object Query1: TMyQuery
+    Connection = MyData.myconn
+    SQL.Strings = (
+      'SELECT StudId,Name'
+      'FROM studmast'
+      'WHERE  UPPER(CAST('
+      'StudId'
+      'AS CHAR(40))) LIKE :empno')
+    Left = 8
+    Top = 8
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'empno'
+      end>
+    object Query1StudId: TFloatField
+      FieldName = 'StudId'
+    end
+    object Query1Name: TStringField
+      FieldName = 'Name'
+      Size = 40
+    end
+  end
+end

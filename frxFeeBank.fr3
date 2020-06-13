@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="4.12.6" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="4095" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="39354.6615827546" ReportOptions.Description.Text="" ReportOptions.LastChange="41389.3247552199" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end." PropData="044C65667403800103546F7003F0010844617461736574730101063820446174615365743D22667278444271727946656542616E6B2220446174615365744E616D653D22667278444271727946656542616E6B220000095661726961626C65730100055374796C650100">
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" PaperSize="1" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" Height="188.9765" Left="0" Top="18.89765" Width="740.409927">
+      <TfrxMemoView Name="hdmemo" Left="3.77953" Top="39.45671" Width="729.44929" Height="18.89765" ShowHint="False" Font.Charset="1" Font.Color="0" Font.Height="-19" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Cast Report"/>
+      <TfrxMemoView Name="Memo5" Left="3.77953" Top="83.14966" Width="733.22882" Height="79.37013" ShowHint="False" Text="The Branch Manager&#13;&#10;Union Bank of India&#13;&#10;Tinplate Branch, Jamshedpur&#13;&#10;&#13;&#10;Dear sir,"/>
+      <TfrxMemoView Name="mmSummText" Left="3.77953" Top="162.51979" Width="737.00835" Height="18.89765" ShowHint="False" Text="We are enclosing 235 Nos. Cheque of Rs.3,47,670/-. Please credit in our SB A/c No.4701."/>
+    </TfrxReportTitle>
+    <TfrxMasterData Name="MasterData1" Height="22.17316" Left="0" Top="313.70099" Width="740.409927" ColumnWidth="0" ColumnGap="0" DataSet="frxDBqryFeeBank" DataSetName="frxDBqryFeeBank" RowCount="0" Stretched="True">
+      <TfrxSysMemoView Name="SysMemo1" Left="3.77953" Top="0" Width="52.91342" Height="18.89765" ShowHint="False" Text="[LINE#]"/>
+      <TfrxMemoView Name="frxDBqryFeeBankCHQ_NO" Left="68.03154" Top="0" Width="113.3859" Height="18.89765" ShowHint="False" DataField="CHQ_NO" DataSet="frxDBqryFeeBank" DataSetName="frxDBqryFeeBank" Text="[frxDBqryFeeBank.&#34;CHQ_NO&#34;]"/>
+      <TfrxMemoView Name="frxDBqryFeeBankCHQ_AMT" Left="164.51979" Top="0.77953" Width="105.82684" Height="18.89765" ShowHint="False" DataField="CHQ_AMT" DataSet="frxDBqryFeeBank" DataSetName="frxDBqryFeeBank" HAlign="haRight" Text="[frxDBqryFeeBank.&#34;CHQ_AMT&#34;]"/>
+      <TfrxMemoView Name="frxDBqryFeeBankDESCR" Left="283.46475" Top="0" Width="181.41744" Height="18.89765" ShowHint="False" DataField="DESCR" DataSet="frxDBqryFeeBank" DataSetName="frxDBqryFeeBank" Text="[frxDBqryFeeBank.&#34;DESCR&#34;]"/>
+      <TfrxMemoView Name="frxDBqryFeeBankids" Left="476.22078" Top="0" Width="257.00804" Height="18.89765" ShowHint="False" StretchMode="smMaxHeight" DataField="ids" DataSet="frxDBqryFeeBank" DataSetName="frxDBqryFeeBank" WordWrap="False" Text="[frxDBqryFeeBank.&#34;ids&#34;]"/>
+    </TfrxMasterData>
+    <TfrxColumnHeader Name="ColumnHeader1" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Height="22.67718" Left="0" ParentFont="False" Top="230.55133" Width="740.409927">
+      <TfrxMemoView Name="Memo1" Left="3.77953" Top="0" Width="45.35436" Height="18.89765" ShowHint="False" Text="Sl No."/>
+      <TfrxMemoView Name="Memo3" Left="200.31509" Top="0" Width="71.81107" Height="18.89765" ShowHint="False" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" HAlign="haRight" ParentFont="False" Text="Chq. Amt."/>
+      <TfrxMemoView Name="Memo4" Left="283.46475" Top="0" Width="75.5906" Height="18.89765" ShowHint="False" Text="Bank"/>
+      <TfrxMemoView Name="Memo2" Left="68.03154" Top="0" Width="75.5906" Height="18.89765" ShowHint="False" Text="Cheque no."/>
+      <TfrxLineView Name="Line1" Left="0" Top="18.89765" Width="737.00835" Height="0" ShowHint="False" Frame.Typ="4"/>
+    </TfrxColumnHeader>
+    <TfrxMemoView Name="orgnm_memo" Left="7.55906" Top="15.11812" Width="729.44929" Height="22.67718" ShowHint="False" Font.Charset="0" Font.Color="0" Font.Height="-24" Font.Name="Arial Narrow" Font.Style="1" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="SACRED HEART CONVENT SCHOOL"/>
+  </TfrxReportPage>
+</TfrxReport>

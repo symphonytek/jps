@@ -1,0 +1,91 @@
+unit genperfU;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  StdCtrls, Buttons ,inifiles, Vcl.ComCtrls;
+
+type
+  Tgenperf = class(TForm)
+    Label5: TLabel;
+    Label1: TLabel;
+    Edit1: TEdit;
+    Label3: TLabel;
+    Label4: TLabel;
+    btnOk: TBitBtn;
+    Memo1: TMemo;
+    Memo2: TMemo;
+    BitBtn1: TBitBtn;
+    Label2: TLabel;
+    Edit2: TEdit;
+    Label8: TLabel;
+    edtsession: TEdit;
+    Label9: TLabel;
+    Edit3: TEdit;
+    Memo3: TMemo;
+    Label10: TLabel;
+    Edit4: TEdit;
+    Label6: TLabel;
+    dtpAgeCutOff: TDateTimePicker;
+    procedure btnOkClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  genperf: Tgenperf;
+  mfile:Tinifile;
+
+implementation
+uses myfuncu;
+{$R *.DFM}
+
+procedure Tgenperf.btnOkClick(Sender: TObject);
+begin
+iniwrite('.\smsapp.ini','General','orgnm',edit1.text);
+memo1.Lines.SaveToFile('.\smsHeader.txt');
+memo2.Lines.SaveToFile('.\smsFooter.txt');
+iniwrite('.\smsapp.ini','General','terms',edit2.text);
+iniwrite('.\smsapp.ini','PgSetUp','lines',edit3.text);
+iniwrite('.\smsapp.ini','PgSetUp','skip',edit4.text);
+iniwrite('.\smsapp.ini','Session','session',edtsession.text);
+mfile.WriteDate('Session','Cut-off date',dtpAgeCutOff.Date);
+//iniwrite('.\smsapp.ini','Session','Cut-off date',datetostr(dtpAgeCutOff.Date));
+end;
+
+procedure Tgenperf.FormActivate(Sender: TObject);
+begin
+edit1.Text:=mfile.ReadString('General','orgnm','');
+memo1.Lines.LoadFromFile('.\smsHeader.txt');
+memo2.Lines.LoadFromFile('.\smsFooter.txt');
+edit2.text:=mfile.ReadString('General','terms','');
+edit3.Text:=mfile.ReadString('PgSetUp','lines','70');
+edit4.Text:=mfile.ReadString('PgSetUp','skip','3');
+edtsession.Text:=mfile.ReadString('Session','session','');
+dtpAgeCutOff.Date:=mfile.ReadDate('Session','Cut-off date',date);
+end;
+
+procedure Tgenperf.FormCreate(Sender: TObject);
+begin
+mfile:=Tinifile.create('.\smsapp.ini');
+FormActivate(self);
+{edit1.Text:=mfile.ReadString('General','orgnm','');
+memo1.Lines.LoadFromFile('.\smsHeader.txt');
+memo2.Lines.LoadFromFile('.\smsFooter.txt');
+edit2.text:=mfile.ReadString('General','terms','');
+edtsession.Text :=mfile.ReadString('Session','session','');
+edit3.Text:=mfile.ReadString('PgSetUp','lines','70');
+edit4.Text:=mfile.ReadString('PgSetUp','skip','3');}
+end;
+
+procedure Tgenperf.FormDestroy(Sender: TObject);
+begin
+mfile.Free;
+end;
+end.

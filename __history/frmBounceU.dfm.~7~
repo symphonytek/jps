@@ -1,0 +1,48 @@
+object frmBounce: TfrmBounce
+  Left = 0
+  Top = 0
+  Caption = 'Bounced cheque'
+  ClientHeight = 337
+  ClientWidth = 635
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object edtChqno: TLabeledEdit
+    Left = 40
+    Top = 48
+    Width = 121
+    Height = 21
+    EditLabel.Width = 56
+    EditLabel.Height = 13
+    EditLabel.Caption = 'Cheque no.'
+    TabOrder = 0
+  end
+  object btnSearch: TBitBtn
+    Left = 167
+    Top = 46
+    Width = 75
+    Height = 25
+    Caption = '&Search'
+    TabOrder = 1
+    OnClick = btnSearchClick
+  end
+  object DBGrid1: TDBGrid
+    Left = 40
+    Top = 75
+    Width = 569
+    Height = 214
+    DataSource = MyData.qryChqSearchS
+    TabOrder = 2
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+end

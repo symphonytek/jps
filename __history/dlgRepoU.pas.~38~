@@ -1,0 +1,277 @@
+unit dlgRepoU;
+
+interface
+
+uses Windows, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls, 
+  Buttons, ExtCtrls, DBCtrls, ComCtrls, frxCross, frxClass, frxDBSet,
+  cxControls, cxContainer, cxEdit, cxTextEdit, cxMaskEdit, cxDropDownEdit,
+  cxCalendar, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters, dxCore,
+  cxDateUtils;
+
+type
+  TDlgRepo = class(TForm)
+    CancelBtn: TButton;
+    btnShow: TBitBtn;
+    TreeView1: TTreeView;
+    frxDBDataset1: TfrxDBDataset;
+    frxCrossObject1: TfrxCrossObject;
+    frxReport1: TfrxReport;
+    frxDBDataset2: TfrxDBDataset;
+    frxDBDataset3: TfrxDBDataset;
+    frxDBDataset4: TfrxDBDataset;
+    frxDBDataset5: TfrxDBDataset;
+    sDate: TcxDateEdit;
+    eDate: TcxDateEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    frxDBDfeaulter: TfrxDBDataset;
+    updFilter: TUpDown;
+    edtFilter: TEdit;
+    Label3: TLabel;
+    chkAll: TCheckBox;
+    cbxDefaulter: TComboBox;
+    Label4: TLabel;
+    procedure btnShowClick(Sender: TObject);
+    procedure TreeView1Change(Sender: TObject; Node: TTreeNode);
+    procedure FormActivate(Sender: TObject);
+    procedure edtFilterChange(Sender: TObject);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DlgRepo: TDlgRepo;
+  repnme:string;
+  rep_head:string;
+  adv_pay:boolean;
+
+implementation
+
+uses MyDataU,dialogs, Variants, genperfU;
+
+{$R *.dfm}
+
+procedure TDlgRepo.btnShowClick(Sender: TObject);
+begin
+TreeView1Change(self,TreeView1.Selected);
+caption:=rep_head;
+frxReport1.LoadFromFile(repnme,true);
+(frxReport1.findobject('orgnm_memo') as TfrxMemoview).Text:=genperf.edtOrgnm.Text;
+(frxReport1.findobject('hdmemo') as TfrxMemoview).Text:=rep_head;
+if repnme='.\frxFeeBank.fr3' then
+     (frxReport1.findobject('mmSummText') as TfrxMemoview).Text:=
+     format('We are enclosing %s Nos. Cheque of Rs.%s/-. Please credit in our SB A/c No.4701.',
+     [mydata.qryCustom.Fields[0].AsString,
+      mydata.qryCustom.Fields[1].AsString]);
+
+//if repnme='./feeheadstud.fr3' then
+//     'Fee Heads For Groups';
+frxreport1.ShowReport();
+MyData.qryFeeFulldtl.SQL.Strings[8]:=' ';
+//
+end;
+
+procedure TDlgRepo.TreeView1Change(Sender: TObject; Node: TTreeNode);
+var sc,ec,sql: String;
+begin
+     rep_head:=node.Text + ' ( '+sdate.EditText +'-'+edate.EditText+' )';
+case node.StateIndex of
+  1: begin repnme:='.\castrep.fr3';rep_head:='Cast wise count';end;
+  2: begin repnme:='.\RelRep.fr3';rep_head:='Religion wise count';end;
+  3: begin repnme:='.\AgeRep.fr3';rep_head:='Age wise count';end;
+  4: begin repnme:='.\CatRep.fr3';rep_head:='Category report';end;
+  5: begin
+     MyData.qryfeeheadsall.close;
+     MyData.qryfeeheadsall.Params[0].Value :=sDate.Date;
+     MyData.qryfeeheadsall.Params[1].Value :=eDate.Date;
+     MyData.qryfeeheadsall.Open;
+     repnme:='.\fee1.fr3';
+     end;
+  6: begin
+      adv_pay:=false;
+      edtFilterChange(self);
+     end;
+  7: begin
+      adv_pay:=true;
+      edtFilterChange(self);
+     end;
+  8:  begin
+     MyData.qryFeeFulldtl.close;
+     Mydata.qryfeeheadspl.SQL.Strings[5]:=' ';
+     Mydata.qryfeeheadgnrl.SQL.Strings[5]:=' ';
+     MyData.qryFeeFulldtl.SQL.Strings[8]:= ' ';
+     MyData.qryFeeFulldtl.Params[0].Value :=sDate.Date;
+     MyData.qryFeeFulldtl.Params[1].Value :=eDate.Date;
+     MyData.qryFeeFulldtl.Open;
+     repnme:='.\feeclasshead.fr3'
+     end;
+  9:begin
+     MyData.qryFeeFulldtl.close;
+     Mydata.qryfeeheadspl.SQL.Strings[5]:=' ';
+     Mydata.qryfeeheadgnrl.SQL.Strings[5]:=' ';
+     MyData.qryFeeFulldtl.SQL.Strings[8]:= ' ';
+     MyData.qryFeeFulldtl.Params[0].Value :=sDate.Date;
+     MyData.qryFeeFulldtl.Params[1].Value :=eDate.Date;
+     MyData.qryFeeFulldtl.Open;
+     repnme:='.\feeheadstud.fr3'
+     end;
+  10:begin
+     MyData.CLMast.Open;
+     Mydata.qryfeeheadspl.SQL.Strings[5]:=' ';
+     Mydata.qryfeeheadgnrl.SQL.Strings[5]:=' ';
+     sc:= InputBox('From Class','Enter Begining of Class','LKG');
+     sc:=VarToStr(MyData.CLMast.Lookup('clcaption',sc,'clcode'));
+     MyData.CLMast.Close;
+     MyData.CLMast.Open;
+     ec:=InputBox('To Class','Enter upto Class','STD');
+     ec:=VarToStr(MyData.CLMast.Lookup('clcaption',ec,'clcode'));
+     MyData.qryFeeFulldtl.close;
+     MyData.qryFeeFulldtl.SQL.Strings[8]:=' And sm_studmast.Clcode between ' + sc+  ' and ' +ec;
+     MyData.qryFeeFulldtl.Params[0].Value :=sDate.Date;
+     MyData.qryFeeFulldtl.Params[1].Value :=eDate.Date;
+     MyData.qryFeeFulldtl.Open;
+     (frxReport1.findobject('hdmemo') as TfrxMemoview).Text:=
+     'Fee Heads For Groups Of Classes';
+     repnme:='.\feeheadstud.fr3';
+     end;
+   11:begin
+     //We are enclosing 235 Nos. Cheque of Rs.3,47,670/-. Please credit in our SB A/c No.4701.
+     mydata.qryCustom.close;
+     sql:='select count(CHQ_NO),sum(CHQ_AMT) from (select distinct CHQ_NO,CHQ_AMT from fee f '
+          +'WHERE  f.chq_amt is not null '
+          +'and MR_DATE between '''+FormatDateTime('yyyy-mm-dd',sDate.Date)+''' and '''+FormatDateTime('yyyy-mm-dd',eDate.Date)+''') t';
+     mydata.qryCustom.SQL.text:=sql;
+     //showmessage(sql);
+     mydata.qryCustom.Open;
+
+     MyData.qryfeebank.close;
+     MyData.qryfeebank.Params[0].Value :=sDate.Date;
+     MyData.qryfeebank.Params[1].Value :=eDate.Date;
+     MyData.qryfeebank.Open;
+     repnme:='.\frxFeeBank.fr3';
+   end;
+
+end;
+
+end;
+
+
+
+procedure TDlgRepo.edtFilterChange(Sender: TObject);
+var
+day,month,yr:word;
+mth,term:integer;
+stext:string;
+begin
+      DecodeDate(date,yr,month,day); //mth:=month-strtoint(genperf.edtsession.text);
+      mth:=month-strtoint(genperf.edtsession.text);
+      if mth<=0 then mth:=12-abs(mth); //term:=(mth div strtoint(genperf.edit2.text))+1;
+      term:=(mth div strtoint(genperf.edtMnthTerm.text));
+      if (day>genperf.updFeeLastdt.Position) then term:=term+1;
+      mydata.spdefaulter.close;
+      rep_head:='Defaulter list as on '+FormatDateTime('dd/mm/yyyy',date);
+      if (updFilter.Position=0) then
+      begin
+      if adv_pay then
+        begin
+        mydata.spdefaulter.StoredProcName:='advance_fee';
+        rep_head:='Advance fees as on '+FormatDateTime('dd/mm/yyyy',date);
+        end
+      else
+        mydata.spdefaulter.StoredProcName:='defaulter';
+      mydata.spdefaulter.Params[0].Value:=term;
+      end
+      else
+      begin
+      rep_head:='Defaulter list for '+inttostr(updFilter.Position)+' months';
+      mydata.spdefaulter.StoredProcName:='defaulter_filter';
+      mydata.spdefaulter.Params[0].Value:=term;
+      stext:=LowerCase(cbxDefaulter.SelText);
+      mydata.spdefaulter.Params[1].Value:=updFilter.Position;
+      mydata.spdefaulter.Params[2].Value:=0;
+      if stext='show all' then
+        mydata.spdefaulter.Params[1].Value:=0-updFilter.Position
+      else if stext='greater' then
+        mydata.spdefaulter.Params[2].Value:=1;
+              //showmessage(mydata.spdefaulter.Params[2].AsString);
+      end;
+
+      mydata.spdefaulter.Open;
+      repnme:='frxdefaulter.fr3';
+
+      {      DecodeDate(date,yr,month,day); //mth:=month-strtoint(genperf.edtsession.text);
+      mth:=month-strtoint(genperf.edtsession.text);
+      if mth<=0 then mth:=12-abs(mth); //term:=(mth div strtoint(genperf.edit2.text))+1;
+      term:=(mth div strtoint(genperf.edtMnthTerm.text));
+      if (day>genperf.updFeeLastdt.Position) then term:=term+1;
+      mydata.spdefaulter.close;
+      rep_head:='Defaulter list';
+      if (updFilter.Position=0) then
+      begin
+      if adv_pay then
+        begin
+        mydata.spdefaulter.StoredProcName:='advance_fee';
+        rep_head:='Advance fees';
+        end
+      else
+        mydata.spdefaulter.StoredProcName:='defaulter';
+      mydata.spdefaulter.Params[0].Value:=term;
+      end
+      else
+      begin
+      rep_head:='Defaulter list for '+inttostr(updFilter.Position)+' months';
+      mydata.spdefaulter.StoredProcName:='defaulter_filter';
+      mydata.spdefaulter.Params[0].Value:=term;
+      mydata.spdefaulter.Params[1].Value:=updFilter.Position;
+      end;
+      mydata.spdefaulter.Open;
+      repnme:='frxdefaulter.fr3'; }
+
+{      DecodeDate(date,yr,month,day); //mth:=month-strtoint(genperf.edtsession.text);
+      mth:=month-strtoint(genperf.edtsession.text);
+      if mth<=0 then mth:=12-abs(mth); //term:=(mth div strtoint(genperf.edit2.text))+1;
+      term:=(mth div strtoint(genperf.edtMnthTerm.text));
+      mydata.spdefaulter.close;
+      rep_head:='Defaulter list';
+      if (updFilter.Position=0) then
+      begin
+      if adv_pay then
+        begin
+        mydata.spdefaulter.StoredProcName:='advance_fee';
+        rep_head:='Advance fees';
+        end
+      else
+        mydata.spdefaulter.StoredProcName:='defaulter';
+      mydata.spdefaulter.Params[0].Value:=term;
+      end
+      else
+      begin
+      rep_head:='Defaulter list for '+inttostr(updFilter.Position)+' months';
+      mydata.spdefaulter.StoredProcName:='defaulter_filter';
+      mydata.spdefaulter.Params[0].Value:=term;
+      mydata.spdefaulter.Params[1].Value:=updFilter.Position;
+      end;
+      mydata.spdefaulter.Open;
+      repnme:='frxdefaulter.fr3';}
+end;
+
+procedure TDlgRepo.FormActivate(Sender: TObject);
+begin
+rep_head:='';adv_pay:=false;
+sdate.Date:=date;
+edate.Date:=date;
+mydata.qryCurrentStud.Close;
+MyData.StudMast.Filter:= 'catcode<>0';
+MyData.StudMast.Open;
+//frxDBDataset1.Open;
+MyData.qryCurrentStud.Open;
+MyData.qryfeeheadsall.Open;
+MyData.qryfeeheadgnrl.Open;
+MyData.qryfeeheadspl.Open;
+end;
+
+end.
+

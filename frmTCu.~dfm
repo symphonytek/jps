@@ -1,0 +1,292 @@
+object frmTC: TfrmTC
+  Left = 269
+  Top = 171
+  BorderStyle = bsDialog
+  Caption = 'Scholar'#39's Transfer Certificate'
+  ClientHeight = 343
+  ClientWidth = 542
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnActivate = FormActivate
+  OnClose = FormClose
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label15: TLabel
+    Left = 171
+    Top = 8
+    Width = 199
+    Height = 29
+    Caption = ' Transfer Certificate '
+    Color = clHighlight
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -24
+    Font.Name = 'Impact'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label1: TLabel
+    Left = 24
+    Top = 64
+    Width = 32
+    Height = 13
+    Caption = 'Sl. No.'
+    FocusControl = DBEdit1
+  end
+  object Label2: TLabel
+    Left = 192
+    Top = 64
+    Width = 50
+    Height = 13
+    Caption = 'Admn. No.'
+    FocusControl = DBEdit2
+  end
+  object Label3: TLabel
+    Left = 360
+    Top = 64
+    Width = 40
+    Height = 13
+    Caption = 'T.C. No.'
+    FocusControl = DBEdit3
+  end
+  object Label4: TLabel
+    Left = 24
+    Top = 128
+    Width = 64
+    Height = 13
+    Caption = 'Leaving Date'
+    FocusControl = DBEdit4
+  end
+  object Label5: TLabel
+    Left = 192
+    Top = 128
+    Width = 46
+    Height = 13
+    Caption = 'Character'
+    FocusControl = DBEdit5
+  end
+  object Label6: TLabel
+    Left = 24
+    Top = 168
+    Width = 48
+    Height = 13
+    Caption = 'Year From'
+    FocusControl = DBEdit6
+  end
+  object Label7: TLabel
+    Left = 192
+    Top = 168
+    Width = 13
+    Height = 13
+    Caption = 'To'
+    FocusControl = DBEdit7
+  end
+  object Label8: TLabel
+    Left = 360
+    Top = 96
+    Width = 63
+    Height = 13
+    Caption = 'Date of Issue'
+    FocusControl = DBEdit8
+  end
+  object Label9: TLabel
+    Left = 360
+    Top = 128
+    Width = 47
+    Height = 13
+    Caption = 'Promotion'
+  end
+  object Label10: TLabel
+    Left = 24
+    Top = 96
+    Width = 28
+    Height = 13
+    Caption = 'Name'
+    FocusControl = DBLookupComboBox1
+  end
+  object Label12: TLabel
+    Left = 24
+    Top = 208
+    Width = 37
+    Height = 13
+    Caption = 'Remark'
+    FocusControl = DBEdit6
+  end
+  object DBEdit1: TDBEdit
+    Left = 88
+    Top = 64
+    Width = 89
+    Height = 21
+    DataField = 'SlNo'
+    DataSource = MyData.TcDataS
+    TabOrder = 0
+  end
+  object DBEdit2: TDBEdit
+    Left = 256
+    Top = 64
+    Width = 89
+    Height = 21
+    DataField = 'AdmNo'
+    DataSource = MyData.TcDataS
+    TabOrder = 1
+  end
+  object DBEdit3: TDBEdit
+    Left = 424
+    Top = 64
+    Width = 105
+    Height = 21
+    DataField = 'TCNo'
+    DataSource = MyData.TcDataS
+    TabOrder = 2
+  end
+  object DBEdit4: TDBEdit
+    Left = 88
+    Top = 128
+    Width = 89
+    Height = 21
+    DataField = 'DtLeft'
+    DataSource = MyData.TcDataS
+    TabOrder = 3
+  end
+  object DBEdit5: TDBEdit
+    Left = 248
+    Top = 128
+    Width = 97
+    Height = 21
+    DataField = 'CHARACTR'
+    DataSource = MyData.TcDataS
+    TabOrder = 4
+  end
+  object DBEdit6: TDBEdit
+    Left = 88
+    Top = 168
+    Width = 89
+    Height = 21
+    DataField = 'YrFrom'
+    DataSource = MyData.TcDataS
+    TabOrder = 5
+  end
+  object DBEdit7: TDBEdit
+    Left = 248
+    Top = 168
+    Width = 97
+    Height = 21
+    DataField = 'YrTo'
+    DataSource = MyData.TcDataS
+    TabOrder = 6
+  end
+  object DBEdit8: TDBEdit
+    Left = 424
+    Top = 96
+    Width = 105
+    Height = 21
+    DataField = 'TcDate'
+    DataSource = MyData.TcDataS
+    TabOrder = 7
+  end
+  object DBLookupComboBox1: TDBLookupComboBox
+    Left = 88
+    Top = 96
+    Width = 257
+    Height = 21
+    DataField = 'StName'
+    DataSource = MyData.TcDataS
+    TabOrder = 8
+  end
+  object DBNavigator1: TDBNavigator
+    Left = 24
+    Top = 288
+    Width = 238
+    Height = 33
+    DataSource = MyData.TcDataS
+    VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbPost]
+    TabOrder = 9
+  end
+  object BitBtn1: TBitBtn
+    Left = 448
+    Top = 288
+    Width = 81
+    Height = 33
+    TabOrder = 10
+    Kind = bkClose
+  end
+  object btnPreview: TBitBtn
+    Left = 328
+    Top = 288
+    Width = 33
+    Height = 33
+    Hint = 'Preview'
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 11
+    OnClick = btnPreviewClick
+    Glyph.Data = {
+      76010000424D7601000000000000760000002800000020000000100000000100
+      04000000000000010000120B0000120B00001000000000000000000000000000
+      800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+      FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00330000000000
+      033333777777777773333330777777703333333773F333773333333330888033
+      33333FFFF7FFF7FFFFFF0000000000000003777777777777777F0FFFFFFFFFF9
+      FF037F3333333337337F0F78888888887F037F33FFFFFFFFF37F0F7000000000
+      8F037F3777777777F37F0F70AAAAAAA08F037F37F3333337F37F0F70ADDDDDA0
+      8F037F37F3333337F37F0F70A99A99A08F037F37F3333337F37F0F70A99A99A0
+      8F037F37F3333337F37F0F70AAAAAAA08F037F37FFFFFFF7F37F0F7000000000
+      8F037F3777777777337F0F77777777777F037F3333333333337F0FFFFFFFFFFF
+      FF037FFFFFFFFFFFFF7F00000000000000037777777777777773}
+    NumGlyphs = 2
+  end
+  object btnPrint: TBitBtn
+    Left = 361
+    Top = 288
+    Width = 33
+    Height = 33
+    Hint = 'Print'
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 12
+    Glyph.Data = {
+      76010000424D7601000000000000760000002800000020000000100000000100
+      04000000000000010000120B0000120B00001000000000000000000000000000
+      800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+      FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00300000000000
+      0003377777777777777308888888888888807F33333333333337088888888888
+      88807FFFFFFFFFFFFFF7000000000000000077777777777777770F8F8F8F8F8F
+      8F807F333333333333F708F8F8F8F8F8F9F07F333333333337370F8F8F8F8F8F
+      8F807FFFFFFFFFFFFFF7000000000000000077777777777777773330FFFFFFFF
+      03333337F3FFFF3F7F333330F0000F0F03333337F77773737F333330FFFFFFFF
+      03333337F3FF3FFF7F333330F00F000003333337F773777773333330FFFF0FF0
+      33333337F3F37F3733333330F08F0F0333333337F7337F7333333330FFFF0033
+      33333337FFFF7733333333300000033333333337777773333333}
+    NumGlyphs = 2
+  end
+  object DBMemo1: TDBMemo
+    Left = 88
+    Top = 208
+    Width = 161
+    Height = 65
+    DataField = 'Oinfo'
+    DataSource = MyData.TcDataS
+    TabOrder = 13
+  end
+  object DBComboBox1: TDBComboBox
+    Left = 424
+    Top = 128
+    Width = 105
+    Height = 21
+    DataField = 'Promotion'
+    DataSource = MyData.TcDataS
+    ItemHeight = 13
+    Items.Strings = (
+      'Granted'
+      'Refused'
+      'Not Applicable')
+    TabOrder = 14
+  end
+end
