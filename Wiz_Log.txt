@@ -1,4 +1,4 @@
-Test changes
+***Test changes
 BDE Migration Wizard log
 
 Created at: 10/04/2008 6:26:32 PM
